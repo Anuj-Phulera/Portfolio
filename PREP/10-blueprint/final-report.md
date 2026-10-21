@@ -2,9 +2,15 @@
 
 **Date:** 2026-10-21
 **Base commit:** `16fe5c9bef773ef6e1c1898bc9948857c83efc59`
-**Head at verification:** `321726e3b3fed27c7f7bfbb56937bd4fcf03775a`
-**Commits since base at verification:** 113
-**This report:** the next commit of the phase. Recount with:
+**Head and commit count:** deliberately not hard-coded here. Each edit to this file changes them, so any pinned number would be stale the moment it is committed. The authoritative values are:
+
+```bash
+git rev-parse HEAD
+git rev-list --count 16fe5c9..HEAD
+git log --oneline 16fe5c9..HEAD | wc -l
+```
+
+Recorded verification output at the time of the last run is in `phase-verification.txt`, with its own head hash.
 
 ```bash
 git rev-list --count 16fe5c9..HEAD

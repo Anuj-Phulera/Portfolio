@@ -1,0 +1,13 @@
+# Dependencies and build output (never committed)
+node_modules/
+dist/
+build/
+coverage/
+
+# Local evidence clones — outside version control, reproducible from 01-source-of-truth/reproduce.md
+.sources/
+.arena/
+
+# OS noise
+.DS_Store
+Thumbs.db

@@ -1,0 +1,500 @@
+{
+  "version": 1,
+  "updated": "2026-10-21",
+  "project_slugs": [
+    "verde-compendium",
+    "verde-app",
+    "nirmaan-app",
+    "nirmaan-portfolio",
+    "skillverse",
+    "resonate",
+    "rakshabandhan",
+    "strata",
+    "verde-previous",
+    "portfolio",
+    "profile"
+  ],
+  "entries": [
+    {
+      "id": "CLM-001",
+      "project": "verde-compendium",
+      "claim": "VERDE was built by two people: Anuj Phulera (software and systems) and Aarav Choudhary (hardware and electronics).",
+      "source": "README.md; app/components/TeamSection.tsx",
+      "grade": "V",
+      "evidence": [
+        "app/components/TeamSection.tsx — team array lists both names, roles, and skill sets"
+      ],
+      "safe_wording": "VERDE is a two-person build: I built the software, cloud pipeline, vision model and site; Aarav Choudhary designed the board, power delivery and physical build.",
+      "public_use": "publish",
+      "attribution": "Anuj Phulera: firmware, cloud pipeline, vision model, site. Aarav Choudhary: schematic, PCB layout, power delivery, physical build.",
+      "reviewed": "2026-10-21"
+    },
+    {
+      "id": "CLM-002",
+      "project": "verde-compendium",
+      "claim": "The site has an interactive Three.js background.",
+      "source": "README.md feature list and Three.js 0.162 badge",
+      "grade": "X",
+      "evidence": [
+        "package.json has no three dependency",
+        "no `three` import in app/",
+        "app/components/NeuralField.tsx: getContext('2d'); comment: 'Pure canvas: no shaders, no WebGL context stolen from the product scenes.'"
+      ],
+      "safe_wording": "The background is a custom 2D canvas particle lattice, built without WebGL so the product scenes keep the GPU.",
+      "public_use": "do-not-publish",
+      "attribution": "Anuj Phulera",
+      "reviewed": "2026-10-21"
+    },
+    {
+      "id": "CLM-003",
+      "project": "verde-compendium",
+      "claim": "The site displays live sensor telemetry from the farm.",
+      "source": "Hero/Telemetry labels and README",
+      "grade": "X",
+      "evidence": [
+        "app/api/telemetry/route.ts returns Math.random() values for every sensor, including uptime 99.97 and firmware V3.0.0"
+      ],
+      "safe_wording": "The site includes a telemetry panel currently driven by simulated values, clearly labelled as a demonstration.",
+      "public_use": "do-not-publish",
+      "attribution": "Anuj Phulera",
+      "reviewed": "2026-10-21"
+    },
+    {
+      "id": "CLM-004",
+      "project": "verde-compendium",
+      "claim": "The site exposes five server routes: contact, health, stats, telemetry and weather.",
+      "source": "app/api/",
+      "grade": "V",
+      "evidence": [
+        "app/api/{contact,health,stats,telemetry,weather}/route.ts"
+      ],
+      "safe_wording": "Five small server routes handle contact, health, stats, telemetry and weather.",
+      "public_use": "publish",
+      "attribution": "Anuj Phulera",
+      "reviewed": "2026-10-21"
+    },
+    {
+      "id": "CLM-005",
+      "project": "verde-compendium",
+      "claim": "The project has a single verification command that typechecks, lints and builds.",
+      "source": "package.json scripts.verify",
+      "grade": "V",
+      "evidence": [
+        "package.json: \"verify\": \"tsc --noEmit && next lint && next build\""
+      ],
+      "safe_wording": "The project defines one verification command that chains typecheck, lint and a production build.",
+      "public_use": "publish",
+      "attribution": "Anuj Phulera",
+      "reviewed": "2026-10-21"
+    },
+    {
+      "id": "CLM-006",
+      "project": "verde-compendium",
+      "claim": "The site is fully accessible with keyboard navigation, skip links and reduced-motion support.",
+      "source": "README.md accessibility section",
+      "grade": "P",
+      "evidence": [
+        "NeuralField.tsx checks prefers-reduced-motion",
+        "no audit artefact, no automated a11y test in the repository"
+      ],
+      "safe_wording": "Some motion respects the reduced-motion preference; a full accessibility audit has not been run.",
+      "public_use": "publish-with-caveat",
+      "attribution": "Anuj Phulera",
+      "reviewed": "2026-10-21"
+    },
+    {
+      "id": "CLM-007",
+      "project": "verde-app",
+      "claim": "All third-party API keys stay on the server and are never shipped to the browser.",
+      "source": "README.md architecture section; .env.example",
+      "grade": "V",
+      "evidence": [
+        "app/api/{db,gemini,openrouter,plant-id,weather}/route.ts read process.env",
+        "no NEXT_PUBLIC_ reference under app/",
+        ".env.example: 'These are read on the server only (app/api/*). They are never sent to the browser.'"
+      ],
+      "safe_wording": "Every third-party key is read server-side inside API routes; none is exposed to the client bundle.",
+      "public_use": "publish",
+      "reviewed": "2026-10-21"
+    },
+    {
+      "id": "CLM-008",
+      "project": "verde-app",
+      "claim": "The dashboard shows live ESP32 sensor data and controls the pump and grow light.",
+      "source": "README.md features",
+      "grade": "U",
+      "evidence": [
+        "requires Firebase credentials and a running board; cannot be exercised in this environment"
+      ],
+      "safe_wording": "The dashboard is designed to read the farm's sensors and to control the pump and grow light.",
+      "public_use": "internal-only",
+      "reviewed": "2026-10-21"
+    },
+    {
+      "id": "CLM-009",
+      "project": "nirmaan-app",
+      "claim": "The app has 18 page routes across three separate role areas.",
+      "source": "app/ route tree",
+      "grade": "V",
+      "evidence": [
+        "18 page.tsx routes under app/(auth), app/(dashboard) and role subfolders",
+        "10 API routes under app/api"
+      ],
+      "safe_wording": "Eighteen routes across three role areas: customer, business and admin.",
+      "public_use": "publish",
+      "reviewed": "2026-10-21"
+    },
+    {
+      "id": "CLM-010",
+      "project": "nirmaan-app",
+      "claim": "NIRMAAN is India's first AI-powered e-waste management platform.",
+      "source": "README.md headline",
+      "grade": "U",
+      "evidence": [
+        "no market study or citation in the repository",
+        "superlative cannot be verified and is unlikely to be true"
+      ],
+      "safe_wording": "An AI-assisted e-waste pickup platform built for a 2026 competition.",
+      "public_use": "do-not-publish",
+      "reviewed": "2026-10-21"
+    },
+    {
+      "id": "CLM-011",
+      "project": "nirmaan-portfolio",
+      "claim": "First-time visitors see an 18-second cinematic loader.",
+      "source": "README.md experience overview",
+      "grade": "X",
+      "evidence": [
+        "GenesisLoader.tsx: duration = 5000 in v6, 4500 in all twelve later commits",
+        "18 seconds never appears in source"
+      ],
+      "safe_wording": "First-time visitors see a short boot sequence of about four and a half seconds.",
+      "public_use": "do-not-publish",
+      "reviewed": "2026-10-21"
+    },
+    {
+      "id": "CLM-012",
+      "project": "nirmaan-portfolio",
+      "claim": "The loader has a prefers-reduced-motion fallback and a skip control.",
+      "source": "README.md section 0",
+      "grade": "X",
+      "evidence": [
+        "at HEAD the string prefers-reduced-motion appears exactly once in the repository: inside README.md"
+      ],
+      "safe_wording": "Reduced-motion handling is not implemented in this build; it is on the correction list.",
+      "public_use": "do-not-publish",
+      "reviewed": "2026-10-21"
+    },
+    {
+      "id": "CLM-013",
+      "project": "nirmaan-portfolio",
+      "claim": "The site is structured as a sixteen-act cinematic narrative.",
+      "source": "profile README repository description",
+      "grade": "P",
+      "evidence": [
+        "19 section components exist",
+        "no act counter or 16-part structure found in source"
+      ],
+      "safe_wording": "A long-form marketing site built from short, titled sections that read as acts.",
+      "public_use": "publish-with-caveat",
+      "reviewed": "2026-10-21"
+    },
+    {
+      "id": "CLM-014",
+      "project": "nirmaan-portfolio",
+      "claim": "NIRMAN branding is fully separated from VERDE and RESONATE.",
+      "source": "site UI and source comments",
+      "grade": "X",
+      "evidence": [
+        "globals.css:44 'Verde & Resonate Elite Avant-Garde Cyber Overlays'",
+        "layout.tsx:45 'Verde & Resonate Master Cyber Overlays'",
+        "GenesisLoader.tsx:40 '0xVERDE_RESONATE_CORE'",
+        "Hero.tsx:184 renders 'VERDE_OS'",
+        "Hero.tsx:134 and GenesisLoader.tsx:121 carry VERDE's tagline"
+      ],
+      "safe_wording": "This build inherits visual conventions and copy from earlier projects; separation is incomplete.",
+      "public_use": "internal-only",
+      "reviewed": "2026-10-21"
+    },
+    {
+      "id": "CLM-015",
+      "project": "skillverse",
+      "claim": "The platform has 34 routes.",
+      "source": "README.md",
+      "grade": "V",
+      "evidence": [
+        "34 page.tsx routes counted in app/"
+      ],
+      "safe_wording": "Thirty-four routes.",
+      "public_use": "publish",
+      "attribution": "Team project; the README credits four students. Individual contributions are not yet itemised.",
+      "reviewed": "2026-10-21"
+    },
+    {
+      "id": "CLM-016",
+      "project": "skillverse",
+      "claim": "The analysis is based on a survey of 250+ Indian teenagers.",
+      "source": "README.md",
+      "grade": "V",
+      "evidence": [
+        "SUBMISSION_PACK/SkillVerse_Raw_Data_250_Records.csv contains 262 lines including header, dated 2026-05-22"
+      ],
+      "safe_wording": "The platform is built on 261 survey responses collected in May 2026.",
+      "public_use": "publish-with-caveat",
+      "attribution": "Team project; the README credits four students. Individual contributions are not yet itemised.",
+      "reviewed": "2026-10-21"
+    },
+    {
+      "id": "CLM-017",
+      "project": "skillverse",
+      "claim": "The platform is WCAG AA compliant.",
+      "source": "README.md badge and accessibility section",
+      "grade": "X",
+      "evidence": [
+        "no accessibility test, audit report, or conformance statement in the repository",
+        "prefers-reduced-motion appears in only a small number of files"
+      ],
+      "safe_wording": "Accessibility work has started; no conformance audit has been run.",
+      "public_use": "do-not-publish",
+      "attribution": "Team project; the README credits four students. Individual contributions are not yet itemised.",
+      "reviewed": "2026-10-21"
+    },
+    {
+      "id": "CLM-018",
+      "project": "skillverse",
+      "claim": "Built in four weeks by four students at Colonel's Central Academy, Gurugram.",
+      "source": "README.md",
+      "grade": "U",
+      "evidence": [
+        "no external corroboration accessible",
+        "team composition is not recorded in the repository"
+      ],
+      "safe_wording": "Built as a four-person team project in 2026.",
+      "public_use": "internal-only",
+      "attribution": "Team project; the README credits four students. Individual contributions are not yet itemised.",
+      "reviewed": "2026-10-21"
+    },
+    {
+      "id": "CLM-019",
+      "project": "skillverse",
+      "claim": "Eight distinct AI analysis pipelines power the product.",
+      "source": "profile README repository description",
+      "grade": "P",
+      "evidence": [
+        "13 Gemini-related and data API routes exist",
+        "the eight-pipeline grouping was not traced"
+      ],
+      "safe_wording": "A set of AI-assisted analysis routes, including sentiment, pathway, report and translation.",
+      "public_use": "publish-with-caveat",
+      "attribution": "Team project; the README credits four students. Individual contributions are not yet itemised.",
+      "reviewed": "2026-10-21"
+    },
+    {
+      "id": "CLM-020",
+      "project": "resonate",
+      "claim": "RESONATE uses three custom GLSL shader pairs.",
+      "source": "repository source",
+      "grade": "V",
+      "evidence": [
+        "artifacts/resonate/src/presentation/shaders/{glass,neural,singularity}.{vert,frag}",
+        "same three pairs duplicated in .migration-backup"
+      ],
+      "safe_wording": "Three custom vertex/fragment shader pairs: glass, neural and singularity.",
+      "public_use": "publish",
+      "reviewed": "2026-10-21"
+    },
+    {
+      "id": "CLM-021",
+      "project": "resonate",
+      "claim": "RESONATE is a live cinematic platform.",
+      "source": "profile README repository description",
+      "grade": "U",
+      "evidence": [
+        "no homepage URL on the repository",
+        "no README at root",
+        "six consecutive commits are unresolved Vercel configuration"
+      ],
+      "safe_wording": "An unshipped experiment: a shader-driven narrative that was built but never deployed.",
+      "public_use": "do-not-publish",
+      "reviewed": "2026-10-21"
+    },
+    {
+      "id": "CLM-022",
+      "project": "resonate",
+      "claim": "The project is roughly 25 pages of scroll-driven narrative.",
+      "source": "profile README repository description",
+      "grade": "P",
+      "evidence": [
+        "52 page.tsx files across the artefact and the migration backup",
+        "no single canonical route map"
+      ],
+      "safe_wording": "A large multi-route narrative, spread across a pnpm workspace and an earlier Next.js build.",
+      "public_use": "publish-with-caveat",
+      "reviewed": "2026-10-21"
+    },
+    {
+      "id": "CLM-023",
+      "project": "rakshabandhan",
+      "claim": "The site has a custom audio engine.",
+      "source": "profile README repository description",
+      "grade": "V",
+      "evidence": [
+        "app/audio.js — 245 lines of hand-written Web Audio",
+        "no audio library in dependencies"
+      ],
+      "safe_wording": "A 245-line hand-written Web Audio engine, not a media element wrapper.",
+      "public_use": "publish",
+      "reviewed": "2026-10-21"
+    },
+    {
+      "id": "CLM-024",
+      "project": "rakshabandhan",
+      "claim": "The site is a ten-chapter personal narrative.",
+      "source": "app/ route tree",
+      "grade": "V",
+      "evidence": [
+        "routes: distance, dossier, finale, letter, lie, love, ritual, timeline, transmission, root"
+      ],
+      "safe_wording": "Nine named chapters plus a title route.",
+      "public_use": "publish",
+      "reviewed": "2026-10-21"
+    },
+    {
+      "id": "CLM-025",
+      "project": "rakshabandhan",
+      "claim": "The narrative uses fabricated dates presented as a log.",
+      "source": "commit 9e3fea6",
+      "grade": "V",
+      "evidence": [
+        "9e3fea6 'timeline dates de-fabricated' replaces MAY 09 / JUN 21 / JUL 17 with DATE: NOT RECORDED / SOMETIME AFTER THAT / IDK WHEN",
+        "the log tag changes from 'LIVE' to 'PARTIAL RECOVERY'"
+      ],
+      "safe_wording": "The timeline deliberately records missing dates as missing rather than inventing precision.",
+      "public_use": "publish",
+      "reviewed": "2026-10-21"
+    },
+    {
+      "id": "CLM-026",
+      "project": "rakshabandhan",
+      "claim": "The site is publicly deployed and ready to share.",
+      "source": "assumption from repository existence",
+      "grade": "U",
+      "evidence": [
+        "no deployment URL in the repository",
+        "no live URL could be fetched from this environment"
+      ],
+      "safe_wording": "The build is complete; public deployment has not been verified.",
+      "public_use": "internal-only",
+      "reviewed": "2026-10-21"
+    },
+    {
+      "id": "CLM-027",
+      "project": "strata",
+      "claim": "The corpus contains 35 objects connected by 79 typed relations.",
+      "source": "README.md",
+      "grade": "V",
+      "evidence": [
+        "src/content/graph.ts: 35 node ids between NODES and EDGES; 79 edge entries in EDGES"
+      ],
+      "safe_wording": "Thirty-five objects, seventy-nine typed relations.",
+      "public_use": "publish",
+      "reviewed": "2026-10-21"
+    },
+    {
+      "id": "CLM-028",
+      "project": "strata",
+      "claim": "The interface can take six structurally different forms.",
+      "source": "README.md and src/modes",
+      "grade": "V",
+      "evidence": [
+        "src/modes: Codex, Console, Constellation, Lattice, Mosaic, Zen"
+      ],
+      "safe_wording": "Six interface paradigms, from a dense mosaic board to a single-column codex.",
+      "public_use": "publish",
+      "reviewed": "2026-10-21"
+    },
+    {
+      "id": "CLM-029",
+      "project": "strata",
+      "claim": "Two different visitors provably receive different structures.",
+      "source": "README.md 'Proof, not promise'",
+      "grade": "V",
+      "evidence": [
+        "scripts/smoke.mjs bundles the real app with esbuild and renders it in jsdom, then plays three visitor types",
+        "scripts/live-check.mjs drives the built site with two visitors",
+        "scripts/screenshot.mjs exists for visual capture"
+      ],
+      "safe_wording": "A headless harness renders the real app and asserts that different reading behaviour produces different structures.",
+      "public_use": "publish-with-caveat",
+      "reviewed": "2026-10-21"
+    },
+    {
+      "id": "CLM-030",
+      "project": "strata",
+      "claim": "The deployed site is reachable at the published GitHub Pages URL.",
+      "source": "README.md live link",
+      "grade": "U",
+      "evidence": [
+        "github.io is not reachable from this environment; HTTP 000"
+      ],
+      "safe_wording": "A static deployment exists; reachability was not verified here.",
+      "public_use": "internal-only",
+      "reviewed": "2026-10-21"
+    },
+    {
+      "id": "CLM-031",
+      "project": "portfolio",
+      "claim": "The portfolio is complete and live.",
+      "source": "new repository name and profile README link",
+      "grade": "A",
+      "evidence": [
+        "repository contains only a README at base commit 16fe5c9"
+      ],
+      "safe_wording": "The portfolio is in preparation.",
+      "public_use": "internal-only",
+      "reviewed": "2026-10-21"
+    },
+    {
+      "id": "CLM-032",
+      "project": "profile",
+      "claim": "The profile README links to eight working project repositories.",
+      "source": "profile README works section",
+      "grade": "X",
+      "evidence": [
+        "API checks on 2026-10-21 returned 404 for all eight links on the new account",
+        "the projects live on the older account UCHIHA-MADARA-ANUJ"
+      ],
+      "safe_wording": "The profile links are being migrated from an earlier account to a new one.",
+      "public_use": "do-not-publish",
+      "reviewed": "2026-10-21"
+    },
+    {
+      "id": "CLM-033",
+      "project": "nirmaan-portfolio",
+      "claim": "The site shows screenshots of the working product interfaces.",
+      "source": "ProductScreens section copy and public/images/screenshots/*",
+      "grade": "X",
+      "evidence": [
+        "generate-screenshots.js builds each PNG from a hand-written SVG string via sharp; no browser, no app, no capture step",
+        "six generateSvg calls produce landing, map, ecobot, dashboard, profile, verification"
+      ],
+      "safe_wording": "Six interface stills are illustrations rendered from SVG, not captures of a running application.",
+      "public_use": "do-not-publish",
+      "reviewed": "2026-10-21"
+    },
+    {
+      "id": "CLM-034",
+      "project": "nirmaan-portfolio",
+      "claim": "Team avatars are original, licensed assets.",
+      "source": "fetch-avatars.js and public/images/team/*",
+      "grade": "U",
+      "evidence": [
+        "fetch-avatars.js scrapes og:image / alphaCoders URLs from a page and downloads them",
+        "no licence record in the repository"
+      ],
+      "safe_wording": "Team imagery has no recorded licence and must not be published until its source is confirmed.",
+      "public_use": "do-not-publish",
+      "reviewed": "2026-10-21"
+    }
+  ]
+}

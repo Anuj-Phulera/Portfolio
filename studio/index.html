@@ -257,6 +257,93 @@
           </p>
         </div>
       </section>
+
+      <!-- 08 -->
+      <section class="demo" id="scene" aria-labelledby="scene-title">
+        <div class="wrap">
+          <div class="demo__head">
+            <p class="eyebrow">08 · native CSS</p>
+            <h2 class="demo__title" id="scene-title">Scroll, without a scroll listener</h2>
+            <p class="demo__question">
+              How much can CSS <code>animation-timeline</code> do before a JavaScript scroll handler is justified?
+            </p>
+          </div>
+          <div class="stage">
+            <div class="scene-stage" id="scene-root">
+              <div class="scene-track" data-scene-track>
+                <div class="scene-panel" data-scene-panel>
+                  <p class="reveal-item__k">PANEL 01</p>
+                  <p class="words-line" style="font-size: var(--step-1)">Scroll this panel. The fade is driven by the compositor, not by JavaScript.</p>
+                </div>
+                <div class="scene-panel" data-scene-panel>
+                  <p class="reveal-item__k">PANEL 02</p>
+                  <p class="words-line" style="font-size: var(--step-1)">Where the API is missing, the fallback is a threshold reveal — never emulated scrubbing.</p>
+                </div>
+                <div class="scene-panel" data-scene-panel>
+                  <p class="reveal-item__k">PANEL 03</p>
+                  <p class="words-line" style="font-size: var(--step-1)">The badge below says which path your browser took.</p>
+                </div>
+              </div>
+              <p class="readout" data-scene-path role="status"></p>
+            </div>
+          </div>
+          <p class="demo__finding">
+            Finding — emulating scroll scrubbing in JS costs frames and breaks keyboard paging; a threshold reveal
+            degrades honestly.
+          </p>
+        </div>
+      </section>
+
+      <!-- 09 -->
+      <section class="demo" id="dial" aria-labelledby="dial-title">
+        <div class="wrap">
+          <div class="demo__head">
+            <p class="eyebrow">09 · input</p>
+            <h2 class="demo__title" id="dial-title">A control you can drag — and also not drag</h2>
+            <p class="demo__question">
+              What must an operable instrument implement before it may call itself accessible?
+            </p>
+          </div>
+          <div class="stage">
+            <div class="dial-stage" id="dial-root">
+              <p class="dial-readout" data-dial-readout>65</p>
+              <div class="dial-track" data-dial-track>
+                <div class="dial-thumb" data-dial-thumb></div>
+              </div>
+              <input type="range" min="0" max="100" value="65" data-dial-input aria-label="Moisture threshold" class="sr-only" />
+              <p class="dial-hint">
+                Drag it, or focus it and use arrow keys, Home and End. The value is clamped, announced, and mirrored
+                into a real range input for assistive tech.
+              </p>
+            </div>
+          </div>
+          <p class="demo__finding">
+            Finding — a drag interaction without a keyboard equivalent is a control only some people can use.
+          </p>
+        </div>
+      </section>
+
+      <!-- 10 -->
+      <section class="demo" id="figures" aria-labelledby="figures-title">
+        <div class="wrap">
+          <div class="demo__head">
+            <p class="eyebrow">10 · data honesty</p>
+            <h2 class="demo__title" id="figures-title">Numbers that must show their receipt</h2>
+            <p class="demo__question">
+              What does an animated statistic have to prove before it is allowed on screen at all?
+            </p>
+          </div>
+          <div class="stage">
+            <div class="figures-stage" id="figures-root">
+              <div class="figures" data-figures></div>
+            </div>
+          </div>
+          <p class="demo__finding">
+            Finding — the component refuses a figure with no source or no commit; “10× faster” cannot be typed in.
+          </p>
+        </div>
+      </section>
+
     </main>
 
     <footer class="site-foot wrap">

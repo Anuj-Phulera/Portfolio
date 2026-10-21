@@ -47,6 +47,14 @@ describe('dial', () => {
     expect(track.tabIndex).toBe(0);
   });
 
+  it('keeps aria-valuenow in step with the value', () => {
+    mountDial(document.getElementById('dial')!, { min: 0, max: 100, value: 40, label: 'Moisture' }, false);
+    const track = document.querySelector<HTMLElement>('[data-dial-track]')!;
+    expect(track.getAttribute('aria-valuenow')).toBe('40');
+    track.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }));
+    expect(track.getAttribute('aria-valuenow')).toBe('41');
+  });
+
   it('notifies listeners with clamped values', () => {
     const seen: number[] = [];
     mountDial(

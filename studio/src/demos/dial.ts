@@ -39,6 +39,7 @@ export function mountDial(root: HTMLElement, options: DialOptions, reduced: bool
     const ratio = (value - min) / (max - min || 1);
     thumb!.style.left = `${ratio * 100}%`;
     thumb!.style.transition = reduced ? 'none' : '';
+    track!.setAttribute('aria-valuenow', String(value));
     input!.value = String(value);
     input!.setAttribute('aria-valuetext', `${value}${options.unit ?? ''}`);
     readout!.textContent = `${value}${options.unit ?? ''}`;

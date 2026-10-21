@@ -1,0 +1,116 @@
+{
+  "note": "Candidate palettes. Measured by tools/design/contrast.mjs. min 4.5 = WCAG AA normal text; 3.0 = large text or non-text UI.",
+  "palettes": {
+    "ledger": {
+      "colors": {
+        "paper": "#F4F1EA",
+        "ink": "#14110F",
+        "grey": "#6E675C",
+        "stamp": "#B3261E"
+      },
+      "pairs": [
+        {
+          "fg": "#14110F",
+          "bg": "#F4F1EA",
+          "min": 4.5,
+          "role": "body text"
+        },
+        {
+          "fg": "#6E675C",
+          "bg": "#F4F1EA",
+          "min": 4.5,
+          "role": "marginalia / metadata"
+        },
+        {
+          "fg": "#B3261E",
+          "bg": "#F4F1EA",
+          "min": 4.5,
+          "role": "status stamp"
+        }
+      ]
+    },
+    "threshold": {
+      "colors": {
+        "void": "#0B0908",
+        "wall": "#1A1512",
+        "bone": "#E8DCC8",
+        "lamp": "#C97B3C",
+        "dust": "#6B5E52"
+      },
+      "pairs": [
+        {
+          "fg": "#E8DCC8",
+          "bg": "#0B0908",
+          "min": 4.5,
+          "role": "body text on void"
+        },
+        {
+          "fg": "#E8DCC8",
+          "bg": "#1A1512",
+          "min": 4.5,
+          "role": "body text on wall"
+        },
+        {
+          "fg": "#C97B3C",
+          "bg": "#0B0908",
+          "min": 4.5,
+          "role": "lamplight accents"
+        },
+        {
+          "fg": "#6B5E52",
+          "bg": "#0B0908",
+          "min": 3.0,
+          "role": "dust / secondary UI"
+        }
+      ]
+    },
+    "instrument": {
+      "colors": {
+        "bench": "#F2EFE9",
+        "graphite": "#161616",
+        "signal": "#E4572E",
+        "steel": "#2F5D62",
+        "rule": "#C9C2B6",
+        "signal_ink": "#B23A16"
+      },
+      "pairs": [
+        {
+          "fg": "#161616",
+          "bg": "#F2EFE9",
+          "min": 4.5,
+          "role": "body text"
+        },
+        {
+          "fg": "#2F5D62",
+          "bg": "#F2EFE9",
+          "min": 4.5,
+          "role": "links / secondary"
+        },
+        {
+          "fg": "#B23A16",
+          "bg": "#F2EFE9",
+          "min": 4.5,
+          "role": "signal text (state labels)"
+        },
+        {
+          "fg": "#E4572E",
+          "bg": "#F2EFE9",
+          "min": 3.0,
+          "role": "signal fill / non-text only"
+        },
+        {
+          "fg": "#161616",
+          "bg": "#E4572E",
+          "min": 4.5,
+          "role": "text on signal fill"
+        },
+        {
+          "fg": "#F2EFE9",
+          "bg": "#161616",
+          "min": 4.5,
+          "role": "inverse text"
+        }
+      ]
+    }
+  }
+}

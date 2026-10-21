@@ -26,6 +26,8 @@ step "design tests"       node --test tools/design/test/contrast.test.mjs
 step "quality tests"      node --test tools/quality/test/rules.test.mjs
 step "a11y-static tests"  node --test tools/quality/test/a11y-static.test.mjs
 step "budget tests"       node --test tools/quality/test/bundle-budget.test.mjs
+step "linkcheck tests"    node --test tools/quality/test/linkcheck.test.mjs
+step "markdown links"     node tools/quality/linkcheck.mjs
 step "motion lab tests"   node --test PREP/07-motion-lab/test/*.test.mjs
 
 echo

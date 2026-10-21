@@ -16,7 +16,7 @@ Portfolio/
 | Folder | Ask it about | Entry point |
 |---|---|---|
 | `PREP/` | "Is this claim true? What exists? Which direction?" | `PREP/00-start-here.md` |
-| `studio/` | "How does this technique actually behave?" | `studio/README.md` |
+| `studio/` | "How does this technique actually behave?" | `studio/README.md` → `studio/docs/` |
 | `tools/` | "How is quality measured?" | `tools/verify-phase.sh` |
 | `docs/` | "What did we decide, and why?" | `docs/creative-brief.md` |
 
@@ -30,3 +30,9 @@ first folder that would be damaged if it disappeared.
 1. Put the artefact in the folder whose question it answers.
 2. Add one line to that folder's README.
 3. Run `bash tools/verify-all.sh` before committing.
+
+## Studio documentation
+
+The studio keeps its own docs so architecture decisions do not mix with portfolio
+decisions: `studio/docs/architecture.md`, `stages.md`, `performance.md`,
+`accessibility.md`, `defects.md`, and five ADRs in `studio/docs/decisions/`.

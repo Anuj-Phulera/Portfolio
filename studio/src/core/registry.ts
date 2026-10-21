@@ -84,6 +84,33 @@ export const DEMOS: readonly DemoMeta[] = [
     finding: 'A 63Hz tone at -38dB, stopped on blur, never assumed.',
     reducedBehaviour: 'Unchanged — sound already requires a gesture.',
   },
+  {
+    id: 'scene',
+    index: 8,
+    title: 'Scroll, without a scroll listener',
+    technique: 'CSS animation-timeline',
+    question: 'How much can CSS scroll-driven animation do before a JS scroll handler is justified?',
+    finding: 'Native where available; a threshold reveal where not. Scrubbing is never emulated.',
+    reducedBehaviour: 'All panels visible, no scroll-linked animation.',
+  },
+  {
+    id: 'dial',
+    index: 9,
+    title: 'A control you can drag — and also not drag',
+    technique: 'pointer + keyboard + ARIA',
+    question: 'What must an operable instrument implement before it may call itself accessible?',
+    finding: 'Drag, arrows, Home/End, a real range input underneath, clamping and a live value.',
+    reducedBehaviour: 'The thumb jumps instead of easing.',
+  },
+  {
+    id: 'figures',
+    index: 10,
+    title: 'Numbers that must show their receipt',
+    technique: 'data integrity',
+    question: 'What does an animated statistic have to prove before it is allowed on screen?',
+    finding: 'A figure without a source and a commit sha throws instead of rendering.',
+    reducedBehaviour: 'Final values shown immediately.',
+  },
 ];
 
 export function byId(id: string): DemoMeta | undefined {

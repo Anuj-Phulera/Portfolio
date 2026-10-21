@@ -1,0 +1,25 @@
+{
+  "name": "portfolio-studio",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Motion and interaction studio: real, runnable experiments with Lenis, anime.js and GSAP.",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "animejs": "^3.2.2",
+    "gsap": "^3.13.0",
+    "lenis": "^1.1.18"
+  },
+  "devDependencies": {
+    "jsdom": "^25.0.1",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.10",
+    "vitest": "^2.1.4"
+  }
+}

@@ -11,6 +11,9 @@ import { mountReveals } from './demos/reveal';
 import { mountScrollLine } from './demos/scrollline';
 import { mountViewTransition } from './demos/viewtransition';
 import { mountSound } from './demos/sound';
+import { mountScrollScene } from './demos/scrollscene';
+import { mountDial } from './demos/dial';
+import { mountCounter } from './demos/counter';
 
 let state = resolveMotion();
 applyMotion(state);
@@ -28,6 +31,13 @@ function mountAll(): void {
   const line = mountScrollLine(qs('#scroll-root'), scroll);
   const vt = mountViewTransition(qs('#vt-root'));
   const sound = mountSound(qs('#sound-root'));
+  const scene = mountScrollScene(qs('#scene-root'), reduced());
+  const dial = mountDial(
+    qs('#dial-root'),
+    { min: 0, max: 100, value: 65, label: 'Moisture threshold', unit: '%' },
+    reduced(),
+  );
+  const figures = mountCounter(qs('#figures-root'), reduced());
 
   qs<HTMLButtonElement>('#cut-play').addEventListener('click', cut.play);
   qs<HTMLButtonElement>('#cut-reset').addEventListener('click', cut.reset);
@@ -40,6 +50,9 @@ function mountAll(): void {
     () => line.destroy(),
     () => vt.destroy(),
     () => sound.destroy(),
+    () => scene.destroy(),
+    () => dial.destroy(),
+    () => figures.play(),
   );
 }
 

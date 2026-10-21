@@ -394,3 +394,40 @@
   color: var(--muted);
   max-width: 42ch;
 }
+
+/* 10 Figures */
+.figures-stage {
+  padding: var(--space-6);
+}
+
+.figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: var(--space-5);
+}
+
+.figure {
+  border-top: 1px solid var(--ink);
+  padding-top: var(--space-3);
+  display: grid;
+  gap: 0.2rem;
+}
+
+.figure__value {
+  font-size: clamp(2rem, 6vw, 3.2rem);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.03em;
+}
+
+.figure__label {
+  font-size: var(--step--1);
+  color: var(--ink);
+}
+
+.figure__source {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+  word-break: break-word;
+}

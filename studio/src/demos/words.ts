@@ -16,7 +16,10 @@ export function mountWords(root: HTMLElement, reduced: boolean): { play(): void 
   const button = root.querySelector<HTMLButtonElement>('[data-replay]');
   if (!target) throw new Error('words demo markup missing');
 
-  const text = target.dataset.line ?? '';
+  // The sentence lives in the element's own text so it is readable without
+  // JavaScript. The data attribute is only a cached copy for re-renders.
+  const text = (target.dataset.line || target.textContent || '').trim();
+  if (!text) throw new Error('words demo has no copy to animate');
   const { root: splitRoot, words } = splitWords(text);
   target.replaceChildren(splitRoot);
   target.style.minHeight = `${target.getBoundingClientRect().height || 0}px`;

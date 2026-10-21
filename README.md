@@ -1,28 +1,46 @@
-# Portfolio — preparation phase
+# Portfolio — preparation and studio
 
-This repository is **not** the portfolio. It is the groundwork the portfolio must stand on: audits, a claims ledger, attribution, research, three creative directions, storyboards, a motion lab, quality tooling, and a blueprint.
+Two workstreams, one repository.
 
-**No portfolio UI exists here, by design.** The build begins only when the readiness gates in `PREP/10-blueprint/readiness-criteria.md` are met.
+**`PREP/`** is the argument: nine evidence-graded project audits, a 34-entry claims
+ledger, attribution records, a research library, three creative directions,
+storyboards, and the blueprint for the build.
 
-## Start here
+**`studio/`** is the demonstration: a working motion studio built with Lenis,
+anime.js and GSAP, where every stage answers a stated design question.
 
-- `PREP/00-start-here.md` — map, isolation rules, evidence conventions
-- `PREP/01-source-of-truth/` — what actually exists in each project
-- `PREP/02-claims/` — what may be said publicly, and why
-- `PREP/05-directions/` — three genuinely different directions, none approved
-- `PREP/07-motion-lab/` — runnable experiments, 32 tests
-- `PREP/10-blueprint/` — feasibility, roadmap, readiness, open questions
+Nothing here is the finished portfolio. Nothing was deleted to make room for
+anything else.
 
-## Run the checks
+## Start
+
+| If you want to… | Open |
+|---|---|
+| understand the whole repo | [`REPO-MAP.md`](REPO-MAP.md) |
+| read the project audits | [`PREP/01-source-of-truth/index.md`](PREP/01-source-of-truth/index.md) |
+| know what may be claimed publicly | [`PREP/02-claims/ledger-report.md`](PREP/02-claims/ledger-report.md) |
+| compare the three directions | [`PREP/05-directions/comparison.md`](PREP/05-directions/comparison.md) |
+| run the motion experiments | [`studio/README.md`](studio/README.md) |
+| see the build plan and gates | [`PREP/10-blueprint/roadmap.md`](PREP/10-blueprint/roadmap.md) |
+
+## Run everything
 
 ```bash
-node tools/claims/validate.mjs
-node tools/quality/audit.mjs
-node tools/design/contrast.mjs
-node --test tools/claims/test/*.test.mjs tools/design/test/*.test.mjs tools/quality/test/*.test.mjs
-node --test PREP/07-motion-lab/test/*.test.mjs
+# checks for the preparation package
+bash tools/verify-phase.sh
+
+# the studio
+cd studio && npm install && npm run dev     # http://localhost:5173
+cd studio && npm test                       # unit + integration
+cd studio && npm run build                  # typecheck + bundle
 ```
 
 ## Status
 
-Preparation only. No pull request, merge, push, or deployment has been performed. All work is local to the preparation branch.
+| Area | State |
+|---|---|
+| Source-of-truth audits | 7 repositories audited, 11 surveyed |
+| Claims ledger | 34 entries, 10 blocked from publication |
+| Directions | 3 written, **none approved** |
+| Motion studio | 7 stages live, 25 tests passing |
+| Portfolio site | **not started, by design** |

@@ -1,0 +1,68 @@
+/* Design tokens — measured, not guessed.
+   Every colour pair below is checked by tools/design/contrast.mjs.
+   Durations are the single source of truth for motion; the reduced path
+   zeroes them rather than disabling animation per-component. */
+
+:root {
+  /* Surface */
+  --bench: #f2efe9;
+  --paper: #fbfaf7;
+  --ink: #161616;
+  --graphite: #3a3a38;
+  --rule: #c9c2b6;
+  --muted: #5f584e;
+
+  /* Signal — state only, never decoration */
+  --signal: #e4572e;      /* fills, 3.21:1 on bench — non-text only */
+  --signal-ink: #b23a16;  /* text, 5.21:1 on bench */
+  --steel: #2f5d62;       /* 6.39:1 on bench */
+
+  /* Type */
+  --font-ui: "Space Grotesk", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --step--1: clamp(0.78rem, 0.74rem + 0.18vw, 0.86rem);
+  --step-0: clamp(0.95rem, 0.9rem + 0.25vw, 1.05rem);
+  --step-1: clamp(1.15rem, 1.05rem + 0.5vw, 1.4rem);
+  --step-2: clamp(1.45rem, 1.2rem + 1.1vw, 2.1rem);
+  --step-3: clamp(1.9rem, 1.4rem + 2.4vw, 3.4rem);
+  --step-4: clamp(2.6rem, 1.6rem + 4.6vw, 5.6rem);
+
+  /* Space */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4.5rem;
+  --space-9: 7rem;
+  --measure: 62ch;
+  --gutter: clamp(1.1rem, 4vw, 3.5rem);
+
+  /* Motion — one place to zero for reduced motion */
+  --dur-fast: 120ms;
+  --dur-base: 220ms;
+  --dur-reveal: 480ms;
+  --dur-scene: 900ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 0ms;
+    --dur-base: 0ms;
+    --dur-reveal: 0ms;
+    --dur-scene: 0ms;
+  }
+}
+
+/* Manual override, set by the studio's own toggle, for testing the path. */
+:root[data-motion="reduced"] {
+  --dur-fast: 0ms;
+  --dur-base: 0ms;
+  --dur-reveal: 0ms;
+  --dur-scene: 0ms;
+}

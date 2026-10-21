@@ -10,8 +10,11 @@ const shots = [
 describe('pacing', () => {
   it('schedules absolute starts, accounting for dissolves only', () => {
     const seq = schedule(shots);
-    expect(seq.shots.map((s) => s.startsAt)).toEqual([0, 900, 2300]);
-    expect(seq.duration).toBe(3700);
+    // desk 900 + cut 0 = 900; greenhouse 1200 + dissolve 700 = 2800;
+    // door 1400 + final cut 0 = 4200. Written out because the first
+    // version of this expectation was wrong by exactly one dissolve.
+    expect(seq.shots.map((s) => s.startsAt)).toEqual([0, 900, 2800]);
+    expect(seq.duration).toBe(4200);
   });
 
   it('classifies cuts and dissolves by duration', () => {

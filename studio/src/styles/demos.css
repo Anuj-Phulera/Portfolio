@@ -346,3 +346,51 @@
 :root[data-motion="reduced"] .scene-panel {
   opacity: 1;
 }
+
+/* 09 Dial */
+.dial-stage {
+  padding: var(--space-7) var(--space-6);
+  display: grid;
+  gap: var(--space-5);
+  max-width: 34rem;
+}
+
+.dial-track {
+  position: relative;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--rule);
+  cursor: ew-resize;
+  touch-action: none;
+}
+
+.dial-thumb {
+  position: absolute;
+  top: 50%;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  transform: translate(-50%, -50%);
+  transition: left var(--dur-fast) var(--ease-out);
+  pointer-events: none;
+}
+
+.dial-track:focus-visible .dial-thumb {
+  outline: 3px solid var(--signal-ink);
+  outline-offset: 3px;
+}
+
+.dial-readout {
+  font-family: var(--font-mono);
+  font-size: var(--step-2);
+  letter-spacing: -0.01em;
+}
+
+.dial-hint {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--muted);
+  max-width: 42ch;
+}

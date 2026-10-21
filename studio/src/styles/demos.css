@@ -1,0 +1,289 @@
+/* Demo-specific composition. Kept separate from tokens so each stage can be
+   read as an instrument rather than a page section. */
+
+.hero {
+  padding-block: var(--space-9) var(--space-7);
+}
+
+.hero__title {
+  font-size: var(--step-4);
+  max-width: 18ch;
+}
+
+.hero__sub {
+  margin-top: var(--space-4);
+  color: var(--muted);
+  max-width: 46ch;
+  font-size: var(--step-1);
+}
+
+.hero__meta {
+  margin-top: var(--space-6);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-5);
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--muted);
+}
+
+/* 01 Cut */
+.cut-stage {
+  position: relative;
+  min-height: clamp(19rem, 46vh, 26rem);
+  display: grid;
+}
+
+.cut-shot {
+  grid-area: 1 / 1;
+  display: grid;
+  align-content: center;
+  gap: var(--space-3);
+  padding: var(--space-6);
+  opacity: 0;
+}
+
+.cut-shot__n {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.16em;
+  color: var(--signal-ink);
+}
+
+.cut-shot__line {
+  font-size: var(--step-2);
+  max-width: 22ch;
+  line-height: 1.15;
+}
+
+.cut-controls {
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+  flex-wrap: wrap;
+  padding: var(--space-4) var(--space-6);
+  border-top: 1px solid var(--rule);
+}
+
+.btn {
+  min-height: 44px;
+  padding: 0 var(--space-5);
+  border-radius: 999px;
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: transform var(--dur-fast) var(--ease-out), opacity var(--dur-fast) var(--ease-out);
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--rule);
+}
+
+.readout {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--muted);
+}
+
+/* 02 Words */
+.words-stage {
+  padding: var(--space-7) var(--space-6);
+}
+
+.words-line {
+  font-size: var(--step-3);
+  line-height: 1.12;
+  max-width: 24ch;
+  letter-spacing: -0.02em;
+}
+
+.split__word {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+/* 03 Parallax */
+.parallax-stage {
+  position: relative;
+  min-height: clamp(16rem, 38vh, 22rem);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 45%, #ffffff 0%, transparent 62%),
+    var(--paper);
+}
+
+.parallax-layer {
+  display: grid;
+  place-items: center;
+  gap: var(--space-2);
+  will-change: transform;
+}
+
+.parallax-disc {
+  width: clamp(9rem, 22vw, 13rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 1px solid var(--ink);
+  background: conic-gradient(from 200deg, var(--bench), var(--paper), var(--bench));
+  display: grid;
+  place-items: center;
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.14em;
+}
+
+.parallax-hint {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--muted);
+  text-align: center;
+}
+
+/* 04 Reveal */
+.reveal-list {
+  display: grid;
+  gap: var(--space-5);
+  padding: var(--space-6);
+}
+
+.reveal-item {
+  border-top: 1px solid var(--rule);
+  padding-top: var(--space-4);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity var(--dur-reveal) var(--ease-out), transform var(--dur-reveal) var(--ease-out);
+}
+
+.reveal-item.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-item {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+:root[data-motion="reduced"] .reveal-item {
+  opacity: 1;
+  transform: none;
+}
+
+.reveal-item__k {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--signal-ink);
+  letter-spacing: 0.1em;
+}
+
+.reveal-scroll {
+  max-height: 22rem;
+  overflow-y: auto;
+  border: 1px solid var(--rule);
+  background: var(--paper);
+}
+
+/* 05 Scroll */
+.scroll-stage {
+  padding: var(--space-6);
+  display: grid;
+  gap: var(--space-4);
+}
+
+.scroll-track {
+  height: 6px;
+  background: var(--rule);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.scroll-bar {
+  height: 100%;
+  width: 100%;
+  background: var(--signal-ink);
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+/* 06 View transition */
+.vt-stage {
+  padding: var(--space-7) var(--space-6);
+  display: grid;
+  gap: var(--space-5);
+  justify-items: start;
+}
+
+.vt-panel {
+  border: 1px solid var(--ink);
+  padding: var(--space-6);
+  width: min(100%, 34rem);
+  background: var(--paper);
+}
+
+.vt-panel h3 {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.16em;
+  color: var(--signal-ink);
+  margin-bottom: var(--space-3);
+}
+
+.vt-panel p {
+  margin: 0;
+  font-size: var(--step-1);
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 240ms;
+}
+
+/* 07 Sound */
+.sound-stage {
+  padding: var(--space-7) var(--space-6);
+  display: grid;
+  gap: var(--space-4);
+  justify-items: start;
+}
+
+/* Footer */
+.site-foot {
+  padding-block: var(--space-8);
+  border-top: 1px solid var(--rule);
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+}
+
+.site-foot a {
+  color: var(--ink);
+}
+
+@media (max-width: 40rem) {
+  .hero {
+    padding-block: var(--space-7) var(--space-6);
+  }
+  .cut-shot {
+    padding: var(--space-5);
+  }
+  .words-stage,
+  .vt-stage,
+  .sound-stage,
+  .scroll-stage {
+    padding: var(--space-5);
+  }
+}

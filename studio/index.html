@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en" data-motion="full">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Motion Studio — seven techniques, seven questions</title>
+    <meta
+      name="description"
+      content="A working studio of motion techniques built with Lenis, anime.js, GSAP and the platform itself. Each demo answers a stated design question."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <a class="sr-only" href="#main">Skip to content</a>
+
+    <header class="site-head">
+      <div class="wrap site-head__inner">
+        <div class="brand">Motion Studio <span>· v0.1</span></div>
+        <div class="head-actions">
+          <button class="chip" id="motion-toggle" type="button" aria-pressed="false">
+            <span aria-hidden="true">◐</span> Reduced motion
+          </button>
+          <a class="chip" href="#sound">Sound</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero wrap">
+        <p class="eyebrow">Experiments · not the portfolio</p>
+        <h1 class="hero__title">Seven techniques. Each one answers a question.</h1>
+        <p class="hero__sub">
+          Nothing here exists because it looks good in isolation. Every stage states the question it was built to
+          answer, and every motion path has a reduced version you can switch on at the top of the page.
+        </p>
+        <div class="hero__meta">
+          <span>Lenis 1.3.27</span>
+          <span>anime.js 3.2.2</span>
+          <span>GSAP 3.15.0</span>
+          <span>no framework</span>
+          <span id="motion-state">motion: full</span>
+        </div>
+      </section>
+
+      <!-- 01 -->
+      <section class="demo" id="cut" aria-labelledby="cut-title">
+        <div class="wrap">
+          <div class="demo__head">
+            <p class="eyebrow">01 · GSAP</p>
+            <h2 class="demo__title" id="cut-title">A cut sequence, timed in code</h2>
+            <p class="demo__question">
+              Can three shots hold, cut and dissolve to a schedule decided before the animation is written — instead of
+              by nudging durations until it feels right?
+            </p>
+          </div>
+          <div class="stage">
+            <div class="cut-stage" id="cut-root">
+              <article class="cut-shot" data-stage data-shot>
+                <p class="cut-shot__n">SHOT 01 · DESK</p>
+                <p class="cut-shot__line">2 a.m. One lamp. The work that never shipped.</p>
+              </article>
+              <article class="cut-shot" data-stage data-shot>
+                <p class="cut-shot__n">SHOT 02 · GREENHOUSE</p>
+                <p class="cut-shot__line">A board that waters itself, and a dashboard that watches.</p>
+              </article>
+              <article class="cut-shot" data-stage data-shot>
+                <p class="cut-shot__n">SHOT 03 · DOOR</p>
+                <p class="cut-shot__line">The next room is being built.</p>
+              </article>
+            </div>
+            <div class="cut-controls">
+              <button class="btn" id="cut-play" type="button">Play sequence</button>
+              <button class="btn btn--ghost" id="cut-reset" type="button">Reset</button>
+              <span class="readout" id="cut-readout" data-readout role="status">ready</span>
+            </div>
+          </div>
+          <p class="demo__finding">
+            Finding — the timeline is generated from the pacing model, so an accidental 600 ms “cut” is rejected at
+            construction instead of shipped.
+          </p>
+        </div>
+      </section>
+
+      <!-- 02 -->
+      <section class="demo" id="words" aria-labelledby="words-title">
+        <div class="wrap">
+          <div class="demo__head">
+            <p class="eyebrow">02 · anime.js</p>
+            <h2 class="demo__title" id="words-title">Type that moves without breaking</h2>
+            <p class="demo__question">
+              Can words animate one by one while a screen reader still hears one sentence, and the paragraph below never
+              shifts?
+            </p>
+          </div>
+          <div class="stage">
+            <div class="words-stage" id="words-root">
+              <p
+                class="words-line"
+                data-line
+                data-text="Thirty-five objects. Seventy-nine relations. One interface that explains why it changed."
+              >
+                Thirty-five objects. Seventy-nine relations. One interface that explains why it changed.
+              </p>
+            </div>
+            <div class="cut-controls">
+              <button class="btn" id="words-replay" data-replay type="button">Replay</button>
+              <span class="readout">stagger 38ms · 480ms reveal</span>
+            </div>
+          </div>
+          <p class="demo__finding">
+            Finding — the visible fragments are aria-hidden and the sentence exists once; the line box is reserved
+            before the first frame.
+          </p>
+        </div>
+      </section>
+
+      <!-- 03 -->
+      <section class="demo" id="depth" aria-labelledby="depth-title">
+        <div class="wrap">
+          <div class="demo__head">
+            <p class="eyebrow">03 · pointer</p>
+            <h2 class="demo__title" id="depth-title">How little motion reads as depth</h2>
+            <p class="demo__question">
+              What is the smallest pointer response that still feels physical — and what happens on a touch screen?
+            </p>
+          </div>
+          <div class="stage">
+            <div class="parallax-stage" id="depth-root">
+              <div class="parallax-layer" data-layer>
+                <div class="parallax-disc">6px max</div>
+                <p class="parallax-hint">move the pointer across this panel<br />(coarse pointers get no motion at all)</p>
+              </div>
+            </div>
+          </div>
+          <p class="demo__finding">
+            Finding — capped at 6px, transform-only, and disabled for coarse pointers; the effect is a hint, not a
+            feature.
+          </p>
+        </div>
+      </section>
+
+      <!-- 04 -->
+      <section class="demo" id="reveal" aria-labelledby="reveal-title">
+        <div class="wrap">
+          <div class="demo__head">
+            <p class="eyebrow">04 · IntersectionObserver</p>
+            <h2 class="demo__title" id="reveal-title">Arrive once, stay</h2>
+            <p class="demo__question">
+              What changes when content arrives at a decided moment and never leaves again?
+            </p>
+          </div>
+          <div class="stage">
+            <div class="reveal-scroll" id="reveal-root">
+              <div class="reveal-list">
+                <div class="reveal-item" data-reveal>
+                  <p class="reveal-item__k">01</p>
+                  <p>The reveal waits for 35% visibility, then holds for 600 ms before it starts.</p>
+                </div>
+                <div class="reveal-item" data-reveal>
+                  <p class="reveal-item__k">02</p>
+                  <p>Scrolling back up does not replay it. The page stays present instead of constantly arriving.</p>
+                </div>
+                <div class="reveal-item" data-reveal>
+                  <p class="reveal-item__k">03</p>
+                  <p>Under reduced motion these three are simply visible from the first frame.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="demo__finding">
+            Finding — idempotent reveals remove the “always loading” feeling that scroll-linked animation creates.
+          </p>
+        </div>
+      </section>
+
+      <!-- 05 -->
+      <section class="demo" id="progress" aria-labelledby="progress-title">
+        <div class="wrap">
+          <div class="demo__head">
+            <p class="eyebrow">05 · Lenis</p>
+            <h2 class="demo__title" id="progress-title">A position readout that tells the truth</h2>
+            <p class="demo__question">
+              Does smooth scrolling break a progress indicator — and does the indicator mean anything under reduced
+              motion?
+            </p>
+          </div>
+          <div class="stage">
+            <div class="scroll-stage" id="scroll-root">
+              <div class="scroll-track" role="presentation">
+                <div class="scroll-bar" data-bar></div>
+              </div>
+              <p class="readout" data-label role="status">0%</p>
+              <p class="readout">
+                This bar is wired to the same controller the page uses. Turn reduced motion on and it will say
+                <em> native</em> instead of <em>lenis</em> — the number stays correct either way.
+              </p>
+            </div>
+          </div>
+          <p class="demo__finding">
+            Finding — smooth scroll is a preference, not a feature; the readout is identical in both worlds.
+          </p>
+        </div>
+      </section>
+
+      <!-- 06 -->
+      <section class="demo" id="swap" aria-labelledby="swap-title">
+        <div class="wrap">
+          <div class="demo__head">
+            <p class="eyebrow">06 · View Transitions</p>
+            <h2 class="demo__title" id="swap-title">A change of state that feels authored</h2>
+            <p class="demo__question">
+              Can the platform alone make a swap feel considered, with an honest fallback where it does not exist?
+            </p>
+          </div>
+          <div class="stage">
+            <div class="vt-stage" id="vt-root">
+              <div class="vt-panel" data-panel>
+                <h3 data-title>STATE ONE</h3>
+                <p data-body>A panel that changes identity rather than position.</p>
+              </div>
+              <button class="btn" data-swap type="button">Swap state</button>
+              <p class="readout" data-support>checking support…</p>
+            </div>
+          </div>
+          <p class="demo__finding">
+            Finding — one line of feature detection, and the fallback is simply the new content with no transition.
+          </p>
+        </div>
+      </section>
+
+      <!-- 07 -->
+      <section class="demo" id="sound" aria-labelledby="sound-title">
+        <div class="wrap">
+          <div class="demo__head">
+            <p class="eyebrow">07 · Web Audio</p>
+            <h2 class="demo__title" id="sound-title">Sound that cannot start on its own</h2>
+            <p class="demo__question">
+              Can consent be built into the architecture instead of promised in a settings menu?
+            </p>
+          </div>
+          <div class="stage">
+            <div class="sound-stage" id="sound-root">
+              <p>
+                Nothing plays when this page loads. The audio graph is created only inside a click handler, and it
+                suspends when the tab loses focus.
+              </p>
+              <button class="btn btn--ghost" data-sound-toggle type="button" aria-pressed="false">Enable room tone</button>
+              <p class="readout" data-sound-status role="status">silent</p>
+            </div>
+          </div>
+          <p class="demo__finding">
+            Finding — a 63Hz tone at −38dB, stop on blur, and a preference that is never assumed.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-foot wrap">
+      <p>
+        Motion Studio is an experiment, not a portfolio page. Source: <a href="https://github.com/Anuj-Phulera/Portfolio">github.com/Anuj-Phulera/Portfolio</a>.
+        Built with Lenis, anime.js and GSAP; everything else is the platform.
+      </p>
+    </footer>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

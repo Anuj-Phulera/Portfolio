@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lab 03 — sound consent</title>
+<style>
+  :root { --void:#0B0908; --bone:#E8DCC8; --lamp:#C97B3C; }
+  body { margin:0; background:var(--void); color:var(--bone); font:16px/1.6 Georgia, serif; }
+  main { max-width:38rem; margin:0 auto; padding:4rem 1.5rem; }
+  h1 { font-size:clamp(1.6rem,5vw,2.4rem); margin:0 0 1rem; }
+  p { color:#C9BCA8; }
+  button { font:inherit; min-height:44px; padding:.7rem 1.1rem; background:transparent; color:var(--bone); border:1px solid var(--lamp); cursor:pointer; }
+  button:focus-visible { outline:3px solid var(--lamp); outline-offset:3px; }
+  .row { display:flex; gap:.75rem; flex-wrap:wrap; margin:1.5rem 0; }
+  #state { font:13px ui-monospace, monospace; color:var(--lamp); }
+</style>
+</head>
+<body>
+<main>
+  <h1>A room tone that waits for permission</h1>
+  <p>Nothing plays on load. The gate in <code>lib/audio-consent.mjs</code> refuses until a real gesture has happened, and remembers your choice.</p>
+  <div class="row">
+    <button id="enable">Enable room tone</button>
+    <button id="disable">Mute</button>
+  </div>
+  <p id="state" role="status">state: awaiting gesture · audio: none</p>
+</main>
+<script type="module">
+  import { createAudioGate } from '../lib/audio-consent.mjs';
+
+  const remembered = localStorage.getItem('lab.sound') === 'on' ? true : localStorage.getItem('lab.sound') === 'off' ? false : null;
+  const gate = createAudioGate({ remembered });
+  const stateEl = document.getElementById('state');
+  let ctx = null;
+  let osc = null;
+  let gain = null;
+
+  function report() {
+    stateEl.textContent = `state: ${gate.state} · audio: ${ctx ? (gate.allowed ? 'playing' : 'silent') : 'not created'}`;
+  }
+
+  function startTone() {
+    if (!gate.allowed) return;
+    if (!ctx) {
+      ctx = new AudioContext();
+      osc = ctx.createOscillator();
+      gain = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.value = 63;
+      gain.gain.value = 0.012;
+      osc.connect(gain).connect(ctx.destination);
+      osc.start();
+    }
+    ctx.resume();
+    report();
+  }
+
+  document.getElementById('enable').addEventListener('click', () => {
+    gate.gesture();
+    gate.enable();
+    localStorage.setItem('lab.sound', 'on');
+    startTone();
+  });
+
+  document.getElementById('disable').addEventListener('click', () => {
+    gate.disable();
+    localStorage.setItem('lab.sound', 'off');
+    if (ctx) ctx.suspend();
+    report();
+  });
+
+  document.addEventListener('visibilitychange', () => {
+    if (!ctx) return;
+    if (document.hidden) ctx.suspend();
+    else if (gate.allowed) ctx.resume();
+  });
+
+  report();
+</script>
+</body>
+</html>

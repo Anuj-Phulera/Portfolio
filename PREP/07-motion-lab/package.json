@@ -1,0 +1,11 @@
+{
+  "name": "portfolio-motion-lab",
+  "private": true,
+  "type": "module",
+  "description": "Isolated experiments for the portfolio. Not connected to any production app.",
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "serve": "python3 -m http.server 8080"
+  },
+  "engines": { "node": ">=20" }
+}

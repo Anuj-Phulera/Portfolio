@@ -122,6 +122,14 @@ function renderBlock(block: Block, ctx: BlockContext): Html {
         </div>
       `;
 
+    case "falsifier":
+      return html`
+        <div class="falsifier">
+          <p class="label">What would make this entry false</p>
+          <p>${inline(block.text)}</p>
+        </div>
+      `;
+
     case "next":
       return html`
         <div class="next">

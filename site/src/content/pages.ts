@@ -190,10 +190,20 @@ export function colophonPage(metrics: BuildMetrics, claims: { total: number; pub
         ],
       },
       {
+        kind: "list",
+        title: "What this build generates",
+        items: [
+          "Twelve pages, each with its own title, description and canonical URL.",
+          "A sitemap and a robots file that points at it.",
+          "Structured data: a Person, a WebSite, and one CreativeWork per entry — no ratings, no counts, nothing the copy does not say.",
+          "A claims gate that stops the build if a blocked claim is cited or printed.",
+        ],
+      },
+      {
         kind: "aside",
         label: "What is not finished",
         text:
-          "No browser was available while this was built. The layout, focus order, reduced-motion path and the three islands have been checked by script and by reading, not by watching. Deployment is not configured. That gap is written here rather than discovered by you.",
+          "No browser was available while this was built. Layout, focus order, the reduced-motion path and the three islands have been checked by script and by reading, not by watching; the browser pass is written down as a checklist in the repository. A deployment workflow exists, but publishing needs one manual switch that this machine cannot reach.",
       },
       {
         kind: "prose",

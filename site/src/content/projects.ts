@@ -77,6 +77,11 @@ export const PROJECTS: Project[] = [
           "There is no server and no account, so persistence is one device. Two of the six paradigms only appear after a rate limit, which means most visitors will never see them. I think that is correct, and it is also why the instrument above is a reduction rather than the thing itself.",
       },
       {
+        kind: "falsifier",
+        text:
+          "If two people with genuinely different reading behaviour received the same arrangement, the engine would be decoration with a status bar. The harness exists to catch exactly that, and it is the first thing I would run against any change to `decide.ts`.",
+      },
+      {
         kind: "next",
         text:
           "Put the two-visitor live check in CI. The claim that this interface adapts is currently only as true as the last time I ran a script by hand.",
@@ -144,6 +149,11 @@ export const PROJECTS: Project[] = [
         label: "What it cost",
         text:
           "The first version of the site showed a telemetry panel driven by generated numbers and presented it as live. That is the mistake this whole site is organised around, and it was mine. The instrument above is the shape of the correction: a recorded fixture, a visible SIMULATED label, and no pretence that the board is connected.",
+      },
+      {
+        kind: "falsifier",
+        text:
+          "A single `NEXT_PUBLIC_` reference to a secret, or one key read in a client component, would make the strongest engineering claim on this page false. That is why the claim is written in terms a grep can settle rather than in terms of good practice.",
       },
       {
         kind: "next",
@@ -214,6 +224,11 @@ export const PROJECTS: Project[] = [
           "I cannot tell you which parts of this are mine. That is not a rhetorical flourish; it is a missing record, and it is the one thing I cannot fix after the fact. The accessibility badge on the README was also untrue, and it is gone.",
       },
       {
+        kind: "falsifier",
+        text:
+          "If the survey instrument reached a different population from the one described, the dataset would not be the dataset this page says it is. The submission pack and its date are the evidence, and they are the reason the claim is limited to what was collected rather than what it implies.",
+      },
+      {
         kind: "next",
         text:
           "A commit convention and a per-person ownership record on the next team build, so that the sentence above never has to be written again.",
@@ -281,6 +296,11 @@ export const PROJECTS: Project[] = [
           "Withdrawing it cost nothing except the thing I wanted: a polished-looking entry. Keeping it would have cost the only thing the site has, which is that you can check it.",
       },
       {
+        kind: "falsifier",
+        text:
+          "If a single commit in the repository contained an eighteen-second loader, the audit would be wrong and this entry would be unfair. I checked every commit before writing this, because a correction that is itself inaccurate is worse than the claim it replaces.",
+      },
+      {
         kind: "next",
         text:
           "Rebuild the marketing site from the application's real routes, with captures taken from a running build. It stays withdrawn until that exists — which is a decision about the record, not about the software.",
@@ -342,6 +362,11 @@ export const PROJECTS: Project[] = [
           "Six consecutive commits of deployment configuration, and then nothing. I can show you the shaders but not the site, and the gap between those two sentences is the actual subject of this entry.",
       },
       {
+        kind: "falsifier",
+        text:
+          "If a deployment existed somewhere I had forgotten, this entry would be wrong about the only thing it asserts. So the assertion is specific: no homepage URL in the repository, no root README, and the last six commits are unresolved hosting configuration.",
+      },
+      {
         kind: "next",
         text:
           "Publish the three shader pairs as source, with one still rendered locally and labelled honestly. That is a weekend's work, and it is the only thing between this and a built entry.",
@@ -393,6 +418,11 @@ export const PROJECTS: Project[] = [
         label: "What it cost",
         text:
           "Nothing technical, although the repository is 121 MB because a build cache was committed, which is its own small lesson. The real cost is that the strongest thing I have made is the one I cannot show you.",
+      },
+      {
+        kind: "falsifier",
+        text:
+          "The de-fabrication commit is the evidence for everything on this page. If it did not exist, the design principle would be an idea I had rather than something I did, and the entry would lose the only part of it you can check.",
       },
       {
         kind: "next",

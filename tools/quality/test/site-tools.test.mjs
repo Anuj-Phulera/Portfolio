@@ -3,7 +3,7 @@ import { mkdtempSync, mkdirSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { test } from "node:test";
-import { checkTree } from "../htmllinks.mjs";
+import { checkTree, stripBase } from "../htmllinks.mjs";
 import { checkTreeA11y } from "../a11y-tree.mjs";
 import { BUDGETS, judge, measure } from "../site-budget.mjs";
 
@@ -87,4 +87,22 @@ test("site-budget names the budget that was crossed", () => {
 test("the stated budgets do not drift from the colophon", () => {
   assert.equal(BUDGETS.total / 1024, 100);
   assert.equal(BUDGETS.page / 1024, 8);
+});
+
+test("stripBase removes a deploy prefix and leaves the rest alone", () => {
+  assert.equal(stripBase("/Portfolio/work/", "/Portfolio/"), "/work/");
+  assert.equal(stripBase("/Portfolio", "/Portfolio/"), "/");
+  assert.equal(stripBase("/work/", "/Portfolio/"), "/work/");
+  assert.equal(stripBase("/work/", "/"), "/work/");
+});
+
+test("checkTree resolves a subpath deploy when told the base", () => {
+  const root = fixture({
+    "index.html": page('<a href="/Portfolio/work/">w</a><img src="/Portfolio/favicon.svg">'),
+    "work/index.html": page("<p>ok</p>"),
+    "favicon.svg": "<svg/>",
+  });
+  assert.deepEqual(checkTree(root, "/Portfolio/").findings, []);
+  // Without the base it must fail, otherwise the option would be untested.
+  assert.ok(checkTree(root, "/").findings.length > 0);
 });

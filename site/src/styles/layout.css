@@ -102,7 +102,7 @@ main {
 }
 
 .col-text {
-  grid-column: 2 / span 6;
+  grid-column: 2 / span 7;
 }
 
 .col-wide {

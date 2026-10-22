@@ -1,6 +1,7 @@
 import { isPublishable, type ClaimEntry, type Ledger } from "../ledger.ts";
 import { DIAL_DEFAULT_THRESHOLD, DIAL_SERIES, MODE_OBJECTS } from "../fixtures.ts";
 import { html, type Html } from "../html.ts";
+import { inline } from "../inline.ts";
 
 /**
  * Instruments are rendered as complete HTML at build time. JavaScript only
@@ -28,7 +29,7 @@ function frame(options: InstrumentOptions, stage: Html, controls: Html, readout:
       ${stage}
       ${readout}
       ${controls}
-      <p class="instrument__caption">${options.caption}</p>
+      <p class="instrument__caption">${inline(options.caption)}</p>
       <details class="labnote">
         <summary>Lab note — what is real, simplified and mocked</summary>
         <dl class="labnote__body">

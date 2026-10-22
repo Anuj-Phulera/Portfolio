@@ -49,7 +49,7 @@ function renderBlock(block: Block, ctx: BlockContext): Html {
             </div>
             <p class="receipt__meta">
               <span class="receipt__grade">Grade ${entry.grade} — ${GRADE_MEANING[entry.grade] ?? ""}</span>
-              <span>Use ${entry.public_use}</span>
+              <span>Public use ${entry.public_use}</span>
               <span>Reviewed ${entry.reviewed}</span>
               <span>Source ${entry.source}</span>
             </p>

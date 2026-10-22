@@ -64,10 +64,12 @@ function main(): void {
   const cited = new Set(citations.flatMap((c) => c.ids));
   console.log(`site: ${cited.size} distinct claims cited, all clear to publish`);
 
+  const claims = { total: counts.total, publishable: counts.publishable };
   const rendered = renderAll(
     ctx,
     { pages: 0, htmlBytes: 0, cssBytes: 0, jsBytes: 0, fontBytes: 0 },
     { css: [], js: [], fonts: [] },
+    claims,
   );
 
   // ---- gate 2: no blocked claim may appear verbatim -----------------------
@@ -86,7 +88,7 @@ function main(): void {
   buildAssets()
     .then((assets) => {
       console.log(`site: islands ${assets.js.length} js, ${assets.css.length} css, ${assets.fonts.length} fonts`);
-      writeAll(ctx, assets, counts);
+      writeAll(ctx, assets, claims);
     })
     .catch((error: unknown) => {
       console.error(error);
@@ -94,10 +96,16 @@ function main(): void {
     });
 }
 
+interface ClaimCounts {
+  total: number;
+  publishable: number;
+}
+
 function renderAll(
   ctx: RenderContext,
   metrics: { pages: number; htmlBytes: number; cssBytes: number; jsBytes: number; fontBytes: number },
   assets: Assets,
+  claims: ClaimCounts,
 ): PageFile[] {
   const pages: PageFile[] = [];
 
@@ -126,7 +134,7 @@ function renderAll(
   });
   const colophon = colophonPage(
     { pages: metrics.pages, htmlBytes: metrics.htmlBytes, cssBytes: metrics.cssBytes, jsBytes: metrics.jsBytes, fontBytes: metrics.fontBytes },
-    { total: counts.total, publishable: counts.publishable, blocked: counts.total - counts.publishable },
+    { total: claims.total, publishable: claims.publishable, blocked: claims.total - claims.publishable },
   );
   pages.push({
     path: "colophon/index.html",
@@ -149,11 +157,7 @@ async function buildAssets(): Promise<Assets> {
   return { css, js, fonts: byExt(".woff2") };
 }
 
-function writeAll(
-  ctx: RenderContext,
-  assets: Assets,
-  counts: { total: number; publishable: number; blocked?: number },
-): void {
+function writeAll(ctx: RenderContext, assets: Assets, claims: ClaimCounts): void {
   const metricsOf = (pages: PageFile[]) => ({
     pages: pages.length,
     htmlBytes: pages.reduce((sum, page) => sum + gzipSync(Buffer.from(page.html)).length, 0),
@@ -167,7 +171,7 @@ function writeAll(
   let pages: PageFile[] = [];
   let metrics = { pages: 0, htmlBytes: 0, cssBytes: sizeOf(assets.css), jsBytes: sizeOf(assets.js), fontBytes: sizeOf(assets.fonts) };
   for (let pass = 0; pass < 2; pass += 1) {
-    pages = renderAll(ctx, metrics, assets);
+    pages = renderAll(ctx, metrics, assets, claims);
     metrics = metricsOf(pages);
   }
 
@@ -183,7 +187,7 @@ function writeAll(
   console.log(`site: ${pages.length} pages`);
   console.log(`site: html ${kb(metrics.htmlBytes)} · css ${kb(metrics.cssBytes)} · js ${kb(metrics.jsBytes)} · fonts ${kb(metrics.fontBytes)}`);
   console.log(`site: total ${kb(total)}`);
-  console.log(`site: ${counts.total} claims, ${counts.publishable} publishable, ${counts.total - counts.publishable} blocked`);
+  console.log(`site: ${claims.total} claims, ${claims.publishable} publishable, ${claims.total - claims.publishable} blocked`);
   console.log("site: done");
   if (process.env.SITE_VERBOSE) {
     for (const page of pages) console.log(`  ${relative(root, join(dist, page.path))}`);

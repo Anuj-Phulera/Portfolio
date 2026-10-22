@@ -1,0 +1,78 @@
+import assert from "node:assert/strict";
+import { test } from "node:test";
+import { PROJECTS } from "../../content/projects.ts";
+import { ABOUT, THE_PATTERN } from "../../content/pages.ts";
+import { renderHome, renderEntries, renderProject, renderPage, renderNotFound } from "./pages.ts";
+import { ledgerInstrument } from "./instruments.ts";
+import { documentShell } from "./layout.ts";
+import { loadLedger } from "../ledger.ts";
+import { esc } from "../html.ts";
+import { INSTRUMENTS } from "../../content/instruments.ts";
+
+const ledger = loadLedger();
+const ctx = { ledger };
+const assets = { css: ["/assets/a.css"], js: ["/assets/a.js"], fonts: [] };
+
+test("home lists every entry and has one h1", () => {
+  const out = renderHome(ctx).value;
+  for (const project of PROJECTS) assert.ok(out.includes(project.name), project.name);
+  assert.equal((out.match(/<h1/g) ?? []).length, 1);
+  assert.ok(out.includes("data-mode-root"));
+});
+
+test("entries index carries the status legend", () => {
+  const out = renderEntries().value;
+  for (const project of PROJECTS) assert.ok(out.includes(project.tagline));
+  assert.ok(out.includes("WITHDRAWN"));
+});
+
+test("a project page renders its receipts as native details elements", () => {
+  const project = PROJECTS.find((p) => p.slug === "strata");
+  assert.ok(project);
+  const out = renderProject(project, ctx).value;
+  const receipts = (out.match(/<details class="receipt"/g) ?? []).length;
+  assert.equal(receipts, project.blocks.filter((b) => b.kind === "receipt").length);
+  assert.ok(out.includes("src/content/graph.ts"));
+  assert.equal((out.match(/<h1/g) ?? []).length, 1);
+});
+
+test("prose pages render with exactly one h1", () => {
+  for (const page of [THE_PATTERN, ABOUT]) {
+    const out = renderPage(page, ctx).value;
+    assert.equal((out.match(/<h1/g) ?? []).length, 1, page.slug);
+  }
+});
+
+test("the ledger instrument never prints a blocked claim verbatim", () => {
+  const out = ledgerInstrument({ ...INSTRUMENTS.ledger, caption: "x", ledger }).value;
+  const blocked = ledger.entries.filter((e) => e.public_use === "do-not-publish" || e.public_use === "internal-only");
+  assert.ok(blocked.length > 0);
+  for (const entry of blocked) {
+    assert.ok(!out.includes(entry.claim), `leaked ${entry.id}`);
+    assert.ok(out.includes(esc(entry.safe_wording)), `missing correction for ${entry.id}`);
+  }
+});
+
+test("the shell escapes the title and marks the current page", () => {
+  const out = documentShell({
+    title: `<script>alert(1)</script>`,
+    description: "d",
+    path: "/about/",
+    body: renderNotFound(),
+    assets,
+  });
+  assert.ok(!out.includes("<script>alert(1)</script>"));
+  assert.ok(out.includes('aria-current="page"'));
+  assert.ok(out.includes('href="#main"'));
+});
+
+test("the 404 page is a page, not a dead end", () => {
+  const out = renderNotFound().value;
+  assert.ok(out.includes('href="/work/"'));
+  assert.ok(out.includes('href="/"'));
+});
+
+test("no page ships an inline style attribute", () => {
+  const pages = [renderHome(ctx), renderEntries(), renderNotFound(), renderPage(ABOUT, ctx)];
+  for (const page of pages) assert.ok(!/style="/.test(page.value));
+});

@@ -31,6 +31,7 @@ import {
   type RenderContext,
 } from "./src/lib/render/pages.ts";
 import { ClaimError, loadLedger, stats, validateCitations } from "./src/lib/ledger.ts";
+import { personJsonLd, projectJsonLd, siteJsonLd, type JsonLd } from "./src/lib/jsonld.ts";
 import { ORIGIN } from "./src/lib/paths.ts";
 import { robotsTxt, sitemapXml } from "./src/lib/sitemap.ts";
 
@@ -110,16 +111,23 @@ function renderAll(
   assets: Assets,
   claims: ClaimCounts,
 ): PageFile[] {
-  const shell = (title: string, description: string, path: string, body: ReturnType<typeof renderHome>) =>
-    documentShell({ title, description, path, body, assets, marker: "ANUJ PHULERA · BENCH 01" });
+  const shell = (
+    title: string,
+    description: string,
+    path: string,
+    body: ReturnType<typeof renderHome>,
+    extra: { structuredData?: JsonLd[]; noindex?: boolean } = {},
+  ) => documentShell({ title, description, path, body, assets, marker: "ANUJ PHULERA · BENCH 01", ...extra });
 
   const colophon = colophonPage(metrics, { total: claims.total, publishable: claims.publishable, blocked: claims.total - claims.publishable });
 
   return ROUTES.map((route) => {
     let body: ReturnType<typeof renderHome>;
+    let structuredData: JsonLd[] = [];
     switch (route.kind) {
       case "home":
         body = renderHome(ctx);
+        structuredData = [personJsonLd(), siteJsonLd()];
         break;
       case "index":
         body = renderEntries();
@@ -129,6 +137,7 @@ function renderAll(
         const project = projectBySlug(slug);
         if (!project) throw new Error(`route ${route.path} has no project`);
         body = renderProject(project, ctx);
+        structuredData = [projectJsonLd(project)];
         break;
       }
       case "note":
@@ -144,7 +153,10 @@ function renderAll(
         body = renderNotFound();
         break;
     }
-    return { path: route.file, html: shell(route.title, route.description, route.path, body) };
+    return {
+      path: route.file,
+      html: shell(route.title, route.description, route.path, body, { structuredData, noindex: route.noindex }),
+    };
   });
 }
 

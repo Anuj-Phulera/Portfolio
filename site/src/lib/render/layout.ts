@@ -2,6 +2,7 @@ import { PROJECTS } from "../../content/projects.ts";
 import { NAV, SITE } from "../../content/site.ts";
 import { html, type Html } from "../html.ts";
 import { absolute, applyBase } from "../paths.ts";
+import { toScript, type JsonLd } from "../jsonld.ts";
 import { stamp } from "./ui.ts";
 
 export interface Assets {
@@ -17,6 +18,8 @@ export interface ShellOptions {
   body: Html;
   assets: Assets;
   marker?: string;
+  structuredData?: JsonLd[];
+  noindex?: boolean;
 }
 
 function nav(current: string): Html {
@@ -80,7 +83,7 @@ function footer(): Html {
 
 export function documentShell(options: ShellOptions): string {
   const origin = (process.env.SITE_ORIGIN ?? "").replace(/\/$/, "");
-  const { title, description, path, body, assets, marker } = options;
+  const { title, description, path, body, assets, marker, structuredData = [], noindex = false } = options;
   const fullTitle = path === "/" ? title : `${title} — ${SITE.name}`;
   const shell = (): string => `<!doctype html>
 <html lang="en-GB">
@@ -91,6 +94,7 @@ export function documentShell(options: ShellOptions): string {
 <meta name="description" content="${escapeHead(description)}">
 <meta name="theme-color" content="#f2efe9">
 <meta name="color-scheme" content="light">
+${noindex ? '<meta name="robots" content="noindex">' : ""}
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
 <meta property="og:title" content="${escapeHead(fullTitle)}">
@@ -99,6 +103,7 @@ ${origin ? `<meta property="og:url" content="${escapeHead(absolute(path))}">` : 
 ${origin ? `<link rel="canonical" href="${escapeHead(absolute(path))}">` : ""}
 ${assets.fonts.map((href) => `<link rel="preload" href="${href}" as="font" type="font/woff2" crossorigin>`).join("\n")}
 ${assets.css.map((href) => `<link rel="stylesheet" href="${href}">`).join("\n")}
+${structuredData.map((json) => `<script type="application/ld+json">${toScript(json)}</script>`).join("\n")}
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>

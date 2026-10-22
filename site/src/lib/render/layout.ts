@@ -1,6 +1,7 @@
 import { PROJECTS } from "../../content/projects.ts";
 import { NAV, SITE } from "../../content/site.ts";
 import { html, type Html } from "../html.ts";
+import { absolute, applyBase } from "../paths.ts";
 import { stamp } from "./ui.ts";
 
 export interface Assets {
@@ -78,9 +79,10 @@ function footer(): Html {
 }
 
 export function documentShell(options: ShellOptions): string {
+  const origin = (process.env.SITE_ORIGIN ?? "").replace(/\/$/, "");
   const { title, description, path, body, assets, marker } = options;
   const fullTitle = path === "/" ? title : `${title} — ${SITE.name}`;
-  return `<!doctype html>
+  const shell = (): string => `<!doctype html>
 <html lang="en-GB">
 <head>
 <meta charset="utf-8">
@@ -93,6 +95,8 @@ export function documentShell(options: ShellOptions): string {
 <meta property="og:type" content="website">
 <meta property="og:title" content="${escapeHead(fullTitle)}">
 <meta property="og:description" content="${escapeHead(description)}">
+${origin ? `<meta property="og:url" content="${escapeHead(absolute(path))}">` : ""}
+${origin ? `<link rel="canonical" href="${escapeHead(absolute(path))}">` : ""}
 ${assets.fonts.map((href) => `<link rel="preload" href="${href}" as="font" type="font/woff2" crossorigin>`).join("\n")}
 ${assets.css.map((href) => `<link rel="stylesheet" href="${href}">`).join("\n")}
 </head>
@@ -114,6 +118,7 @@ ${assets.js.map((src) => `<script type="module" src="${src}"></script>`).join("\
 </body>
 </html>
 `;
+  return applyBase(shell());
 }
 
 function escapeHead(value: string): string {

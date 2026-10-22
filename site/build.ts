@@ -15,8 +15,9 @@ import { cpSync, mkdirSync, readFileSync, readdirSync, rmSync, statSync, writeFi
 import { gzipSync } from "node:zlib";
 import { dirname, extname, join, relative, resolve } from "node:path";
 import { build as viteBuild } from "vite";
-import { ABOUT, THE_PATTERN, colophonPage, type Page } from "./src/content/pages.ts";
-import { PROJECTS } from "./src/content/projects.ts";
+import { ABOUT, THE_PATTERN, colophonPage } from "./src/content/pages.ts";
+import { PROJECTS, projectBySlug } from "./src/content/projects.ts";
+import { ROUTES } from "./src/content/routes.ts";
 import { SITE } from "./src/content/site.ts";
 import type { Project } from "./src/content/types.ts";
 import { collectCitations } from "./src/lib/render/blocks.ts";
@@ -30,6 +31,8 @@ import {
   type RenderContext,
 } from "./src/lib/render/pages.ts";
 import { ClaimError, loadLedger, stats, validateCitations } from "./src/lib/ledger.ts";
+import { ORIGIN } from "./src/lib/paths.ts";
+import { robotsTxt, sitemapXml } from "./src/lib/sitemap.ts";
 
 const root = import.meta.dirname;
 const dist = join(root, "dist");
@@ -107,41 +110,42 @@ function renderAll(
   assets: Assets,
   claims: ClaimCounts,
 ): PageFile[] {
-  const pages: PageFile[] = [];
-
-  // Placeholder shell for the measurement pass; replaced with real assets later.
   const shell = (title: string, description: string, path: string, body: ReturnType<typeof renderHome>) =>
     documentShell({ title, description, path, body, assets, marker: "ANUJ PHULERA · BENCH 01" });
 
-  pages.push({ path: "index.html", html: shell(SITE.title, SITE.description, "/", renderHome(ctx)) });
-  pages.push({
-    path: "work/index.html",
-    html: shell("Entries", "Six entries, eight repositories, five statuses. The record, with the unfinished parts left visible.", "/work/", renderEntries()),
+  const colophon = colophonPage(metrics, { total: claims.total, publishable: claims.publishable, blocked: claims.total - claims.publishable });
+
+  return ROUTES.map((route) => {
+    let body: ReturnType<typeof renderHome>;
+    switch (route.kind) {
+      case "home":
+        body = renderHome(ctx);
+        break;
+      case "index":
+        body = renderEntries();
+        break;
+      case "entry": {
+        const slug = route.path.split("/")[2] ?? "";
+        const project = projectBySlug(slug);
+        if (!project) throw new Error(`route ${route.path} has no project`);
+        body = renderProject(project, ctx);
+        break;
+      }
+      case "note":
+        body = renderPage(THE_PATTERN, ctx);
+        break;
+      case "about":
+        body = renderPage(ABOUT, ctx);
+        break;
+      case "colophon":
+        body = renderPage(colophon, ctx);
+        break;
+      case "error":
+        body = renderNotFound();
+        break;
+    }
+    return { path: route.file, html: shell(route.title, route.description, route.path, body) };
   });
-  for (const project of PROJECTS) {
-    pages.push({
-      path: `work/${project.slug}/index.html`,
-      html: shell(project.name, project.tagline, `/work/${project.slug}/`, renderProject(project, ctx)),
-    });
-  }
-  pages.push({
-    path: "notes/the-pattern/index.html",
-    html: shell(THE_PATTERN.title, THE_PATTERN.description, "/notes/the-pattern/", renderPage(THE_PATTERN, ctx)),
-  });
-  pages.push({
-    path: "about/index.html",
-    html: shell(ABOUT.title, ABOUT.description, "/about/", renderPage(ABOUT, ctx)),
-  });
-  const colophon = colophonPage(
-    { pages: metrics.pages, htmlBytes: metrics.htmlBytes, cssBytes: metrics.cssBytes, jsBytes: metrics.jsBytes, fontBytes: metrics.fontBytes },
-    { total: claims.total, publishable: claims.publishable, blocked: claims.total - claims.publishable },
-  );
-  pages.push({
-    path: "colophon/index.html",
-    html: shell(colophon.title, colophon.description, "/colophon/", renderPage(colophon, ctx)),
-  });
-  pages.push({ path: "404.html", html: shell("Not found", "This page is not on the bench.", "/404.html", renderNotFound()) });
-  return pages;
 }
 
 async function buildAssets(): Promise<Assets> {
@@ -182,6 +186,9 @@ function writeAll(ctx: RenderContext, assets: Assets, claims: ClaimCounts): void
   }
 
   cpSync(join(root, "public"), dist, { recursive: true });
+
+  writeFileSync(join(dist, "sitemap.xml"), sitemapXml(ROUTES, ORIGIN || "https://example.invalid", SITE.built));
+  writeFileSync(join(dist, "robots.txt"), robotsTxt(ORIGIN || null));
 
   const total = metrics.htmlBytes + metrics.cssBytes + metrics.jsBytes + metrics.fontBytes;
   console.log(`site: ${pages.length} pages`);

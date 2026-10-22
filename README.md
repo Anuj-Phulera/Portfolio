@@ -37,7 +37,8 @@ bash tools/verify-all.sh --build
 # the portfolio site
 cd site && npm install
 cd site && npm run build     # 12 static pages → site/dist
-cd site && npm test          # 43 tests, no browser needed
+cd site && npm test          # 68 tests, no browser needed
+cd site && npm run verify    # typecheck, tests, build, links, a11y, budget
 
 # the studio
 cd studio && npm install && npm run dev     # http://localhost:5173
@@ -52,9 +53,9 @@ cd studio && npm run build
 | Source-of-truth audits | 9 repositories audited, 11 surveyed |
 | Claims ledger | 34 entries: 14 verified, 8 contradicted, 16 blocked from publication |
 | Directions | 3 written; Direction C chosen, with A's receipts and B's pacing |
-| Portfolio site | Built: 12 pages, 3 instruments, 43 tests |
+| Portfolio site | Built: 12 pages, 3 instruments, 68 tests |
 | Motion studio | 10 stages, 49 tests, 51.4 KB gzipped |
-| Deployment | **not configured** — nothing here is live |
+| Deployment | Workflow ready for Pages; **not enabled**, so nothing here is live |
 
 ## The rule the site runs on
 

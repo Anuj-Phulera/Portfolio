@@ -749,3 +749,22 @@ input[type="range"] {
 .ledger__row[data-blocked="true"] .ledger__project {
   color: var(--clay);
 }
+
+/* A claim that states its own refutation is worth more than one that does not. */
+.falsifier {
+  border-left: 2px solid var(--signal);
+  background: var(--paper);
+  padding: var(--space-4) var(--space-5);
+  display: grid;
+  gap: var(--space-2);
+  max-width: 60ch;
+}
+
+.falsifier .label {
+  color: var(--signal-ink);
+}
+
+.falsifier p + p {
+  color: var(--graphite);
+  font-size: 0.95rem;
+}

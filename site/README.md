@@ -53,11 +53,11 @@ Measured by `build.ts` on every run and printed at the end:
 | | |
 |---|---|
 | pages | 12 |
-| HTML, all pages, gzip | 37.8 KB |
+| HTML, all pages, gzip | 39.0 KB |
 | CSS, gzip | 6.0 KB |
 | JavaScript, gzip | 1.7 KB |
 | fonts, latin subsets | 36.1 KB |
-| total transfer | 81.6 KB |
+| total transfer | 83.6 KB |
 
 Budgets are enforced by `tools/quality/site-budget.mjs`: js 12 KB, css 12 KB,
 largest page 8 KB, fonts 40 KB, total 100 KB.
@@ -66,8 +66,9 @@ largest page 8 KB, fonts 40 KB, total 100 KB.
 
 - No browser was available while this was built. Layout, focus order and the
   reduced-motion path are checked by script and by reading, not by watching.
-- Deployment is not configured. `SITE_BASE` exists so a project-page deploy can
-  be rooted at a subpath, but no host has been chosen.
+- Deployment is wired for GitHub Pages (`.github/workflows/pages.yml`) but not
+  enabled: the API refuses to switch Pages on for this token, so it needs one
+  manual click. See `docs/deployment.md`.
 - Three instruments, not the four in the direction document. The fourth is the
   cloth-covered object on the home page, which is an honest placeholder rather
   than an instrument.

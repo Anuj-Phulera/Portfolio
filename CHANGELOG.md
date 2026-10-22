@@ -25,6 +25,24 @@ Dated by phase, newest first. This records what changed, not how impressive it w
 - Verified public record, corrected assumptions, established the north star.
 - Withdrew an inferred school/board/location assumption rather than keeping a tidy story.
 
+## Phase 5 — Ship readiness
+
+- Subpath deploys: the site now builds correctly under `/Portfolio/`, with the
+  prefix applied once to finished HTML and canonical URLs derived from an origin.
+- A route manifest: the renderer, the sitemap and the tests read the same list,
+  so a page cannot exist in one and be missing from another.
+- Generated `sitemap.xml` and `robots.txt`; `noindex` on the error page.
+- Structured data for the person, the site and each entry — no ratings, no
+  counts, nothing the copy does not already say.
+- A falsifier block: every entry now names the observation that would make it
+  false.
+- Contract tests that compare the manifest against the built files in both
+  directions.
+- CI: one workflow runs the full gate on every push; a second builds and deploys
+  to GitHub Pages (needs one manual switch to enable).
+- The browser pass is written down as a checklist, because no browser exists on
+  the machine that built this.
+
 ## Phase 4 — The portfolio site
 
 - Direction C built: a bench of six entries and three operable instruments, with

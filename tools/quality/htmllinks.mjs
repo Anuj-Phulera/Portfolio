@@ -13,6 +13,15 @@ import { dirname, extname, join, relative, resolve } from "node:path";
 
 const SKIP = /^(https?:|mailto:|tel:|data:|javascript:|#?$)/i;
 
+/** Strip a deploy prefix such as /Portfolio/ before resolving on disk. */
+export function stripBase(href, base) {
+  if (!base || base === "/") return href;
+  const prefix = base.replace(/\/$/, "");
+  if (href === prefix) return "/";
+  if (href.startsWith(`${prefix}/`)) return href.slice(prefix.length) || "/";
+  return href;
+}
+
 export function listHtml(root) {
   const out = [];
   const walk = (dir) => {
@@ -41,13 +50,13 @@ export function resolveHref(fromFile, root, href) {
   return { file: target, anchor };
 }
 
-export function checkTree(root) {
+export function checkTree(root, base = process.env.SITE_BASE ?? "/") {
   const findings = [];
   const files = listHtml(root);
   for (const file of files) {
     const html = readFileSync(file, "utf8");
     for (const match of html.matchAll(/\s(href|src)="([^"]+)"/g)) {
-      const href = match[2];
+      const href = stripBase(match[2], base);
       const resolved = resolveHref(file, root, href);
       if (!resolved) continue;
       if (!existsSync(resolved.file)) {
@@ -72,7 +81,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     console.error(`no such directory: ${root}`);
     process.exit(1);
   }
-  const { files, findings } = checkTree(root);
+  const { files, findings } = checkTree(root, process.env.SITE_BASE ?? "/");
   for (const finding of findings) console.error(`  ${finding.file}: ${finding.rule} ${finding.href}`);
   console.log(`${files} pages, ${findings.length} broken internal links`);
   process.exit(findings.length === 0 ? 0 : 1);

@@ -1,0 +1,44 @@
+/* Print is a real path, not an afterthought: every receipt opens, the bench
+   becomes a list, and the instrument says what it would have shown. */
+@media print {
+  :root {
+    --bench: #ffffff;
+    --paper: #ffffff;
+    --ink: #000000;
+    --graphite: #1a1a1a;
+    --muted: #444444;
+    --rule: #bbbbbb;
+  }
+
+  .masthead,
+  .edge-marker,
+  .instrument__controls,
+  .skip,
+  .pager {
+    display: none;
+  }
+
+  body {
+    font-size: 10.5pt;
+  }
+
+  .receipt,
+  .cloth {
+    break-inside: avoid;
+  }
+
+  .receipt > summary {
+    cursor: default;
+  }
+
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 8pt;
+    color: #444;
+  }
+
+  .instrument {
+    box-shadow: none;
+    break-inside: avoid;
+  }
+}

@@ -1,0 +1,219 @@
+.shell {
+  width: 100%;
+  max-width: var(--shell);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* ---------------------------------------------------------------- masthead */
+
+.masthead {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--bench);
+  border-bottom: 1px solid var(--rule);
+}
+
+.masthead__inner {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-5);
+  min-height: 3.25rem;
+  padding-block: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.masthead__name {
+  font-weight: 600;
+  font-size: var(--step-0);
+  letter-spacing: 0.055em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.masthead__name:hover {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.3em;
+}
+
+.masthead__meta {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.nav {
+  margin-left: auto;
+  display: flex;
+  gap: clamp(0.75rem, 2vw, 1.75rem);
+  flex-wrap: wrap;
+}
+
+.nav a {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--muted);
+  padding-block: 0.35rem;
+  border-bottom: 1px solid transparent;
+}
+
+.nav a:hover {
+  color: var(--ink);
+  border-bottom-color: var(--ink);
+}
+
+.nav a[aria-current="page"] {
+  color: var(--ink);
+  border-bottom-color: var(--signal);
+}
+
+/* --------------------------------------------------------------- structure */
+
+main {
+  display: block;
+}
+
+.section {
+  padding-block: clamp(3rem, 7vw, 6rem);
+}
+
+.section--tight {
+  padding-block: clamp(2rem, 4vw, 3rem);
+}
+
+.rule-top {
+  border-top: 1px solid var(--rule);
+}
+
+/* A 12-column grid used by the pages. Text sits off-centre on purpose. */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: clamp(0.75rem, 2vw, 1.5rem);
+}
+
+.col-text {
+  grid-column: 2 / span 6;
+}
+
+.col-wide {
+  grid-column: 2 / span 10;
+}
+
+.col-edge {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 900px) {
+  .col-text,
+  .col-wide {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ----------------------------------------------------------------- footer */
+
+.foot {
+  border-top: 1px solid var(--rule);
+  background: var(--paper);
+  padding-block: var(--space-8) var(--space-6);
+  margin-top: var(--space-8);
+}
+
+.foot__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--space-6);
+}
+
+.foot h2 {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 400;
+  margin-bottom: var(--space-3);
+}
+
+.foot ul {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.foot li {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  font-size: var(--step--1);
+}
+
+.foot a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.foot a:hover {
+  border-bottom-color: var(--ink);
+  color: var(--ink);
+}
+
+.foot__stamp {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  border: 1px solid var(--rule);
+  padding: 0.05rem 0.25rem;
+  white-space: nowrap;
+}
+
+.foot__base {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-4) var(--space-6);
+  justify-content: space-between;
+  margin-top: var(--space-7);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--rule);
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+.foot__base a {
+  color: var(--muted);
+}
+
+/* Reads as a label on the left edge on very wide screens; never overlaps. */
+.edge-marker {
+  position: fixed;
+  left: 0.55rem;
+  top: 50%;
+  transform: translateY(-50%);
+  writing-mode: vertical-rl;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  color: var(--muted);
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+@media (max-width: 1180px) {
+  .edge-marker {
+    display: none;
+  }
+}

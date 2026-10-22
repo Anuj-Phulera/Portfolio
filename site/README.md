@@ -53,11 +53,11 @@ Measured by `build.ts` on every run and printed at the end:
 | | |
 |---|---|
 | pages | 12 |
-| HTML, all pages, gzip | 37.6 KB |
+| HTML, all pages, gzip | 37.8 KB |
 | CSS, gzip | 6.0 KB |
 | JavaScript, gzip | 1.7 KB |
 | fonts, latin subsets | 36.1 KB |
-| total transfer | 81.4 KB |
+| total transfer | 81.6 KB |
 
 Budgets are enforced by `tools/quality/site-budget.mjs`: js 12 KB, css 12 KB,
 largest page 8 KB, fonts 40 KB, total 100 KB.

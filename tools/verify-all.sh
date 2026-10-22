@@ -27,6 +27,7 @@ step "quality tests"      node --test tools/quality/test/rules.test.mjs
 step "a11y-static tests"  node --test tools/quality/test/a11y-static.test.mjs
 step "budget tests"       node --test tools/quality/test/bundle-budget.test.mjs
 step "linkcheck tests"    node --test tools/quality/test/linkcheck.test.mjs
+step "site tool tests"    node --test tools/quality/test/site-tools.test.mjs
 step "markdown links"     node tools/quality/linkcheck.mjs
 step "motion lab tests"   node --test PREP/07-motion-lab/test/*.test.mjs
 
@@ -42,6 +43,21 @@ if [ -d studio/node_modules ]; then
   fi
 else
   echo "studio/node_modules missing — run npm install in studio/ (skipped)"
+fi
+
+echo
+echo "== portfolio site =="
+if [ -d site/node_modules ]; then
+  step "site typecheck"   bash -c 'cd site && npx tsc --noEmit'
+  step "site tests"       bash -c 'cd site && npm test --silent'
+  if [ "${1:-}" = "--build" ]; then
+    step "site build"     bash -c 'cd site && node build.ts'
+    step "site links"     node tools/quality/htmllinks.mjs site/dist
+    step "site a11y"      node tools/quality/a11y-tree.mjs site/dist
+    step "site budget"    node tools/quality/site-budget.mjs site/dist
+  fi
+else
+  echo "site/node_modules missing — run npm install in site/ (skipped)"
 fi
 
 echo

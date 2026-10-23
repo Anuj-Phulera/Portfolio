@@ -168,7 +168,7 @@ export const PROJECTS: Project[] = [
     slug: "skillverse",
     index: "03",
     name: "SKILLVERSE",
-    tagline: "261 teenagers, one question, and a mirror built out of the answers.",
+    tagline: "255 surveys, one question, and a mirror built out of the answers.",
     status: "PARTIAL",
     statusNote:
       "The product exists. The accessibility claim does not: no conformance audit was ever run, so it is withdrawn here. Individual contribution is also unresolved, and this page will not guess.",
@@ -182,9 +182,20 @@ export const PROJECTS: Project[] = [
       {
         kind: "lede",
         text:
-          "Most arguments about teenagers and screens are moral panic with a graph attached. This one started with a survey — 261 responses collected in May 2026 — and a comparison engine that puts your own habits next to that baseline.",
+          "This entry was wrong by seven people until October 2026. That is the first thing worth telling you about it.",
       },
-      { kind: "receipt", claim: "CLM-016", note: "the dataset, and its limits" },
+      {
+        kind: "prose",
+        text:
+          "The number was 261, and it came from counting lines in the submission file. The file is 264 lines because eight free-text answers contain line breaks — so a line count is not a record count. Parsing the same file properly gives 255 records from 254 respondents. The audit that produced this ledger had counted lines too, and it had recorded the result as verified. It was the one kind of claim the audit said was always exact.",
+      },
+      {
+        kind: "prose",
+        text:
+          "Most arguments about teenagers and screens are moral panic with a graph attached. This one started with a survey — 255 responses from 254 people, submitted between April and July 2026 — and a comparison engine that puts your own habits next to that baseline.",
+      },
+      { kind: "receipt", claim: "CLM-035", note: "the count, parsed rather than counted by lines" },
+      { kind: "receipt", claim: "CLM-016", note: "what the earlier count said, and why it was wrong" },
       {
         kind: "prose",
         text:
@@ -195,8 +206,9 @@ export const PROJECTS: Project[] = [
         kind: "facts",
         title: "The counts that survive",
         rows: [
-          ["Survey responses", "261"],
-          ["Collected", "May 2026"],
+          ["Parsed records", "255"],
+          ["Unique respondents", "254"],
+          ["Submitted", "Apr – Jul 2026"],
           ["Routes", "34"],
           ["API routes", "21"],
           ["Accessibility audit", "none run"],
@@ -205,7 +217,7 @@ export const PROJECTS: Project[] = [
       {
         kind: "prose",
         text:
-          "What the instrument can say is bounded by what it asked. A self-reported survey of 261 rows can describe a pattern inside one group of teenagers who answered in May 2026. It cannot describe Indian teenagers, and the product does not claim that it can.",
+          "What the instrument can say is bounded by what it asked. A self-reported survey of 255 rows can describe a pattern inside one group of teenagers who answered between April and July 2026. It cannot describe Indian teenagers, and the product does not claim that it can.",
       },
       {
         kind: "prose",

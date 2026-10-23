@@ -30,7 +30,9 @@ for (const path of ROUTES) {
           .slice(0, 3)
           .join(" | ")} — ${v.nodes[0]?.any?.[0]?.message?.slice(0, 120) ?? ""}`,
     );
-    expect(violations, `axe on ${path}`).toEqual([]);
+    // Joined into one string so the reported diff is the list itself, not a
+    // truncated array diff that hides which rule failed.
+    expect(violations.join("\n"), `axe on ${path}`).toBe("");
   });
 }
 

@@ -42,7 +42,7 @@ function collect(suite, out = []) {
         error: (result?.error?.message ?? result?.error?.value ?? "no message")
           .replace(/\u001b\[[0-9;]*m/g, "")
           .split("\n")
-          .slice(0, 6)
+          .slice(0, 14)
           .join("\n"),
       });
     }

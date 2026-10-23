@@ -84,7 +84,7 @@ export function renderHome(ctx: RenderContext): Html {
           </div>
           <div>
             <p>
-              An audit of thirty-four claims across eight repositories found the same failure everywhere:
+              An audit of thirty-five claims across eight repositories found the same failure everywhere:
               countable things were accurate, experiential things were aspirational. This site is built so
               that a claim cannot get here without its evidence.
             </p>

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-10-21",
+  "updated": "2026-10-23",
   "project_slugs": [
     "verde-compendium",
     "verde-app",
@@ -495,6 +495,23 @@
       "safe_wording": "Team imagery has no recorded licence and must not be published until its source is confirmed.",
       "public_use": "do-not-publish",
       "reviewed": "2026-10-21"
+    },
+    {
+      "id": "CLM-035",
+      "project": "skillverse",
+      "claim": "The survey file contains 255 records from 254 respondents, submitted between April and July 2026.",
+      "source": "SUBMISSION_PACK/SkillVerse_Raw_Data_250_Records.csv — parsed, not counted by lines",
+      "grade": "V",
+      "evidence": [
+        "python3 csv.DictReader on the same file: 255 parsed records, 255 unique Submission IDs, 254 unique Respondent IDs",
+        "submission timestamps run from 2026-04-04 to 2026-07-03",
+        "the file is 264 physical lines: eight free-text answers contain newlines, which is why a line count overstates the record count",
+        "CLM-016 recorded 262 lines including header; that is a line count, and it was never the number of responses"
+      ],
+      "safe_wording": "255 submitted surveys from 254 respondents, collected between April and July 2026.",
+      "public_use": "publish",
+      "attribution": "Anuj Phulera and three teammates; per-person contribution is not recorded",
+      "reviewed": "2026-10-23"
     }
   ]
 }

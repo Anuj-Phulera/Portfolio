@@ -101,6 +101,8 @@ export function initMode(root: Element): void {
   function maxDwell(): number {
     let max = 0;
     for (const value of dwell.values()) max = Math.max(max, value);
+    // The object under the pointer has not been left yet, so its time counts too.
+    for (const started of enteredAt.values()) max = Math.max(max, performance.now() - started);
     return max;
   }
 

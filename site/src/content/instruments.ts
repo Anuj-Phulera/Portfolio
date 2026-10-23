@@ -29,7 +29,7 @@ export const INSTRUMENTS: Record<"mode" | "dial" | "ledger", InstrumentMeta> = {
     index: "03",
     title: "CLAIMS LEDGER · THIS SITE",
       labNote: {
-      real: "All thirty-four entries, their grades and their publish status, read from the same JSON the build uses.",
+      real: "All thirty-five entries, their grades and their publish status, read from the same JSON the build uses.",
       simplified: "The filter works on grade only; the ledger also records public-use, evidence and review dates per entry.",
       mocked: "Nothing. If the JSON changes, this instrument changes with it.",
       source: "PREP/02-claims/ledger.json",

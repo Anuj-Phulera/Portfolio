@@ -651,7 +651,9 @@ input[type="range"] {
 .source pre {
   margin: 0;
   padding: 0.85rem 0.9rem;
-  overflow-x: auto;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  overflow-x: visible;
   font-family: var(--font-mono);
   font-size: 0.76rem;
   line-height: 1.6;

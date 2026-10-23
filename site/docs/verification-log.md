@@ -2,6 +2,34 @@
 
 What has actually been run, on what, with what result. Newest first.
 
+## 2026-10-23 — the browser suite moves to CI
+
+The machine that builds this has no browser and cannot download one. GitHub's
+runners do, so `site/tests/browser/` runs there on every push.
+
+| Check | Scope |
+|---|---|
+| `routes.spec.ts` | 11 routes: status, title, one `h1`, no console errors, no failed requests |
+| `layout.spec.ts` | horizontal overflow, shell containment, measure ≤ 72em, sticky header, hero above the fold on a phone |
+| `a11y.spec.ts` | full axe ruleset in Chromium (colour contrast included), skip link, control names, focus ring |
+| `instruments.spec.ts` | mode engine, pin, dial from the keyboard, ledger filter, cloth |
+| `motion.spec.ts` | `prefers-reduced-motion: reduce` — no idle cycle, nothing hidden, all durations `0ms` |
+| `print.spec.ts` | chrome hidden, content kept, background white |
+| `shots.spec.ts` | 7 pages × 2 viewports + reduced motion + print, uploaded as an artifact |
+
+## 2026-10-23 — external links
+
+| Check | Result |
+|---|---|
+| `scripts/external-links.mjs` | 9 external links, **9 broken** → fixed → 0 broken |
+| `scripts/axe-audit.mjs` | 12 pages, 0 violations, 376 checks passed |
+| `scripts/html-audit.mjs` | found 24 inline styles + 12 lowercase doctypes → fixed → 0 errors |
+
+The external link check found that **eight of nine repository links returned
+404**: the entries pointed at the newer account, while the work is hosted on the
+older one. CLM-032 in the ledger had already recorded this migration problem; the
+site had not applied its own finding to itself.
+
 ## 2026-10-22 — scripted, no browser
 
 | Check | Command | Result |

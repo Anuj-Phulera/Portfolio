@@ -35,6 +35,12 @@ jobs:
 
       # Everything the build machine could not check: real layout, real colour
       # contrast, real focus order, real media queries, real pointer input.
+      # Needs the network, so it lives here rather than in the local gate.
+      # This is the check that would have caught eight dead repository links.
+      - name: Check external links resolve
+        working-directory: site
+        run: node scripts/external-links.mjs dist
+
       - name: Run the browser suite
         working-directory: site
         run: npx playwright test

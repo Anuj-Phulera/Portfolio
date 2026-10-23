@@ -17,7 +17,7 @@ export const PROJECTS: Project[] = [
       "Running as a static build. The deployed URL could not be reached from the machine that audited it, so this entry says built, not live.",
     year: "2026",
     surface: "Static site. Framework-free React, Vite, no backend.",
-    repos: [{ label: "WEBE", href: "https://github.com/Anuj-Phulera/WEBE" }],
+    repos: [{ label: "WEBE", href: "https://github.com/UCHIHA-MADARA-ANUJ/WEBE" }],
     attribution: "Sole author of the repository, including all 25 source files.",
     question: "Can an interface change shape for a reader without ever losing their place?",
     blocks: [
@@ -101,8 +101,8 @@ export const PROJECTS: Project[] = [
     year: "2026",
     surface: "Next.js compendium, Next.js control room, firmware and a PCB.",
     repos: [
-      { label: "Verde-CBSE", href: "https://github.com/Anuj-Phulera/Verde-CBSE" },
-      { label: "VERDE-CBSE-APP", href: "https://github.com/Anuj-Phulera/VERDE-CBSE-APP" },
+      { label: "Verde-CBSE", href: "https://github.com/UCHIHA-MADARA-ANUJ/Verde-CBSE" },
+      { label: "VERDE-CBSE-APP", href: "https://github.com/UCHIHA-MADARA-ANUJ/VERDE-CBSE-APP" },
     ],
     attribution:
       "Two people. I built the software, the cloud pipeline, the vision model and the site. Aarav Choudhary designed the board, power delivery and physical build.",
@@ -174,7 +174,7 @@ export const PROJECTS: Project[] = [
       "The product exists. The accessibility claim does not: no conformance audit was ever run, so it is withdrawn here. Individual contribution is also unresolved, and this page will not guess.",
     year: "2026",
     surface: "Next.js app, Supabase, Gemini. Research instrument first, product second.",
-    repos: [{ label: "S2S", href: "https://github.com/Anuj-Phulera/S2S" }],
+    repos: [{ label: "S2S", href: "https://github.com/UCHIHA-MADARA-ANUJ/S2S" }],
     attribution:
       "A team project. The repository records a team but not who built which route, so this page names the system rather than itemising people. That is a gap in the record, not modesty.",
     question: "Does screen time become skill time?",
@@ -248,8 +248,8 @@ export const PROJECTS: Project[] = [
     year: "2026",
     surface: "Next.js three-role platform, plus a static marketing site.",
     repos: [
-      { label: "nirmaan-app", href: "https://github.com/Anuj-Phulera/nirmaan-app" },
-      { label: "Nirmaan-Portfolio-", href: "https://github.com/Anuj-Phulera/Nirmaan-Portfolio-" },
+      { label: "nirmaan-app", href: "https://github.com/UCHIHA-MADARA-ANUJ/nirmaan-app" },
+      { label: "Nirmaan-Portfolio-", href: "https://github.com/UCHIHA-MADARA-ANUJ/Nirmaan-Portfolio-" },
     ],
     attribution:
       "Sole author of both repositories. The marketing site has a second team route, so the team composition of the application is not recorded here and is not claimed.",
@@ -319,7 +319,7 @@ export const PROJECTS: Project[] = [
       "Fifty-two routes, three shader pairs, no deployment. There is no README at the root and no live URL, and the configuration was never resolved.",
     year: "2026",
     surface: "pnpm workspace. React, Vite, React Three Fiber, GLSL.",
-    repos: [{ label: "Resonate-Portfolio", href: "https://github.com/Anuj-Phulera/Resonate-Portfolio" }],
+    repos: [{ label: "Resonate-Portfolio", href: "https://github.com/UCHIHA-MADARA-ANUJ/Resonate-Portfolio" }],
     attribution: "Sole author of the repository.",
     question: "What would a recommender look like if it were trying to understand you rather than keep you?",
     blocks: [
@@ -385,7 +385,7 @@ export const PROJECTS: Project[] = [
       "Built for one person. Consent to publish has not been given, so the entry is closed. It is listed because hiding it would make the record dishonest.",
     year: "2026",
     surface: "Next.js narrative site, static export, hand-written Web Audio.",
-    repos: [{ label: "Rakshbandhan", href: "https://github.com/Anuj-Phulera/Rakshbandhan" }],
+    repos: [{ label: "Rakshbandhan", href: "https://github.com/UCHIHA-MADARA-ANUJ/Rakshbandhan" }],
     attribution:
       "Sole author. The person the site is about has not agreed to be in a portfolio, so the content stays out and only the engineering and the principle are described.",
     question: "How do you build a ritual you cannot attend?",

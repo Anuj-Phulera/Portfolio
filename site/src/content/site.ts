@@ -5,7 +5,7 @@ export const SITE = {
   description:
     "Six entries, eight repositories, one site that shows its own working. Every factual sentence here resolves to an entry in a claims ledger, and the ones that did not survive the audit are still on the page.",
   email: "anuj.phulera.work@gmail.com",
-  github: "https://github.com/Anuj-Phulera",
+  github: "https://github.com/UCHIHA-MADARA-ANUJ",
   source: "https://github.com/Anuj-Phulera/Portfolio",
   built: "2026-10-22",
   bench: "BENCH 01",

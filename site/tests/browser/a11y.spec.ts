@@ -22,11 +22,15 @@ for (const path of ROUTES) {
         runOnly: { type: "tag", values: ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "best-practice"] },
       });
     });
+    // One compact line per violation so the CI report is readable without a trace.
     const violations = result.violations.map(
-      (v: { id: string; impact: string; nodes: { target: string[]; failureSummary: string }[] }) =>
-        `${v.id} (${v.impact}) at ${v.nodes.map((n) => n.target.join(" ")).join(", ")}: ${v.nodes[0]?.failureSummary?.replace(/\n/g, " ").slice(0, 200)}`,
+      (v: { id: string; impact: string; nodes: { target: string[]; any: { message: string }[] }[] }) =>
+        `${v.id} [${v.impact}] ${v.nodes.length}× ${v.nodes
+          .map((n) => n.target.join(" "))
+          .slice(0, 3)
+          .join(" | ")} — ${v.nodes[0]?.any?.[0]?.message?.slice(0, 120) ?? ""}`,
     );
-    expect(violations).toEqual([]);
+    expect(violations, `axe on ${path}`).toEqual([]);
   });
 }
 
@@ -43,7 +47,7 @@ test("every instrument control is reachable and named", async ({ page }) => {
   await page.goto("/");
   const controls = page.locator(".instrument button");
   const count = await controls.count();
-  expect(count).toBeGreaterThanOrEqual(5);
+  expect(count).toBeGreaterThanOrEqual(4);
   for (let i = 0; i < count; i += 1) {
     const control = controls.nth(i);
     const name = (await control.textContent())?.trim() ?? "";

@@ -44,5 +44,6 @@ for (const [path, needle] of ROUTES) {
 test("the 404 page is served and offers a way back", async ({ page }) => {
   const response = await page.goto("/404.html");
   expect(response?.status()).toBe(200);
-  await expect(page.getByRole("link", { name: "All entries" })).toBeVisible();
+  // The footer repeats this link, so scope to the page itself.
+  await expect(page.locator("#main").getByRole("link", { name: "All entries" })).toBeVisible();
 });

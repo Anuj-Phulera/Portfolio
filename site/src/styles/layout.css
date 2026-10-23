@@ -208,7 +208,6 @@ main {
   font-size: 0.6rem;
   letter-spacing: 0.3em;
   color: var(--muted);
-  opacity: 0.75;
   pointer-events: none;
 }
 

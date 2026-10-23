@@ -35,6 +35,7 @@ export function initMode(root: Element): void {
   const dwell = new Map<string, number>();
   const visits = new Map<string, number>();
   const enteredAt = new Map<string, number>();
+  const pending = new Map<string, number>();
 
   let layout: Layout = "codex";
   let live = false;
@@ -146,8 +147,15 @@ export function initMode(root: Element): void {
       visits.set(id, (visits.get(id) ?? 0) + 1);
       enteredAt.set(id, performance.now());
       object.dataset.active = "true";
+      // A visitor who rests on an object should see the engine notice, without
+      // having to leave first. The read updates once the dwell threshold is met.
+      const timer = window.setTimeout(() => evaluate(), DEEP_MS + 60);
+      pending.set(id, timer);
     };
     const leave = (): void => {
+      const timer = pending.get(id);
+      if (timer) window.clearTimeout(timer);
+      pending.delete(id);
       const started = enteredAt.get(id);
       if (started !== undefined) {
         dwell.set(id, (dwell.get(id) ?? 0) + (performance.now() - started));

@@ -30,8 +30,7 @@ test("hovering an object produces a read, and pin refuses it", async ({ page }) 
   await page.goto("/");
   const object = page.locator("[data-object]").first();
   await object.hover();
-  await page.waitForTimeout(1600);
-  await expect(page.locator("[data-read]").first()).not.toHaveText("DEMO");
+  await expect(page.locator("[data-read]").first()).not.toHaveText("DEMO", { timeout: 4000 });
 
   await page.getByRole("button", { name: "Pin", exact: true }).first().click();
   await expect(page.locator("[data-read]").first()).toHaveText("PINNED BY YOU");
@@ -46,15 +45,17 @@ test("the dial responds to the keyboard as well as the drag", async ({ page }) =
   await range.focus();
   await range.press("Home");
   await expect(page.locator("[data-threshold-out]")).toHaveText("10");
-  await expect(page.locator("[data-live-pump]")).toHaveText("ON");
+  // 31% moisture is at or above a 10% threshold, so the pump is off.
+  await expect(page.locator("[data-live-pump]")).toHaveText("OFF");
 
   for (let i = 0; i < 50; i += 1) await range.press("ArrowRight");
   await expect(page.locator("[data-threshold-out]")).toHaveText("60");
   await expect(page.locator("[data-live-pump]")).toHaveText("ON");
 
   await page.getByRole("button", { name: "Auto", exact: true }).click();
-  await expect(page.locator("[data-live-pump]")).toHaveText("ON");
+  await expect(page.locator("[data-live-pump]")).toHaveText("OFF");
   await page.getByRole("button", { name: "Pump", exact: true }).click();
+  await expect(page.locator("[data-live-pump]")).toHaveText("ON");
   await expect(page.locator("[data-why]")).toHaveText("manual override");
 });
 
@@ -63,12 +64,14 @@ test("the ledger filter changes what is on screen", async ({ page }) => {
   const rows = page.locator("[data-ledger-row]");
   await expect(rows).toHaveCount(34);
 
+  const visible = () => rows.evaluateAll((nodes) => nodes.filter((node) => !(node as HTMLElement).hidden).length);
+
   await page.getByRole("button", { name: "X", exact: true }).click();
-  await expect(rows.locator(":visible")).toHaveCount(8);
+  await expect.poll(visible).toBe(8);
   await expect(page.locator("[data-ledger-count]")).toHaveText("8");
 
   await page.getByRole("button", { name: "All", exact: true }).click();
-  await expect(rows.locator(":visible")).toHaveCount(34);
+  await expect.poll(visible).toBe(34);
 });
 
 test("the cloth opens and reveals the next entry", async ({ page }) => {

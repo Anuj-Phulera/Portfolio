@@ -8,6 +8,7 @@ on:
 
 permissions:
   contents: read
+  pull-requests: write
 
 jobs:
   browser:
@@ -44,6 +45,15 @@ jobs:
       - name: Run the browser suite
         working-directory: site
         run: npx playwright test
+
+      # The Actions log is not reachable from every machine, so failures are
+      # also delivered where a reviewer is already looking.
+      - name: Report failures on the pull request
+        if: failure() && github.event_name == 'pull_request'
+        working-directory: site
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/ci-report.mjs "${{ github.event.pull_request.number }}"
 
       - name: Upload screenshots
         if: always()

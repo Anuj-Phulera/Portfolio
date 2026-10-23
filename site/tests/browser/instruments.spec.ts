@@ -15,8 +15,15 @@ test("the mode engine rearranges when you choose a layout", async ({ page }) => 
   await expect(stage).toHaveAttribute("data-layout", "mosaic");
   await expect(page.locator("[data-mode]").first()).toHaveText("MOSAIC");
 
+  // Below a 520px container the mosaic deliberately collapses to one column,
+  // so the assertion has to match the design rather than ignore it.
   const columns = await stage.evaluate((node) => getComputedStyle(node).gridTemplateColumns.split(" ").length);
-  expect(columns, "mosaic should be a multi-column grid").toBeGreaterThan(1);
+  const width = await stage.evaluate((node) => node.getBoundingClientRect().width);
+  if (width > 520) {
+    expect(columns, "mosaic should be a multi-column grid when it has room").toBeGreaterThan(1);
+  } else {
+    expect(columns, "mosaic should collapse to one column when it does not").toBe(1);
+  }
 });
 
 test("hovering an object produces a read, and pin refuses it", async ({ page }) => {

@@ -17,6 +17,20 @@ runners do, so `site/tests/browser/` runs there on every push.
 | `print.spec.ts` | chrome hidden, content kept, background white |
 | `shots.spec.ts` | 7 pages × 2 viewports + reduced motion + print, uploaded as an artifact |
 
+## 2026-10-23 — the survey count, re-derived
+
+| Check | Result |
+|---|---|
+| `python3 csv.DictReader` over the submission CSV | **255 records, 254 respondents** |
+| physical lines | 264 |
+| submission dates | 2026-04-04 → 2026-07-03 |
+| ledger said (CLM-016) | 261 responses, "262 lines including header" |
+
+Eight embedded newlines inside quoted free-text answers made a line count
+overstate the record count. CLM-035 records the corrected figure and the method;
+CLM-016 stays as written, because deleting the record of a mistake is how the
+mistake becomes invisible.
+
 ## 2026-10-23 — external links
 
 | Check | Result |

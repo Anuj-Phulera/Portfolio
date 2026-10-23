@@ -51,7 +51,7 @@ cd studio && npm run build
 | Area | State |
 |---|---|
 | Source-of-truth audits | 9 repositories audited, 11 surveyed |
-| Claims ledger | 34 entries: 14 verified, 8 contradicted, 16 blocked from publication |
+| Claims ledger | 35 entries: 15 verified, 8 contradicted, 16 blocked from publication |
 | Directions | 3 written; Direction C chosen, with A's receipts and B's pacing |
 | Portfolio site | Built: 12 pages, 3 instruments, 68 tests |
 | Motion studio | 10 stages, 49 tests, 51.4 KB gzipped |

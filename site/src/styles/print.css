@@ -1,5 +1,8 @@
-/* Print is a real path, not an afterthought: every receipt opens, the bench
-   becomes a list, and the instrument says what it would have shown. */
+/* Print is a real path, not an afterthought: the bench becomes a list, the
+   instrument says what it would have shown, and receipts are opened by the
+   print island before the snapshot — no CSS property can expand a <details>.
+   With scripting off, a collapsed receipt prints collapsed: less paper, not
+   wrong paper. */
 @media print {
   :root {
     --bench: #ffffff;

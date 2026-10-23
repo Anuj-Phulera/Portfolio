@@ -22,7 +22,7 @@
       "source": "README.md; app/components/TeamSection.tsx",
       "grade": "V",
       "evidence": [
-        "app/components/TeamSection.tsx — team array lists both names, roles, and skill sets"
+        "app/components/TeamSection.tsx \u2014 team array lists both names, roles, and skill sets"
       ],
       "safe_wording": "VERDE is a two-person build: I built the software, cloud pipeline, vision model and site; Aarav Choudhary designed the board, power delivery and physical build.",
       "public_use": "publish",
@@ -292,16 +292,17 @@
     {
       "id": "CLM-020",
       "project": "resonate",
-      "claim": "RESONATE uses three custom GLSL shader pairs.",
+      "claim": "RESONATE uses three vertex/fragment shader pairs \u2014 glass, neural and singularity.",
       "source": "repository source",
-      "grade": "V",
+      "grade": "P",
       "evidence": [
         "artifacts/resonate/src/presentation/shaders/{glass,neural,singularity}.{vert,frag}",
-        "same three pairs duplicated in .migration-backup"
+        "same three pairs duplicated in .migration-backup",
+        "downgraded V to P on 2026-10-23: 'custom' was not supported by the source; see CLM-036"
       ],
-      "safe_wording": "Three custom vertex/fragment shader pairs: glass, neural and singularity.",
+      "safe_wording": "Three vertex and fragment shader pairs: glass, neural and singularity. The noise core in two of the vertex shaders is MIT-licensed webgl-noise from Ashima Arts and Stefan Gustavson, uncredited, and two of the fragment programs are one effect.",
       "public_use": "publish",
-      "reviewed": "2026-10-21"
+      "reviewed": "2026-10-23"
     },
     {
       "id": "CLM-021",
@@ -339,7 +340,7 @@
       "source": "profile README repository description",
       "grade": "V",
       "evidence": [
-        "app/audio.js — 245 lines of hand-written Web Audio",
+        "app/audio.js \u2014 245 lines of hand-written Web Audio",
         "no audio library in dependencies"
       ],
       "safe_wording": "A 245-line hand-written Web Audio engine, not a media element wrapper.",
@@ -500,7 +501,7 @@
       "id": "CLM-035",
       "project": "skillverse",
       "claim": "The survey file contains 255 records from 254 respondents, submitted between April and July 2026.",
-      "source": "SUBMISSION_PACK/SkillVerse_Raw_Data_250_Records.csv — parsed, not counted by lines",
+      "source": "SUBMISSION_PACK/SkillVerse_Raw_Data_250_Records.csv \u2014 parsed, not counted by lines",
       "grade": "V",
       "evidence": [
         "python3 csv.DictReader on the same file: 255 parsed records, 255 unique Submission IDs, 254 unique Respondent IDs",
@@ -511,6 +512,26 @@
       "safe_wording": "255 submitted surveys from 254 respondents, collected between April and July 2026.",
       "public_use": "publish",
       "attribution": "Anuj Phulera and three teammates; per-person contribution is not recorded",
+      "reviewed": "2026-10-23"
+    },
+    {
+      "id": "CLM-036",
+      "project": "resonate",
+      "claim": "Of the six GLSL files in RESONATE, 76 lines are a vendored MIT-licensed noise core carrying no attribution, two fragment programs are one effect, and two helpers are dead code.",
+      "source": "repository source, measured by site/scripts/resonate-shaders.mjs",
+      "grade": "V",
+      "evidence": [
+        "276 lines across six files; 189 non-blank lines; 76 of those fall inside mod289/permute/taylorInvSqrt/snoise/snoiseVec3/curlNoise",
+        "those functions carry the constants and structure of Ashima Arts and Stefan Gustavson's webgl-noise, released under the MIT licence, whose text requires the notice be kept",
+        "grep for copyright, licence, Ashima or Gustafson across all six files: no match",
+        "neural.frag and singularity.frag are 88% identical by longest-common-subsequence over non-blank lines; they differ in the falloff curve only",
+        "singularity.vert defines permute and taylorInvSqrt and never calls either; its header still says 'Advanced Simplex / Curl Noise'",
+        "CLM-020's wording 'three custom shader pairs' is not supported for the noise core or the two fragment programs; the vertex main() bodies and singularity.vert's 43 original lines are",
+        "no GLSL is copied into this repository; only the measurements are, at src/content/data/resonate-shaders.json"
+      ],
+      "safe_wording": "Six GLSL files and 276 lines. The 74-line noise core in neural.vert is the MIT-licensed webgl-noise implementation, uncredited. Two of the three fragment programs are one soft-point sprite with a different falloff. singularity.vert is the strongest file and also carries two helpers nobody calls.",
+      "public_use": "publish",
+      "attribution": "Ashima Arts and Stefan Gustavson, webgl-noise (MIT). Their notice is absent from the source and should be restored.",
       "reviewed": "2026-10-23"
     }
   ]

@@ -10,7 +10,7 @@ export const INSTRUMENTS: Record<"mode" | "dial" | "ledger", InstrumentMeta> = {
     title: "MODE ENGINE · STRATA, REDUCED",
     labNote: {
       real: "The decision rule, the visible read-out, the pin, and keyboard operation of every control. The six layouts exist in the real project; three are reproduced here.",
-      simplified: "Three sample objects instead of thirty-five, and three layouts instead of six. The engine's margin rule is approximated with fixed thresholds.",
+      simplified: "Three sample objects instead of thirty-six, and three layouts instead of six. The engine's margin rule is approximated with fixed thresholds.",
       mocked: "Nothing is faked. The objects are written copy, not the astronomy corpus.",
       source: "site/src/islands/mode.ts",
     },
@@ -29,7 +29,7 @@ export const INSTRUMENTS: Record<"mode" | "dial" | "ledger", InstrumentMeta> = {
     index: "03",
     title: "CLAIMS LEDGER · THIS SITE",
       labNote: {
-      real: "All thirty-five entries, their grades and their publish status, read from the same JSON the build uses.",
+      real: "All thirty-six entries, their grades and their publish status, read from the same JSON the build uses.",
       simplified: "The filter works on grade only; the ledger also records public-use, evidence and review dates per entry.",
       mocked: "Nothing. If the JSON changes, this instrument changes with it.",
       source: "PREP/02-claims/ledger.json",

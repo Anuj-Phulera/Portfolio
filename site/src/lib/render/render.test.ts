@@ -85,3 +85,59 @@ test("a claim cited twice does not produce a duplicate id", async () => {
   const ids = [...out.matchAll(/\sid="([^"]+)"/g)].map((match) => match[1]);
   assert.equal(new Set(ids).size, ids.length, `duplicate ids: ${ids.join(", ")}`);
 });
+
+test("a measurement table aligns its numbers and leaves prose alone", async () => {
+  const { PROJECTS } = await import("../../content/projects.ts");
+  const project = PROJECTS.find((p) => p.slug === "resonate");
+  assert.ok(project);
+  const block = project.blocks.find((b) => b.kind === "table");
+  assert.ok(block && block.kind === "table");
+
+  const out = renderProject(project, ctx).value;
+  assert.ok(out.includes('class="measure__table"'));
+  assert.ok(out.includes('scope="col"'), "column headers are scoped");
+  assert.ok(out.includes('scope="row"'), "row headers are scoped");
+
+  const heads = [...out.matchAll(/<th scope="col"([^>]*)>([^<]*)<\/th>/g)].map(
+    (match) => ({ attributes: match[1] ?? "", label: match[2] ?? "" }),
+  );
+  assert.equal(heads.length, block.columns.length);
+  assert.ok(!heads[heads.length - 1]?.attributes.includes("measure__number"), "a prose column is not right-aligned");
+  assert.ok(heads[1]?.attributes.includes("measure__number"), "a number column is");
+});
+
+test("every table row has as many cells as there are columns", async () => {
+  const { PROJECTS } = await import("../../content/projects.ts");
+  for (const project of PROJECTS) {
+    for (const block of project.blocks) {
+      if (block.kind !== "table") continue;
+      for (const row of block.rows) {
+        assert.equal(
+          row.length,
+          block.columns.length,
+          `${project.slug}: a row has ${row.length} cells for ${block.columns.length} columns`,
+        );
+      }
+    }
+  }
+});
+
+test("no table ships an empty column header", async () => {
+  // axe flags an empty <th scope="col">, and it flagged one here: a comparison
+  // table whose first column held row labels and therefore had no heading.
+  const { PROJECTS } = await import("../../content/projects.ts");
+  const { THE_PATTERN } = await import("../../content/pages.ts");
+
+  const blocks = [
+    ...PROJECTS.flatMap((project) => project.blocks),
+    ...THE_PATTERN.blocks,
+  ].filter((block) => block.kind === "table");
+
+  assert.ok(blocks.length >= 2, "the tables under test should exist");
+  for (const block of blocks) {
+    if (block.kind !== "table") continue;
+    for (const column of block.columns) {
+      assert.ok(column.trim().length > 0, `${block.title}: a column has no heading`);
+    }
+  }
+});

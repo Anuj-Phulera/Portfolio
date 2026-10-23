@@ -13,6 +13,14 @@ export type Block =
   | { kind: "source"; file: string; caption: string; lines: string[] }
   | { kind: "files"; title: string; rows: ReadonlyArray<readonly [string, string]> }
   | { kind: "list"; title: string; items: string[] }
+  /** A table of measured values: real columns, a caption, and a note. */
+  | {
+      kind: "table";
+      title: string;
+      columns: ReadonlyArray<string>;
+      rows: ReadonlyArray<ReadonlyArray<string>>;
+      note?: string;
+    }
   | { kind: "aside"; label: string; text: string }
   | {
       kind: "chart";

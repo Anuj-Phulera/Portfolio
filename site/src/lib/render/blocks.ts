@@ -115,6 +115,39 @@ function renderBlock(block: Block, ctx: BlockContext): Html {
         </div>
       `;
 
+    case "table":
+      return html`
+        <div class="measure">
+          <p class="facts__title">${block.title}</p>
+          <table class="measure__table">
+            <caption class="visually-hidden">${block.title}</caption>
+            <thead>
+              <tr>
+                ${block.columns.map((column, index) =>
+                  index > 0 && index < block.columns.length - 1
+                    ? html`<th scope="col" class="measure__number">${column}</th>`
+                    : html`<th scope="col">${column}</th>`,
+                )}
+              </tr>
+            </thead>
+            <tbody>
+              ${block.rows.map(
+                (row) => html`
+                  <tr>
+                    ${row.map((cell, index) =>
+                      index === 0
+                        ? html`<th scope="row">${cell}</th>`
+                        : html`<td class="${index < block.columns.length - 1 ? "measure__number" : ""}">${cell}</td>`,
+                    )}
+                  </tr>
+                `,
+              )}
+            </tbody>
+          </table>
+          ${block.note ? html`<p class="measure__note">${inline(block.note)}</p>` : html``}
+        </div>
+      `;
+
     case "aside":
       return html`
         <div class="aside">

@@ -85,7 +85,7 @@ export function documentShell(options: ShellOptions): string {
   const origin = (process.env.SITE_ORIGIN ?? "").replace(/\/$/, "");
   const { title, description, path, body, assets, marker, structuredData = [], noindex = false } = options;
   const fullTitle = path === "/" ? title : `${title} — ${SITE.name}`;
-  const shell = (): string => `<!doctype html>
+  const shell = (): string => `<!DOCTYPE html>
 <html lang="en-GB">
 <head>
 <meta charset="utf-8">

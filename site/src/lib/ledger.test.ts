@@ -4,8 +4,8 @@ import { ClaimError, assertPublishable, cite, isPublishable, loadLedger, stats, 
 
 const ledger = loadLedger();
 
-test("the real ledger loads and has 34 graded entries", () => {
-  assert.equal(ledger.entries.length, 34);
+test("the real ledger loads and has 35 graded entries", () => {
+  assert.equal(ledger.entries.length, 35);
   assert.equal(ledger.version, 1);
 });
 
@@ -20,11 +20,11 @@ test("every entry has the fields the site relies on", () => {
 
 test("the ledger's parse matches the published counts", () => {
   const s = stats(ledger);
-  assert.equal(s.byGrade.V, 14);
+  assert.equal(s.byGrade.V, 15);
   assert.equal(s.byGrade.X, 8);
-  assert.equal(s.byUse.publish, 12);
+  assert.equal(s.byUse.publish, 13);
   assert.equal(s.byUse["do-not-publish"], 10);
-  assert.equal(s.publishable, 18);
+  assert.equal(s.publishable, 19);
 });
 
 test("a blocked claim cannot be published", () => {

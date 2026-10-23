@@ -5,6 +5,7 @@ import { html, type Html } from "../html.ts";
 import { inline } from "../inline.ts";
 import { cite, type Ledger } from "../ledger.ts";
 import { dialInstrument, ledgerInstrument, modeInstrument } from "./instruments.ts";
+import { barChart } from "./charts.ts";
 
 const GRADE_WORD: Record<string, string> = {
   V: "verified",
@@ -37,7 +38,7 @@ function renderBlock(block: Block, ctx: BlockContext): Html {
     case "receipt": {
       const entry = cite(ctx.ledger, block.claim);
       return html`
-        <details class="receipt" id="${entry.id}" data-claim="${entry.id}">
+        <details class="receipt" data-claim="${entry.id}">
           <summary>
             <span>Evidence · ${entry.id} · ${GRADE_WORD[entry.grade] ?? entry.grade}</span>
             ${block.note ? html`<span class="receipt__note">${block.note}</span>` : ""}
@@ -121,6 +122,12 @@ function renderBlock(block: Block, ctx: BlockContext): Html {
           <p>${inline(block.text)}</p>
         </div>
       `;
+
+    case "chart":
+      return barChart(
+        block.rows.map((row) => ({ label: row.label, value: row.value })),
+        { title: block.title, caption: block.caption, unit: block.unit, emphasiseMax: block.emphasiseMax },
+      );
 
     case "falsifier":
       return html`

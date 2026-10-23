@@ -52,6 +52,8 @@ if [ -d site/node_modules ]; then
   step "site tests"       bash -c 'cd site && npm test --silent'
   if [ "${1:-}" = "--build" ]; then
     step "site build"     bash -c 'cd site && node build.ts'
+    step "site axe"       bash -c 'cd site && node scripts/axe-audit.mjs dist'
+    step "site html"      bash -c 'cd site && node scripts/html-audit.mjs dist'
     step "site links"     node tools/quality/htmllinks.mjs site/dist
     step "site a11y"      node tools/quality/a11y-tree.mjs site/dist
     step "site budget"    node tools/quality/site-budget.mjs site/dist

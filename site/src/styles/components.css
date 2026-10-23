@@ -651,7 +651,9 @@ input[type="range"] {
 .source pre {
   margin: 0;
   padding: 0.85rem 0.9rem;
-  overflow-x: auto;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  overflow-x: visible;
   font-family: var(--font-mono);
   font-size: 0.76rem;
   line-height: 1.6;
@@ -767,4 +769,106 @@ input[type="range"] {
 .falsifier p + p {
   color: var(--graphite);
   font-size: 0.95rem;
+}
+
+/* Bar heights.
+   The fixture is fixed, so the heights live in the stylesheet rather than in
+   style attributes. That keeps the markup free of inline styles (a strict CSP
+   can then forbid them) and means JavaScript changes state, never geometry.
+   `src/lib/fixtures.test.ts` fails if a value in DIAL_SERIES has no rule here. */
+
+.bar[data-value="31"] { height: 31%; }
+.bar[data-value="32"] { height: 32%; }
+.bar[data-value="33"] { height: 33%; }
+.bar[data-value="34"] { height: 34%; }
+.bar[data-value="35"] { height: 35%; }
+.bar[data-value="36"] { height: 36%; }
+.bar[data-value="37"] { height: 37%; }
+.bar[data-value="39"] { height: 39%; }
+.bar[data-value="40"] { height: 40%; }
+.bar[data-value="41"] { height: 41%; }
+.bar[data-value="42"] { height: 42%; }
+.bar[data-value="44"] { height: 44%; }
+.bar[data-value="45"] { height: 45%; }
+.bar[data-value="46"] { height: 46%; }
+.bar[data-value="47"] { height: 47%; }
+.bar[data-value="48"] { height: 48%; }
+.bar[data-value="51"] { height: 51%; }
+.bar[data-value="53"] { height: 53%; }
+.bar[data-value="56"] { height: 56%; }
+.bar[data-value="58"] { height: 58%; }
+
+/* ------------------------------------------------------------------ charts */
+
+.chart {
+  margin: 0;
+  max-width: 62ch;
+  border-top: 1px solid var(--ink);
+  padding-top: var(--space-3);
+}
+
+.chart__title {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: var(--space-3);
+}
+
+.chart__table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.chart__table th {
+  text-align: left;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 400;
+  color: var(--graphite);
+  padding: 0.28rem 0.6rem 0.28rem 0;
+  white-space: nowrap;
+  width: 1%;
+}
+
+.chart__cell {
+  width: 100%;
+  padding: 0.28rem 0.6rem 0.28rem 0;
+}
+
+.chart__cell svg {
+  display: block;
+  width: 100%;
+  height: 0.62rem;
+}
+
+.chart__bar {
+  fill: var(--rule);
+}
+
+.chart__bar--lead {
+  fill: var(--signal);
+}
+
+.chart__value {
+  text-align: right;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+  padding: 0.28rem 0;
+  width: 1%;
+}
+
+.chart__table tr + tr th,
+.chart__table tr + tr td {
+  border-top: 1px solid var(--rule-soft);
+}
+
+.chart__note {
+  margin-top: var(--space-3);
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: var(--muted);
 }

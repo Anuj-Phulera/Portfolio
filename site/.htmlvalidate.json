@@ -1,0 +1,16 @@
+{
+  "extends": ["html-validate:recommended"],
+  "rules": {
+    "no-inline-style": "error",
+    "attribute-boolean-style": "off",
+    "void-style": "off",
+    "no-trailing-whitespace": "off",
+    "long-title": "off",
+    "wcag/h63": "error",
+    "element-required-attributes": "error",
+    "no-dup-id": "error",
+    "no-redundant-role": "error",
+    "prefer-native-element": "error",
+    "unique-landmark": "error"
+  }
+}

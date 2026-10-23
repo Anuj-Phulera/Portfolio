@@ -1,4 +1,5 @@
 import type { Project } from "./types.ts";
+import skillverse from "./data/skillverse.json" with { type: "json" };
 
 /**
  * Six entries. Copy is written from the audits in PREP/, and every factual
@@ -17,7 +18,7 @@ export const PROJECTS: Project[] = [
       "Running as a static build. The deployed URL could not be reached from the machine that audited it, so this entry says built, not live.",
     year: "2026",
     surface: "Static site. Framework-free React, Vite, no backend.",
-    repos: [{ label: "WEBE", href: "https://github.com/Anuj-Phulera/WEBE" }],
+    repos: [{ label: "WEBE", href: "https://github.com/UCHIHA-MADARA-ANUJ/WEBE" }],
     attribution: "Sole author of the repository, including all 25 source files.",
     question: "Can an interface change shape for a reader without ever losing their place?",
     blocks: [
@@ -101,8 +102,8 @@ export const PROJECTS: Project[] = [
     year: "2026",
     surface: "Next.js compendium, Next.js control room, firmware and a PCB.",
     repos: [
-      { label: "Verde-CBSE", href: "https://github.com/Anuj-Phulera/Verde-CBSE" },
-      { label: "VERDE-CBSE-APP", href: "https://github.com/Anuj-Phulera/VERDE-CBSE-APP" },
+      { label: "Verde-CBSE", href: "https://github.com/UCHIHA-MADARA-ANUJ/Verde-CBSE" },
+      { label: "VERDE-CBSE-APP", href: "https://github.com/UCHIHA-MADARA-ANUJ/VERDE-CBSE-APP" },
     ],
     attribution:
       "Two people. I built the software, the cloud pipeline, the vision model and the site. Aarav Choudhary designed the board, power delivery and physical build.",
@@ -168,13 +169,13 @@ export const PROJECTS: Project[] = [
     slug: "skillverse",
     index: "03",
     name: "SKILLVERSE",
-    tagline: "261 teenagers, one question, and a mirror built out of the answers.",
+    tagline: "255 surveys, one question, and a mirror built out of the answers.",
     status: "PARTIAL",
     statusNote:
       "The product exists. The accessibility claim does not: no conformance audit was ever run, so it is withdrawn here. Individual contribution is also unresolved, and this page will not guess.",
     year: "2026",
     surface: "Next.js app, Supabase, Gemini. Research instrument first, product second.",
-    repos: [{ label: "S2S", href: "https://github.com/Anuj-Phulera/S2S" }],
+    repos: [{ label: "S2S", href: "https://github.com/UCHIHA-MADARA-ANUJ/S2S" }],
     attribution:
       "A team project. The repository records a team but not who built which route, so this page names the system rather than itemising people. That is a gap in the record, not modesty.",
     question: "Does screen time become skill time?",
@@ -182,9 +183,20 @@ export const PROJECTS: Project[] = [
       {
         kind: "lede",
         text:
-          "Most arguments about teenagers and screens are moral panic with a graph attached. This one started with a survey — 261 responses collected in May 2026 — and a comparison engine that puts your own habits next to that baseline.",
+          "This entry was wrong by seven people until October 2026. That is the first thing worth telling you about it.",
       },
-      { kind: "receipt", claim: "CLM-016", note: "the dataset, and its limits" },
+      {
+        kind: "prose",
+        text:
+          "The number was 261, and it came from counting lines in the submission file. The file is 264 lines because eight free-text answers contain line breaks — so a line count is not a record count. Parsing the same file properly gives 255 records from 254 respondents. The audit that produced this ledger had counted lines too, and it had recorded the result as verified. It was the one kind of claim the audit said was always exact.",
+      },
+      {
+        kind: "prose",
+        text:
+          "Most arguments about teenagers and screens are moral panic with a graph attached. This one started with a survey — 255 responses from 254 people, submitted between April and July 2026 — and a comparison engine that puts your own habits next to that baseline.",
+      },
+      { kind: "receipt", claim: "CLM-035", note: "the count, parsed rather than counted by lines" },
+      { kind: "receipt", claim: "CLM-016", note: "what the earlier count said, and why it was wrong" },
       {
         kind: "prose",
         text:
@@ -192,11 +204,45 @@ export const PROJECTS: Project[] = [
       },
       { kind: "receipt", claim: "CLM-015", note: "counted, not estimated" },
       {
+        kind: "chart",
+        title: "Daily screen time, 255 responses",
+        caption:
+          "Banded from the reported hours per day. The modal respondent reports two hours; a long tail reports more than eight.",
+        emphasiseMax: true,
+        rows: skillverse.hours.map((band) => ({ label: band.label, value: band.count })),
+      },
+      {
+        kind: "chart",
+        title: "What the time is for, mean share of a day's screen time",
+        caption:
+          "Self-reported percentages averaged across all 255 records. Learning and entertainment are within a point of each other — which is the finding, not a rounding error.",
+        unit: "%",
+        emphasiseMax: false,
+        rows: skillverse.split.map((part) => ({ label: part.label, value: part.mean })),
+      },
+      {
+        kind: "chart",
+        title: "Age at submission",
+        caption:
+          "Years, floored. Everyone who answered was between 8 and 23; the 12–15 band is where almost all of the data lives, which bounds how far any claim here can travel.",
+        emphasiseMax: true,
+        rows: skillverse.age.filter((year) => year.count >= 3).map((year) => ({ label: year.label, value: year.count })),
+      },
+      {
+        kind: "chart",
+        title: "Device used most",
+        caption:
+          "Free-text answers normalised: 'Tv', 'T.V' and 'Telivision' are Television; answers naming two devices are counted once as More than one.",
+        emphasiseMax: true,
+        rows: skillverse.device.map((item) => ({ label: item.label, value: item.count })),
+      },
+      {
         kind: "facts",
         title: "The counts that survive",
         rows: [
-          ["Survey responses", "261"],
-          ["Collected", "May 2026"],
+          ["Parsed records", "255"],
+          ["Unique respondents", "254"],
+          ["Submitted", "Apr – Jul 2026"],
           ["Routes", "34"],
           ["API routes", "21"],
           ["Accessibility audit", "none run"],
@@ -205,7 +251,7 @@ export const PROJECTS: Project[] = [
       {
         kind: "prose",
         text:
-          "What the instrument can say is bounded by what it asked. A self-reported survey of 261 rows can describe a pattern inside one group of teenagers who answered in May 2026. It cannot describe Indian teenagers, and the product does not claim that it can.",
+          "What the instrument can say is bounded by what it asked. A self-reported survey of 255 rows can describe a pattern inside one group of teenagers who answered between April and July 2026. It cannot describe Indian teenagers, and the product does not claim that it can.",
       },
       {
         kind: "prose",
@@ -248,8 +294,8 @@ export const PROJECTS: Project[] = [
     year: "2026",
     surface: "Next.js three-role platform, plus a static marketing site.",
     repos: [
-      { label: "nirmaan-app", href: "https://github.com/Anuj-Phulera/nirmaan-app" },
-      { label: "Nirmaan-Portfolio-", href: "https://github.com/Anuj-Phulera/Nirmaan-Portfolio-" },
+      { label: "nirmaan-app", href: "https://github.com/UCHIHA-MADARA-ANUJ/nirmaan-app" },
+      { label: "Nirmaan-Portfolio-", href: "https://github.com/UCHIHA-MADARA-ANUJ/Nirmaan-Portfolio-" },
     ],
     attribution:
       "Sole author of both repositories. The marketing site has a second team route, so the team composition of the application is not recorded here and is not claimed.",
@@ -319,7 +365,7 @@ export const PROJECTS: Project[] = [
       "Fifty-two routes, three shader pairs, no deployment. There is no README at the root and no live URL, and the configuration was never resolved.",
     year: "2026",
     surface: "pnpm workspace. React, Vite, React Three Fiber, GLSL.",
-    repos: [{ label: "Resonate-Portfolio", href: "https://github.com/Anuj-Phulera/Resonate-Portfolio" }],
+    repos: [{ label: "Resonate-Portfolio", href: "https://github.com/UCHIHA-MADARA-ANUJ/Resonate-Portfolio" }],
     attribution: "Sole author of the repository.",
     question: "What would a recommender look like if it were trying to understand you rather than keep you?",
     blocks: [
@@ -385,7 +431,7 @@ export const PROJECTS: Project[] = [
       "Built for one person. Consent to publish has not been given, so the entry is closed. It is listed because hiding it would make the record dishonest.",
     year: "2026",
     surface: "Next.js narrative site, static export, hand-written Web Audio.",
-    repos: [{ label: "Rakshbandhan", href: "https://github.com/Anuj-Phulera/Rakshbandhan" }],
+    repos: [{ label: "Rakshbandhan", href: "https://github.com/UCHIHA-MADARA-ANUJ/Rakshbandhan" }],
     attribution:
       "Sole author. The person the site is about has not agreed to be in a portfolio, so the content stays out and only the engineering and the principle are described.",
     question: "How do you build a ritual you cannot attend?",

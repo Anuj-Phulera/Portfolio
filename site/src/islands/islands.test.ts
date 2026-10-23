@@ -107,14 +107,14 @@ test("the ledger filters by grade and reports the count", (t) => {
 
   const visible = () =>
     Array.from(dom.window.document.querySelectorAll<HTMLElement>("[data-ledger-row]")).filter((row) => !row.hidden).length;
-  assert.equal(visible(), 34);
+  assert.equal(visible(), 35);
 
   click(root.querySelector('[data-grade-btn="X"]'));
   assert.equal(visible(), 8);
   assert.equal(root.querySelector("[data-ledger-count]")?.textContent, "8");
 
   click(root.querySelector('[data-grade-btn="all"]'));
-  assert.equal(visible(), 34);
+  assert.equal(visible(), 35);
 });
 
 test("every island survives being initialised twice", (t) => {

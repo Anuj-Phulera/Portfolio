@@ -15,6 +15,8 @@ These are not suggestions. Each row is a statement currently contradicted by evi
 | C9 | `Resonate-Portfolio` | Claimed as a platform | Never deployed, no README | Add a README with status: "unshipped experiment, shaders included". |
 | C10 | Profile README | Eight repository links | Several pointed to repos that did not exist at the time | Verify each link resolves before publication. |
 
+| C11 | `PREP/02-claims/ledger.json` CLM-016 | "261 survey responses" | The file parses to 255 records from 254 respondents; the 262 figure was a line count, and eight free-text answers contain line breaks | Record CLM-035 with the re-derived count and its method. Leave CLM-016 in place as the record of what was believed on 21 October. |
+
 ## Principle for the fixes
 
 Correct the **claim**, not the code. Do not add three.js to protect a badge; do not invent an 18-second loader to justify a sentence. The honest direction is always cheaper and always better.

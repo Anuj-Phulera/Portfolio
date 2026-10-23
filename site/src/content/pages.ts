@@ -13,9 +13,9 @@ export const THE_PATTERN: Page = {
   slug: "/notes/the-pattern/",
   kicker: "NOTE 01",
   title: "The pattern",
-  lede: "Thirty-four claims were audited. Every number was right. Every feeling was aspirational.",
+  lede: "Thirty-four claims were audited. Thirty-three numbers were right. The thirty-fourth was not, and finding that out was the whole method working.",
   description:
-    "An audit of 34 claims across eight repositories found that countable claims were exact and experiential claims were not. What changed afterwards.",
+    "An audit of 34 claims across eight repositories found that experiential claims drifted. A year later, one of the countable ones turned out to be wrong too. What that changed.",
   blocks: [
     {
       kind: "prose",
@@ -43,7 +43,29 @@ export const THE_PATTERN: Page = {
       kind: "instrument",
       id: "ledger",
       caption:
-        "The actual ledger, loaded at build time. Thirty-four claims, filterable by grade. The numbers in this instrument are the same JSON the build uses to decide what this site is allowed to say.",
+        "The actual ledger, loaded at build time. Thirty-five entries, filterable by grade. The numbers in this instrument are the same JSON the build uses to decide what this site is allowed to say.",
+    },
+    {
+      kind: "prose",
+      text:
+        "Ten months later the method caught the audit. One of the fourteen verified claims was a survey count: 261 responses, taken from a 262-line file. The file is 264 physical lines and holds 255 records, because eight free-text answers contain line breaks inside quoted fields. Counting lines is not counting records. It was the only verified number that was wrong, and it was wrong in the way this whole project is about — a plausible figure that nobody had re-derived.",
+    },
+    {
+      kind: "facts",
+      title: "The correction, re-derived twice",
+      rows: [
+        ["Physical lines in the file", "264"],
+        ["Records parsed by a CSV reader", "255"],
+        ["Unique submission ids", "255"],
+        ["Unique respondents", "254"],
+        ["Claimed in the original audit", "261"],
+        ["Dates of submission", "2026-04-04 to 2026-07-03"],
+      ],
+    },
+    {
+      kind: "prose",
+      text:
+        "The corrected entry is CLM-035, graded verified, with the method written next to it so the next person can disagree with the arithmetic rather than with the conclusion. The original entry, CLM-016, stays in the ledger unchanged: it is the record of what was believed on 21 October, and editing it would destroy the only evidence that the mistake was made.",
     },
     {
       kind: "list",
@@ -118,7 +140,7 @@ export const ABOUT: Page = {
     {
       kind: "prose",
       text:
-        "The method is in [the pattern](/notes/the-pattern/): 34 claims, graded against source, 10 of them blocked from publication. The build, the budgets and the things that remain unfinished are in [the colophon](/colophon/).",
+        "The method is in [the pattern](/notes/the-pattern/): 35 claims, graded against source, 16 of them blocked from publication. The build, the budgets and the things that remain unfinished are in [the colophon](/colophon/).",
     },
     {
       kind: "aside",

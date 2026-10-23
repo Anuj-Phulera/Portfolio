@@ -30,7 +30,6 @@ export function initDial(root: Element): void {
       const value = values[index] ?? 0;
       bar.dataset.below = String(value < threshold);
       bar.dataset.now = String(index === values.length - 1);
-      bar.style.height = `${value}%`;
     }
 
     if (autoBtn) autoBtn.setAttribute("aria-pressed", String(automatic));

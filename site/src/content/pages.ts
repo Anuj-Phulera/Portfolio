@@ -250,7 +250,7 @@ export function colophonPage(metrics: BuildMetrics, claims: { total: number; pub
         kind: "aside",
         label: "What is not finished",
         text:
-          "No browser was available while this was built. Layout, focus order, the reduced-motion path and the three islands have been checked by script and by reading, not by watching; the browser pass is written down as a checklist in the repository. A deployment workflow exists, but publishing needs one manual switch that this machine cannot reach.",
+          "There is no browser on the machine that builds this site, so the browser pass runs in CI instead: 89 tests over thirteen routes at 1440×900 and 360×740, in real Chromium, with axe evaluating colour contrast because jsdom cannot. It found things reading the stylesheet had not — a 3.9:1 edge marker, a code block that scrolled sideways with no keyboard entry point on a phone, and a mode engine that gave no feedback until the pointer left. A deployment workflow exists, but publishing needs one manual switch that this machine cannot reach.",
       },
       {
         kind: "prose",

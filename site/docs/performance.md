@@ -11,9 +11,9 @@ budget is crossed. The budgets are self-imposed and appear in both places.
 
 | Budget | Limit | Current |
 |---|---|---|
-| JavaScript | 12 KB | 1.8 KB |
-| CSS | 12 KB | 6.3 KB |
-| Largest page | 8 KB | 4.9 KB |
+| JavaScript | 12 KB | 1.9 KB |
+| CSS | 12 KB | 6.4 KB |
+| Largest page | 8 KB | 6.5 KB |
 | Fonts | 40 KB | 36.1 KB |
 | Total, all pages | 100 KB | 89.2 KB |
 

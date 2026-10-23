@@ -53,9 +53,9 @@ Measured by `build.ts` on every run and printed at the end:
 | | |
 |---|---|
 | pages | 12 |
-| HTML, all pages, gzip | 43.7 KB |
-| CSS, gzip | 6.3 KB |
-| JavaScript, gzip | 1.8 KB |
+| HTML, all pages, gzip | 44.7 KB |
+| CSS, gzip | 6.4 KB |
+| JavaScript, gzip | 1.9 KB |
 | fonts, latin subsets | 36.1 KB |
 | total transfer | 89.2 KB |
 

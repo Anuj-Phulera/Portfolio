@@ -62,7 +62,7 @@ test("the dial responds to the keyboard as well as the drag", async ({ page }) =
 test("the ledger filter changes what is on screen", async ({ page }) => {
   await page.goto("/notes/the-pattern/");
   const rows = page.locator("[data-ledger-row]");
-  await expect(rows).toHaveCount(34);
+  await expect(rows).toHaveCount(35);
 
   const visible = () => rows.evaluateAll((nodes) => nodes.filter((node) => !(node as HTMLElement).hidden).length);
 
@@ -71,7 +71,7 @@ test("the ledger filter changes what is on screen", async ({ page }) => {
   await expect(page.locator("[data-ledger-count]")).toHaveText("8");
 
   await page.getByRole("button", { name: "All", exact: true }).click();
-  await expect.poll(visible).toBe(34);
+  await expect.poll(visible).toBe(35);
 });
 
 test("the cloth opens and reveals the next entry", async ({ page }) => {

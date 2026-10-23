@@ -25,6 +25,25 @@ Dated by phase, newest first. This records what changed, not how impressive it w
 - Verified public record, corrected assumptions, established the north star.
 - Withdrew an inferred school/board/location assumption rather than keeping a tidy story.
 
+## Phase 6 — Verification that can be wrong
+
+- A browser suite that runs in CI, because the build machine has no browser:
+  routes, layout, axe in a real engine, keyboard, the three instruments, reduced
+  motion and print, plus screenshots as an artifact.
+- The suite found real defects on its first three runs: the mode engine gave no
+  feedback until the pointer left, the edge marker sat at 3.9:1, and a code
+  block became a scrollable region with no keyboard entry point on a phone.
+- axe-core and html-validate also run offline; between them they found 24 inline
+  styles and a lowercase doctype, and the bar heights moved into the stylesheet.
+- External link checking: it found **eight of nine repository links returning
+  404**. The entries pointed at the newer account; the work is on the older one.
+- The survey count was re-derived: the file holds **255 records from 254
+  respondents**, not 261. The original figure was a line count of a CSV whose
+  free-text answers contain line breaks. CLM-035 records the correction; CLM-016
+  stays as written.
+- The survey now appears as aggregates and four charts: 1.3 KB of counts and
+  means, with tests that fail if an identifier ever reaches the output.
+
 ## Phase 5 — Ship readiness
 
 - Subpath deploys: the site now builds correctly under `/Portfolio/`, with the

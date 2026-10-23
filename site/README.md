@@ -25,7 +25,7 @@ docs/                 decisions, content policy, accessibility, performance
 npm install
 npm run build      # build.ts → dist/
 npm run serve      # static preview on 0.0.0.0:4173
-npm test           # 83 tests, no browser required
+npm test           # 99 tests, no browser required
 npm run check      # tsc --noEmit
 ```
 
@@ -53,11 +53,11 @@ Measured by `build.ts` on every run and printed at the end:
 | | |
 |---|---|
 | pages | 12 |
-| HTML, all pages, gzip | 42.1 KB |
+| HTML, all pages, gzip | 43.7 KB |
 | CSS, gzip | 6.3 KB |
 | JavaScript, gzip | 1.8 KB |
 | fonts, latin subsets | 36.1 KB |
-| total transfer | 86.3 KB |
+| total transfer | 88.2 KB |
 
 Budgets are enforced by `tools/quality/site-budget.mjs`: js 12 KB, css 12 KB,
 largest page 8 KB, fonts 40 KB, total 100 KB.

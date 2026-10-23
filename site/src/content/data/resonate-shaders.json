@@ -1,0 +1,95 @@
+{
+  "measuredAt": "2026-10-23",
+  "files": 6,
+  "lines": 276,
+  "codeLines": 189,
+  "vendoredLines": 76,
+  "programs": [
+    {
+      "file": "glass.frag",
+      "stage": "fragment",
+      "lines": 32,
+      "code": 20,
+      "comment": 5,
+      "vendoredLines": 0,
+      "writtenHere": 20,
+      "unused": []
+    },
+    {
+      "file": "glass.vert",
+      "stage": "vertex",
+      "lines": 12,
+      "code": 10,
+      "comment": 1,
+      "vendoredLines": 0,
+      "writtenHere": 10,
+      "unused": []
+    },
+    {
+      "file": "neural.frag",
+      "stage": "fragment",
+      "lines": 11,
+      "code": 8,
+      "comment": 1,
+      "vendoredLines": 0,
+      "writtenHere": 8,
+      "unused": []
+    },
+    {
+      "file": "neural.vert",
+      "stage": "vertex",
+      "lines": 132,
+      "code": 98,
+      "comment": 14,
+      "vendoredLines": 74,
+      "writtenHere": 24,
+      "unused": []
+    },
+    {
+      "file": "singularity.frag",
+      "stage": "fragment",
+      "lines": 13,
+      "code": 8,
+      "comment": 2,
+      "vendoredLines": 0,
+      "writtenHere": 8,
+      "unused": []
+    },
+    {
+      "file": "singularity.vert",
+      "stage": "vertex",
+      "lines": 76,
+      "code": 45,
+      "comment": 13,
+      "vendoredLines": 2,
+      "writtenHere": 43,
+      "unused": [
+        "permute",
+        "taylorInvSqrt"
+      ]
+    }
+  ],
+  "vendoredIn": [
+    "neural.vert",
+    "singularity.vert"
+  ],
+  "unusedHelpers": [
+    {
+      "file": "singularity.vert",
+      "names": [
+        "permute",
+        "taylorInvSqrt"
+      ]
+    }
+  ],
+  "attributionPresent": false,
+  "similarPrograms": [
+    {
+      "files": [
+        "neural.frag",
+        "singularity.frag"
+      ],
+      "similarity": 0.88
+    }
+  ]
+}

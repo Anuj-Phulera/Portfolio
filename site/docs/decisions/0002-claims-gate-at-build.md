@@ -4,7 +4,7 @@
 
 ## Context
 
-`PREP/02-claims/ledger.json` grades 35 claims and marks 16 of them as not
+`PREP/02-claims/ledger.json` grades 36 claims and marks 16 of them as not
 publishable. A judgement recorded in a JSON file is easy to ignore six weeks
 later, and the audit's central finding was exactly that: good intentions,
 written down, did not survive contact with a deadline.

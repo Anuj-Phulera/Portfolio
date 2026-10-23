@@ -140,7 +140,7 @@ export const ABOUT: Page = {
     {
       kind: "prose",
       text:
-        "The method is in [the pattern](/notes/the-pattern/): 35 claims, graded against source, 16 of them blocked from publication. The build, the budgets and the things that remain unfinished are in [the colophon](/colophon/).",
+        "The method is in [the pattern](/notes/the-pattern/): 36 claims, graded against source, 16 of them blocked from publication. The build, the budgets and the things that remain unfinished are in [the colophon](/colophon/).",
     },
     {
       kind: "aside",

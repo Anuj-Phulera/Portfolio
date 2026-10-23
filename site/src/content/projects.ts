@@ -377,9 +377,41 @@ export const PROJECTS: Project[] = [
       {
         kind: "prose",
         text:
-          "Three custom vertex and fragment pairs — glass, neural and singularity — drive three environments. The shaders are real source, not stock effects, and they are the part I still think about.",
+          "Three vertex and fragment pairs — glass, neural and singularity — drive three environments. I called them real source rather than stock effects, and then I read them properly, which is why the rest of this section exists.",
       },
       { kind: "receipt", claim: "CLM-020", note: "three pairs, named" },
+      {
+        kind: "prose",
+        text:
+          "Six files, 276 lines. Seventy-six of those lines are a noise core — simplex noise and the curl operator built on it — that comes from Ashima Arts and Stefan Gustavson's webgl-noise, which is MIT licensed and asks to be credited. It is not credited in the repository. The two fragment programs, one for neural and one for singularity, differ in a single line: the falloff curve on a soft point sprite.",
+      },
+      { kind: "receipt", claim: "CLM-036", note: "measured, file by file" },
+      {
+        kind: "table",
+        title: "Six files, and who wrote what",
+        columns: ["File", "Lines", "Vendored", "Written here", "Note"],
+        rows: [
+          ["neural.vert", "132", "74", "24", "the curl-noise core, then 24 lines of composition"],
+          ["singularity.vert", "76", "2", "43", "the strongest file here — orbital mechanics and a mouse-driven rip"],
+          ["glass.frag", "32", "0", "20", "a fresnel approximation by its own comment"],
+          ["singularity.frag", "13", "0", "8", "a soft point sprite"],
+          ["glass.vert", "12", "0", "10", "a transform"],
+          ["neural.frag", "11", "0", "8", "the same sprite, a different falloff"],
+        ],
+        note:
+          "Vendored means inside max(0.289), permute, taylorInvSqrt, snoise, snoiseVec3 or curlNoise. Lines and code counts come from the audit script, which is in the repository and can be run against the source.",
+      },
+      {
+        kind: "prose",
+        text:
+          "This is what the shaders actually are. The noise is borrowed, correctly, the way noise always is. Two of the three fragment programs are one effect wearing two names. The two vertex programs are the work, and singularity.vert is the one I would still defend: it orbits particles faster near the centre, pulls them toward the cursor with a force that scales with how fast the mouse is moving, and rips them along a perpendicular while dragging them out of the screen plane. Its header claims advanced simplex and curl noise, and it uses neither — the two helpers that would have done it are defined and never called.",
+      },
+      {
+        kind: "aside",
+        label: "The fix is one commit I did not make",
+        text:
+          "Restoring the MIT notice takes four lines. Deleting two dead helpers takes two. I have not done either, because both are changes to a repository that is not deployed, and a four-line commit I describe here is worth less than saying plainly that the notice is missing. It stays on the list at the bottom of this entry until it is done.",
+      },
       {
         kind: "prose",
         text:
@@ -415,7 +447,7 @@ export const PROJECTS: Project[] = [
       {
         kind: "next",
         text:
-          "Publish the three shader pairs as source, with one still rendered locally and labelled honestly. That is a weekend's work, and it is the only thing between this and a built entry.",
+          "Two things, in this order. Restore the MIT notice to neural.vert and singularity.vert and delete the two dead helpers in singularity.vert — four lines of credit and two of dead code. Then publish a still rendered from the working build, labelled with the build it came from. Until the first is done, this entry's own text is more careful about the licence than the repository is.",
       },
     ],
     nextSlug: "rakshabandhan",

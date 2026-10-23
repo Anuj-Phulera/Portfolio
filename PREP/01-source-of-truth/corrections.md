@@ -16,6 +16,8 @@ These are not suggestions. Each row is a statement currently contradicted by evi
 | C10 | Profile README | Eight repository links | Several pointed to repos that did not exist at the time | Verify each link resolves before publication. |
 
 | C11 | `PREP/02-claims/ledger.json` CLM-016 | "261 survey responses" | The file parses to 255 records from 254 respondents; the 262 figure was a line count, and eight free-text answers contain line breaks | Record CLM-035 with the re-derived count and its method. Leave CLM-016 in place as the record of what was believed on 21 October. |
+| C12 | `Resonate-Portfolio` shaders | "Three custom ... shader pairs", and the site's "real source, not stock effects" | 76 of 189 code lines are Ashima Arts / Stefan Gustavson's MIT-licensed `webgl-noise`, with no attribution in the source. `neural.frag` and `singularity.frag` are 88% identical. `singularity.vert` defines `permute` and `taylorInvSqrt` and calls neither, under a header claiming simplex and curl noise. | Record CLM-036 with the measured breakdown. Restore the MIT notice in both vertex shaders and delete the two dead helpers. Do not describe the noise as original while using it. |
+
 
 ## Principle for the fixes
 

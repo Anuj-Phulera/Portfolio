@@ -15,7 +15,7 @@ budget is crossed. The budgets are self-imposed and appear in both places.
 | CSS | 12 KB | 6.3 KB |
 | Largest page | 8 KB | 4.9 KB |
 | Fonts | 40 KB | 36.1 KB |
-| Total, all pages | 100 KB | 88.2 KB |
+| Total, all pages | 100 KB | 89.2 KB |
 
 ## What is not in the number
 

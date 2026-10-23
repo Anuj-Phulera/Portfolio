@@ -121,3 +121,23 @@ test("every table row has as many cells as there are columns", async () => {
     }
   }
 });
+
+test("no table ships an empty column header", async () => {
+  // axe flags an empty <th scope="col">, and it flagged one here: a comparison
+  // table whose first column held row labels and therefore had no heading.
+  const { PROJECTS } = await import("../../content/projects.ts");
+  const { THE_PATTERN } = await import("../../content/pages.ts");
+
+  const blocks = [
+    ...PROJECTS.flatMap((project) => project.blocks),
+    ...THE_PATTERN.blocks,
+  ].filter((block) => block.kind === "table");
+
+  assert.ok(blocks.length >= 2, "the tables under test should exist");
+  for (const block of blocks) {
+    if (block.kind !== "table") continue;
+    for (const column of block.columns) {
+      assert.ok(column.trim().length > 0, `${block.title}: a column has no heading`);
+    }
+  }
+});

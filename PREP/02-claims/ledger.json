@@ -292,16 +292,17 @@
     {
       "id": "CLM-020",
       "project": "resonate",
-      "claim": "RESONATE uses three custom GLSL shader pairs.",
+      "claim": "RESONATE uses three vertex/fragment shader pairs \u2014 glass, neural and singularity.",
       "source": "repository source",
-      "grade": "V",
+      "grade": "P",
       "evidence": [
         "artifacts/resonate/src/presentation/shaders/{glass,neural,singularity}.{vert,frag}",
-        "same three pairs duplicated in .migration-backup"
+        "same three pairs duplicated in .migration-backup",
+        "downgraded V to P on 2026-10-23: 'custom' was not supported by the source; see CLM-036"
       ],
-      "safe_wording": "Three custom vertex/fragment shader pairs: glass, neural and singularity.",
+      "safe_wording": "Three vertex and fragment shader pairs: glass, neural and singularity. The noise core in two of the vertex shaders is MIT-licensed webgl-noise from Ashima Arts and Stefan Gustavson, uncredited, and two of the fragment programs are one effect.",
       "public_use": "publish",
-      "reviewed": "2026-10-21"
+      "reviewed": "2026-10-23"
     },
     {
       "id": "CLM-021",

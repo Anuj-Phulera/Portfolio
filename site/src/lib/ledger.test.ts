@@ -20,7 +20,7 @@ test("every entry has the fields the site relies on", () => {
 
 test("the ledger's parse matches the published counts", () => {
   const s = stats(ledger);
-  assert.equal(s.byGrade.V, 16);
+  assert.equal(s.byGrade.V, 15);
   assert.equal(s.byGrade.X, 8);
   assert.equal(s.byUse.publish, 14);
   assert.equal(s.byUse["do-not-publish"], 10);

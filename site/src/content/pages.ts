@@ -13,18 +13,18 @@ export const THE_PATTERN: Page = {
   slug: "/notes/the-pattern/",
   kicker: "NOTE 01",
   title: "The pattern",
-  lede: "Thirty-four claims were audited. Thirty-three numbers were right. The thirty-fourth was not, and finding that out was the whole method working.",
+  lede: "Thirty-four claims were audited. Thirty-three numbers were right. Two of the ones called verified were not, and both were found by running the method again.",
   description:
-    "An audit of 34 claims across eight repositories found that experiential claims drifted. A year later, one of the countable ones turned out to be wrong too. What that changed.",
+    "An audit of 34 claims across eight repositories found that experiential claims drifted and countable ones held. Re-deriving two of the countable ones found they did not, quite. What that changed.",
   blocks: [
     {
       kind: "prose",
       text:
-        "I asked for an audit of my own repositories expecting a list of typos. What came back was a pattern. Routes, objects, edges, CSV lines, lines of audio: every countable claim was exact. The claims about how the work felt were not.",
+        "I asked for an audit of my own repositories expecting a list of typos. What came back was a pattern. Routes, objects, edges, CSV lines, lines of audio: the countable claims held. The claims about how the work felt did not. That was the finding, and it was comfortable, which is why nobody checked it twice.",
     },
     {
       kind: "facts",
-      title: "Thirty-four claims, five grades",
+      title: "The original audit: thirty-four claims, five grades",
       rows: [
         ["Verified against source", "14"],
         ["Partial — true with a gap", "4"],
@@ -43,12 +43,12 @@ export const THE_PATTERN: Page = {
       kind: "instrument",
       id: "ledger",
       caption:
-        "The actual ledger, loaded at build time. Thirty-five entries, filterable by grade. The numbers in this instrument are the same JSON the build uses to decide what this site is allowed to say.",
+        "The actual ledger, loaded at build time. Thirty-six entries, filterable by grade. The numbers in this instrument are the same JSON the build uses to decide what this site is allowed to say.",
     },
     {
       kind: "prose",
       text:
-        "Ten months later the method caught the audit. One of the fourteen verified claims was a survey count: 261 responses, taken from a 262-line file. The file is 264 physical lines and holds 255 records, because eight free-text answers contain line breaks inside quoted fields. Counting lines is not counting records. It was the only verified number that was wrong, and it was wrong in the way this whole project is about — a plausible figure that nobody had re-derived.",
+        "Ten months later the method caught the audit. One of the fourteen verified claims was a survey count: 261 responses, taken from a 262-line file. The file is 264 physical lines and holds 255 records, because eight free-text answers contain line breaks inside quoted fields. Counting lines is not counting records. I wrote, at the time, that it was the only verified number that was wrong. That sentence is also wrong, and the second counter-example took another year to find.",
     },
     {
       kind: "facts",
@@ -61,6 +61,31 @@ export const THE_PATTERN: Page = {
         ["Claimed in the original audit", "261"],
         ["Dates of submission", "2026-04-04 to 2026-07-03"],
       ],
+    },
+    {
+      kind: "prose",
+      text:
+        "The second one was in an entry about shaders. RESONATE's text said the three shader pairs were real source rather than stock effects, and CLM-020 graded that claim verified. Verified meant the files existed and were named correctly, which they were. Nobody had read them against the sentence. Reading them: 76 of 189 code lines are a simplex-noise and curl-noise core from Ashima Arts and Stefan Gustavson's MIT-licensed `webgl-noise`, and the repository carries none of their notice. Two of the three fragment programs are 88% identical. One vertex shader defines two helpers and calls neither, under a comment claiming the noise it does not use.",
+    },
+    {
+      kind: "table",
+      title: "The same failure, a different file",
+      columns: ["Item", "Survey", "Shaders"],
+      rows: [
+        ["Claim", "261 responses", "three custom shader pairs"],
+        ["Grade", "verified", "verified"],
+        ["What was checked", "the file existed", "the files existed"],
+        ["What was not", "records, as opposed to lines", "what was in them"],
+        ["Re-derived", "255 records", "76 of 189 lines are not original"],
+        ["Corrected by", "CLM-035", "CLM-036"],
+      ],
+      note:
+        "Both failures are the same shape: the artefact was inspected and the description was not. Grading a claim verified because its evidence exists is a weaker check than it sounds, and this is now the second time it has been the weak one.",
+    },
+    {
+      kind: "prose",
+      text:
+        "Two out of sixteen verified claims were wrong. That is not a rounding error on a boast; it is the reason the grade exists and the reason it is worth less than it looks. What the ledger is actually good for is not the grade at the front of the line. It is that every entry carries its evidence in a form someone can re-run, which is the only thing that made either mistake findable.",
     },
     {
       kind: "prose",

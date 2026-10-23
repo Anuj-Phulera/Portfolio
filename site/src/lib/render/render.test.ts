@@ -76,3 +76,12 @@ test("no page ships an inline style attribute", () => {
   const pages = [renderHome(ctx), renderEntries(), renderNotFound(), renderPage(ABOUT, ctx)];
   for (const page of pages) assert.ok(!/style="/.test(page.value));
 });
+
+test("a claim cited twice does not produce a duplicate id", async () => {
+  const { PROJECTS } = await import("../../content/projects.ts");
+  const project = PROJECTS.find((p) => p.slug === "skillverse");
+  assert.ok(project);
+  const out = renderProject(project, ctx).value;
+  const ids = [...out.matchAll(/\sid="([^"]+)"/g)].map((match) => match[1]);
+  assert.equal(new Set(ids).size, ids.length, `duplicate ids: ${ids.join(", ")}`);
+});

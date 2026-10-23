@@ -269,7 +269,6 @@ export const PROJECTS: Project[] = [
         text:
           "I cannot tell you which parts of this are mine. That is not a rhetorical flourish; it is a missing record, and it is the one thing I cannot fix after the fact. The accessibility badge on the README was also untrue, and it is gone.",
       },
-      { kind: "receipt", claim: "CLM-035", note: "the same numbers the charts are drawn from" },
       {
         kind: "falsifier",
         text:

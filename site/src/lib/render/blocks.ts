@@ -38,7 +38,7 @@ function renderBlock(block: Block, ctx: BlockContext): Html {
     case "receipt": {
       const entry = cite(ctx.ledger, block.claim);
       return html`
-        <details class="receipt" id="${entry.id}" data-claim="${entry.id}">
+        <details class="receipt" data-claim="${entry.id}">
           <summary>
             <span>Evidence · ${entry.id} · ${GRADE_WORD[entry.grade] ?? entry.grade}</span>
             ${block.note ? html`<span class="receipt__note">${block.note}</span>` : ""}

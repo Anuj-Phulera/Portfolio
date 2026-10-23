@@ -98,7 +98,6 @@ export function dialInstrument(options: Omit<InstrumentOptions, "id" | "ledger">
                 data-value="${value}"
                 data-now="${index === DIAL_SERIES.length - 1 ? "true" : "false"}"
                 data-below="${value < threshold ? "true" : "false"}"
-                style="height:${value}%"
               ></span>
             `,
           )}

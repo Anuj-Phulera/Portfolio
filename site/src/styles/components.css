@@ -768,3 +768,30 @@ input[type="range"] {
   color: var(--graphite);
   font-size: 0.95rem;
 }
+
+/* Bar heights.
+   The fixture is fixed, so the heights live in the stylesheet rather than in
+   style attributes. That keeps the markup free of inline styles (a strict CSP
+   can then forbid them) and means JavaScript changes state, never geometry.
+   `src/lib/fixtures.test.ts` fails if a value in DIAL_SERIES has no rule here. */
+
+.bar[data-value="31"] { height: 31%; }
+.bar[data-value="32"] { height: 32%; }
+.bar[data-value="33"] { height: 33%; }
+.bar[data-value="34"] { height: 34%; }
+.bar[data-value="35"] { height: 35%; }
+.bar[data-value="36"] { height: 36%; }
+.bar[data-value="37"] { height: 37%; }
+.bar[data-value="39"] { height: 39%; }
+.bar[data-value="40"] { height: 40%; }
+.bar[data-value="41"] { height: 41%; }
+.bar[data-value="42"] { height: 42%; }
+.bar[data-value="44"] { height: 44%; }
+.bar[data-value="45"] { height: 45%; }
+.bar[data-value="46"] { height: 46%; }
+.bar[data-value="47"] { height: 47%; }
+.bar[data-value="48"] { height: 48%; }
+.bar[data-value="51"] { height: 51%; }
+.bar[data-value="53"] { height: 53%; }
+.bar[data-value="56"] { height: 56%; }
+.bar[data-value="58"] { height: 58%; }

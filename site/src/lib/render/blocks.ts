@@ -124,9 +124,9 @@ function renderBlock(block: Block, ctx: BlockContext): Html {
             <thead>
               <tr>
                 ${block.columns.map((column, index) =>
-                  index === 0
-                    ? html`<th scope="col">${column}</th>`
-                    : html`<th scope="col" class="measure__number">${column}</th>`,
+                  index > 0 && index < block.columns.length - 1
+                    ? html`<th scope="col" class="measure__number">${column}</th>`
+                    : html`<th scope="col">${column}</th>`,
                 )}
               </tr>
             </thead>

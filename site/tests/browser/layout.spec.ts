@@ -65,3 +65,28 @@ test("the hero stays above the fold on a phone", async ({ page }, testInfo) => {
   const height = page.viewportSize()!.height;
   expect(box!.y).toBeLessThan(height * 1.6);
 });
+
+test("a wide table fits the viewport it is read on", async ({ page }) => {
+  await page.goto("/work/resonate/");
+
+  const table = page.locator(".measure__table").first();
+  await expect(table).toBeVisible();
+
+  const overflow = await table.evaluate((node) => {
+    const box = node.getBoundingClientRect();
+    return {
+      right: Math.round(box.right),
+      viewport: document.documentElement.clientWidth,
+      scroll: node.scrollWidth - node.clientWidth,
+    };
+  });
+
+  expect(overflow.right, "the table extends past the viewport").toBeLessThanOrEqual(
+    overflow.viewport,
+  );
+  expect(overflow.scroll, "the table scrolls sideways inside itself").toBeLessThanOrEqual(1);
+
+  // And the numbers the table is for are actually readable, on one line each.
+  const cell = table.locator("tbody tr").first().locator("td").first();
+  await expect(cell).toHaveText("132");
+});

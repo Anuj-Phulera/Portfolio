@@ -44,6 +44,42 @@ The external link check found that **eight of nine repository links returned
 older one. CLM-032 in the ledger had already recorded this migration problem; the
 site had not applied its own finding to itself.
 
+## 2026-10-23 — the shaders, read against the sentence
+
+| Check | Command | Result |
+|---|---|---|
+| Shader audit | `node scripts/resonate-shaders.mjs <dir>` | 6 files, 276 lines, 189 non-blank, 76 vendored |
+| Shader audit tests | `node --test scripts/resonate-shaders.test.mjs` | 11 passing |
+| Data guards | `node --test src/content/data/resonate-shaders.test.ts` | 8 passing |
+| Site typecheck | `npx tsc --noEmit` | clean |
+| Site tests | `npm test` | 102 passing |
+| Site build | `node build.ts` | 12 pages, 89.2 KB |
+
+What the audit found, and why it is in the log rather than only in the entry:
+
+| File | Lines | Vendored | Written here |
+|---|---|---|---|
+| neural.vert | 132 | 74 | 24 |
+| singularity.vert | 76 | 2 | 43 |
+| glass.frag | 32 | 0 | 20 |
+| singularity.frag | 13 | 0 | 8 |
+| glass.vert | 12 | 0 | 10 |
+| neural.frag | 11 | 0 | 8 |
+
+The 76 vendored lines are Ashima Arts and Stefan Gustavson's MIT-licensed
+`webgl-noise`. No file in the repository carries their notice. `neural.frag`
+and `singularity.frag` are 88% identical by longest common subsequence of
+non-blank lines. `singularity.vert` defines `permute` and `taylorInvSqrt` and
+calls neither.
+
+CLM-020 was graded verified on the strength of the files existing under those
+names. It is now graded partial: the word "custom" was never checked.
+CLM-036 records the measurements.
+
+Two bugs in the audit script itself were found by its own tests and fixed
+before the numbers were used: a one-line function containing a semicolon did not
+match the definition pattern, and `main` was reported as an unused helper.
+
 ## 2026-10-22 — scripted, no browser
 
 | Check | Command | Result |

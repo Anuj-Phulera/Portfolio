@@ -19,18 +19,20 @@ test("print removes the chrome and keeps the content", async ({ page }) => {
 
 test("every receipt is open when the page is printed", async ({ page }) => {
   await page.goto("/work/skillverse/");
-  await page.emulateMedia({ media: "print" });
 
-  // Print only happens after beforeprint; emulate it the way the browser does.
-  await page.evaluate(() => window.dispatchEvent(new Event("beforeprint")));
+  // The media query alone must open them: Chromium can take its print snapshot
+  // before beforeprint fires, so a listener that only watches the event is a
+  // race. No manual dispatch here, on purpose.
+  await page.emulateMedia({ media: "print" });
 
   const collapsed = await page.$$eval("details.receipt", (nodes) =>
     nodes.filter((node) => !(node as HTMLDetailsElement).open).length,
   );
   expect(collapsed).toBe(0);
 
-  // And the page goes back afterwards, so printing does not edit the screen.
-  await page.evaluate(() => window.dispatchEvent(new Event("afterprint")));
+  // Leaving print media must put the page back, the same way afterprint does.
+  // Printing should not leave the screen rearranged.
+  await page.emulateMedia({ media: "screen" });
   const after = await page.$$eval("details.receipt", (nodes) =>
     nodes.filter((node) => (node as HTMLDetailsElement).open).length,
   );

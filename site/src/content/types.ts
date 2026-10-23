@@ -14,6 +14,14 @@ export type Block =
   | { kind: "files"; title: string; rows: ReadonlyArray<readonly [string, string]> }
   | { kind: "list"; title: string; items: string[] }
   | { kind: "aside"; label: string; text: string }
+  | {
+      kind: "chart";
+      title: string;
+      caption: string;
+      unit?: string;
+      emphasiseMax?: boolean;
+      rows: ReadonlyArray<{ label: string; value: number }>;
+    }
   | { kind: "falsifier"; text: string }
   | { kind: "next"; text: string };
 

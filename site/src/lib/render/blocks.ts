@@ -5,6 +5,7 @@ import { html, type Html } from "../html.ts";
 import { inline } from "../inline.ts";
 import { cite, type Ledger } from "../ledger.ts";
 import { dialInstrument, ledgerInstrument, modeInstrument } from "./instruments.ts";
+import { barChart } from "./charts.ts";
 
 const GRADE_WORD: Record<string, string> = {
   V: "verified",
@@ -121,6 +122,12 @@ function renderBlock(block: Block, ctx: BlockContext): Html {
           <p>${inline(block.text)}</p>
         </div>
       `;
+
+    case "chart":
+      return barChart(
+        block.rows.map((row) => ({ label: row.label, value: row.value })),
+        { title: block.title, caption: block.caption, unit: block.unit, emphasiseMax: block.emphasiseMax },
+      );
 
     case "falsifier":
       return html`

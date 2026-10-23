@@ -1,0 +1,156 @@
+{
+  "meta": {
+    "records": 255,
+    "respondents": 254,
+    "firstSubmission": "2026-04-04",
+    "lastSubmission": "2026-07-03",
+    "splitSampleOf": 255,
+    "note": "Counts and means only. No identifiers, free text, individual ages over 25, or cities."
+  },
+  "age": [
+    {
+      "label": "8",
+      "count": 1
+    },
+    {
+      "label": "10",
+      "count": 3
+    },
+    {
+      "label": "11",
+      "count": 14
+    },
+    {
+      "label": "12",
+      "count": 34
+    },
+    {
+      "label": "13",
+      "count": 38
+    },
+    {
+      "label": "14",
+      "count": 41
+    },
+    {
+      "label": "15",
+      "count": 37
+    },
+    {
+      "label": "16",
+      "count": 35
+    },
+    {
+      "label": "17",
+      "count": 19
+    },
+    {
+      "label": "18",
+      "count": 17
+    },
+    {
+      "label": "19",
+      "count": 15
+    },
+    {
+      "label": "23",
+      "count": 1
+    }
+  ],
+  "hours": [
+    {
+      "label": "0–2 h",
+      "count": 36
+    },
+    {
+      "label": "2–4 h",
+      "count": 81
+    },
+    {
+      "label": "4–6 h",
+      "count": 89
+    },
+    {
+      "label": "6–8 h",
+      "count": 34
+    },
+    {
+      "label": "8 h +",
+      "count": 15
+    }
+  ],
+  "device": [
+    {
+      "label": "Smartphone",
+      "count": 94
+    },
+    {
+      "label": "Television",
+      "count": 44
+    },
+    {
+      "label": "Tablet",
+      "count": 44
+    },
+    {
+      "label": "Laptop",
+      "count": 41
+    },
+    {
+      "label": "Desktop",
+      "count": 27
+    },
+    {
+      "label": "More than one",
+      "count": 4
+    }
+  ],
+  "split": [
+    {
+      "label": "Learning",
+      "mean": 38.9
+    },
+    {
+      "label": "Entertainment",
+      "mean": 37.9
+    },
+    {
+      "label": "Social",
+      "mean": 23.2
+    }
+  ],
+  "platforms": [
+    {
+      "label": "YouTube",
+      "count": 152
+    },
+    {
+      "label": "WhatsApp",
+      "count": 122
+    },
+    {
+      "label": "ChatGPT / Gemini",
+      "count": 111
+    },
+    {
+      "label": "Canva",
+      "count": 45
+    },
+    {
+      "label": "Instagram",
+      "count": 40
+    },
+    {
+      "label": "Duolingo",
+      "count": 35
+    },
+    {
+      "label": "Discord",
+      "count": 28
+    },
+    {
+      "label": "Google Classroom",
+      "count": 27
+    }
+  ]
+}

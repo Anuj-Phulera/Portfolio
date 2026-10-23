@@ -1,0 +1,5 @@
+# Build output and the browser suite's artifacts
+dist/
+test-results/
+playwright-report/
+node_modules/

@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "lib": [
+      "ES2022",
+      "DOM",
+      "DOM.Iterable"
+    ],
     "module": "nodenext",
     "moduleResolution": "nodenext",
     "allowImportingTsExtensions": true,
@@ -12,7 +16,17 @@
     "noImplicitOverride": true,
     "noEmit": true,
     "skipLibCheck": true,
-    "types": ["node"]
+    "types": [
+      "node"
+    ],
+    "allowJs": true
   },
-  "include": ["src/**/*.ts", "build.ts", "vite.config.ts"]
+  "include": [
+    "src/**/*.ts",
+    "build.ts",
+    "vite.config.ts",
+    "playwright.config.ts",
+    "scripts/**/*.mjs",
+    "tests/**/*.ts"
+  ]
 }

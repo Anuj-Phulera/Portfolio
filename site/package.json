@@ -8,7 +8,7 @@
     "build": "node build.ts",
     "serve": "vite preview --host 0.0.0.0 --port 4173",
     "dev": "node build.ts && npx vite preview --host 0.0.0.0 --port 4173",
-    "test": "node --test src/content/*.test.ts src/lib/*.test.ts src/lib/render/*.test.ts src/islands/*.test.ts",
+    "test": "node --test src/content/*.test.ts src/lib/*.test.ts src/lib/render/*.test.ts src/islands/*.test.ts scripts/*.test.mjs",
     "check": "tsc --noEmit",
     "verify": "npx tsc --noEmit && npm test --silent && node build.ts && node scripts/axe-audit.mjs dist && node scripts/html-audit.mjs dist && node ../tools/quality/htmllinks.mjs dist && node ../tools/quality/a11y-tree.mjs dist && node ../tools/quality/site-budget.mjs dist",
     "test:browser": "playwright test",

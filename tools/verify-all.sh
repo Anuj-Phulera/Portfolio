@@ -57,6 +57,7 @@ if [ -d site/node_modules ]; then
     step "site links"     node tools/quality/htmllinks.mjs site/dist
     step "site a11y"      node tools/quality/a11y-tree.mjs site/dist
     step "site budget"    node tools/quality/site-budget.mjs site/dist
+    step "badge tests"    node --test tools/badges/badge.test.mjs
   fi
 else
   echo "site/node_modules missing — run npm install in site/ (skipped)"

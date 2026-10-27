@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="218" height="20" role="img" aria-label="browser suite: 89 in Chromium">
+  <title>browser suite: 89 in Chromium</title>
+  <linearGradient id="s" x2="0" y2="100%">
+    <stop offset="0" stop-color="#bbb" stop-opacity=".1"/>
+    <stop offset="1" stop-opacity=".1"/>
+  </linearGradient>
+  <clipPath id="r"><rect width="218" height="20" rx="3" fill="#fff"/></clipPath>
+  <g clip-path="url(#r)">
+    <rect width="106" height="20" fill="#555"/>
+    <rect x="106" width="112" height="20" fill="#0a7d32"/>
+    <rect width="218" height="20" fill="url(#s)"/>
+  </g>
+  <g fill="#fff" text-anchor="middle" font-family="Verdana,DejaVu Sans,Geneva,sans-serif" font-size="11">
+    <text x="53" y="15" fill="#010101" fill-opacity=".3">browser suite</text>
+    <text x="53" y="14">browser suite</text>
+    <text x="162" y="15" fill="#010101" fill-opacity=".3">89 in Chromium</text>
+    <text x="162" y="14">89 in Chromium</text>
+  </g>
+</svg>

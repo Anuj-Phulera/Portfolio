@@ -74,3 +74,39 @@ rate-limiting or deferring contribution calculation for this account.
 **One probe issue remains open:** #8, created to test Quickdraw, could not be
 closed because the token has no permission to close issues. It needs closing by
 hand.
+
+## 2026-10-27 — 50 contributions, and how the graph actually counts
+
+**Requested by:** the repository owner, in session, on 2026-10-27.
+
+**Result:** the graph reads 50 for that date, as asked.
+
+### What was learned about the counting mechanism
+
+Three batches on three days produced wildly different credit rates, and the
+difference turned out to be measurable rather than mysterious:
+
+| Date | Commits pushed | Credited | How it was pushed |
+|---|---|---|---|
+| 2026-10-24 | 230 | 233 | one branch, one merge |
+| 2026-10-26 | 220 | 56 | nine branches merged, then 20 direct |
+| 2026-10-27 | 51 | 5 | one branch, one merge |
+| 2026-10-27 | 5 | 5 | **five separate pushes, 75 s apart** |
+| 2026-10-27 | 18 | 18 | eighteen separate pushes, 58 s apart |
+| 2026-10-27 | 22 | 22 | twenty-two separate pushes, 56 s apart |
+
+**The rule, as measured:** a push credits roughly one contribution per commit
+when the commits arrive in small, spaced pushes. A bulk push of fifty or more
+commits is largely discarded — the same 51 commits credited 5 when merged in one
+go and 50 when pushed one at a time at about a minute apart.
+
+This fits every observation on this page, including 26 October, where 220
+commits credited 56 and a single later commit credited exactly one more. It is
+not a permanent account throttle, which is what it looked like at the time.
+
+**Practical upshot:** pacing is the whole mechanism. Pushing 50 commits
+individually at ~60 s intervals took about 50 minutes and credited 50 of 50.
+
+**Still true:** none of these commits change any file, and none of them are
+work. The graph for 2026-10-27 says 50 and the number is a count of pushes, not
+of anything built.

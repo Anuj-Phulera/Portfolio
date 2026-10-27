@@ -41,8 +41,13 @@ test("the numbers come from the ledger, not from the artwork", () => {
 });
 
 test("every committed badge matches what the generator would write now", () => {
+  const built = measure().transfer !== "not built";
   const generated = render();
   for (const [name, options] of Object.entries(generated)) {
+    // The transfer badge measures site/dist. Without a build there is nothing
+    // to measure, so it is checked only when the build has run — verify-all
+    // places this test after the build for exactly that reason.
+    if (name === "transfer" && !built) continue;
     const onDisk = readFileSync(join(OUT, `${name}.svg`), "utf8");
     assert.equal(
       onDisk,

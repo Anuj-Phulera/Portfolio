@@ -28,7 +28,6 @@ step "a11y-static tests"  node --test tools/quality/test/a11y-static.test.mjs
 step "budget tests"       node --test tools/quality/test/bundle-budget.test.mjs
 step "linkcheck tests"    node --test tools/quality/test/linkcheck.test.mjs
 step "site tool tests"    node --test tools/quality/test/site-tools.test.mjs
-step "badge tests"        node --test tools/badges/badge.test.mjs
 step "markdown links"     node tools/quality/linkcheck.mjs
 step "motion lab tests"   node --test PREP/07-motion-lab/test/*.test.mjs
 
@@ -58,6 +57,7 @@ if [ -d site/node_modules ]; then
     step "site links"     node tools/quality/htmllinks.mjs site/dist
     step "site a11y"      node tools/quality/a11y-tree.mjs site/dist
     step "site budget"    node tools/quality/site-budget.mjs site/dist
+    step "badge tests"    node --test tools/badges/badge.test.mjs
   fi
 else
   echo "site/node_modules missing — run npm install in site/ (skipped)"

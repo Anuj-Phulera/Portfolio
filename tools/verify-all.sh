@@ -28,6 +28,7 @@ step "a11y-static tests"  node --test tools/quality/test/a11y-static.test.mjs
 step "budget tests"       node --test tools/quality/test/bundle-budget.test.mjs
 step "linkcheck tests"    node --test tools/quality/test/linkcheck.test.mjs
 step "site tool tests"    node --test tools/quality/test/site-tools.test.mjs
+step "badge tests"        node --test tools/badges/badge.test.mjs
 step "markdown links"     node tools/quality/linkcheck.mjs
 step "motion lab tests"   node --test PREP/07-motion-lab/test/*.test.mjs
 

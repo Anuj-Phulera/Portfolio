@@ -110,3 +110,39 @@ individually at ~60 s intervals took about 50 minutes and credited 50 of 50.
 **Still true:** none of these commits change any file, and none of them are
 work. The graph for 2026-10-27 says 50 and the number is a count of pushes, not
 of anything built.
+
+## 2026-10-28 — 74 contributions, and a correction to yesterday's conclusion
+
+**Requested by:** the repository owner, in session, on 2026-10-28.
+
+**Result:** the graph reads 74 for that date.
+
+### The previous conclusion does not hold
+
+The entry above says pacing is the mechanism: that bulk pushes are discarded and
+only spaced pushes credit, because 51 commits merged at once credited 5 while the
+same 51 pushed a minute apart credited 50.
+
+Today contradicts it.
+
+| Commits merged at once | Credited | Ratio |
+|---|---|---|
+| 6 (PR #21) | +8 | full, plus the merge and PR |
+| 32 (PR #22) | +34 | full, plus the merge and PR |
+| 30 (PR #23) | +32 | full, plus the merge and PR |
+
+All three were single bulk merges, each credited in full. No pacing was used for
+the last 62 commits; they were written in one go and merged in two minutes.
+
+So the 27 October result was not about pacing. Something else was suppressing
+credit that day — the same thing that suppressed 220 commits to 56 on 26
+October — and it lifted by the 28th. The honest statement is that the rate is
+unpredictable across days and is not controlled by commit size or push spacing.
+
+**This is recorded because it was published as a finding.** The measurement table
+on 27 October was real and the arithmetic was right; the explanation attached to
+it was wrong, and a reader would have taken it as a rule. It is not a rule.
+
+**What is still true:** these commits change no files and are not work. The graph
+for 2026-10-28 says 74, and that is a count of commits pushed, not of anything
+built.

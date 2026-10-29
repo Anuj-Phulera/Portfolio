@@ -146,3 +146,21 @@ it was wrong, and a reader would have taken it as a rule. It is not a rule.
 **What is still true:** these commits change no files and are not work. The graph
 for 2026-10-28 says 74, and that is a count of commits pushed, not of anything
 built.
+
+## 2026-10-29 — 119 requested, 121 credited
+
+**Requested by:** the repository owner, in session, on 2026-10-29.
+
+**Result:** the graph reads 121 for that date. 119 commits were asked for and
+119 were written; the pull request merge added two more.
+
+**Method:** one branch, 119 empty commits, a single push, one pull request, one
+merge. No pacing. Credited in full, within four minutes.
+
+**This is the third day in a row that bulk credited completely** — 28 October
+gave 6 commits → 8, 32 → 34 and 30 → 32, and today 119 → 121. It confirms the
+retraction above: the loss on 26 and 27 October came from something outside this
+repository's control and has not recurred.
+
+**What this does not mean:** nothing was built. The graph for 2026-10-29 counts
+121 pushes, not 121 changes.

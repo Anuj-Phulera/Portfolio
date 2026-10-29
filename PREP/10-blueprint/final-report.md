@@ -96,7 +96,7 @@ Consequences: the old hashes are gone, the intermediate fix commits no longer ex
 
 ## Note on the working branch
 
-The brief asked for a dedicated branch such as `prep/portfolio-foundation`. This session's branch, `arena/e10e90bc-portfolio`, is fixed by the environment and cannot be renamed or replaced. The isolation intent is met: all work is local to that branch and nothing has been pushed or merged.
+The brief asked for a dedicated branch such as `prep/portfolio-foundation`. The preparation work was carried on a separate branch and later merged into `main`; the "nothing has been pushed or merged" sentence that stood here described an earlier state and is no longer true. The branch is retained so the original work is still reachable, and `main` is the published history.
 
 ## What remains unverified
 

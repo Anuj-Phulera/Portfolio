@@ -2,16 +2,16 @@
 
 **Purpose:** everything that makes the eventual portfolio defensible, before a single line of portfolio code exists.
 **Status:** preparation only. No portfolio UI, no homepage, no final creative direction is approved.
-**Branch:** `arena/e10e90bc-portfolio` (see "Isolation" below).
+**Branch:** `main` (this package was merged; see "Where this lives" below).
 
 ---
 
-## Isolation
+## Where this lives
 
-- Work is committed locally on `arena/e10e90bc-portfolio`. This session's branch is fixed by the environment and cannot be renamed or replaced; the isolation intent of the brief is met by **never pushing, never opening a PR, never merging**.
-- `origin` exists (`github.com/Anuj-Phulera/Portfolio`) but **nothing in this package has been pushed**. Verify with `git log origin/main..HEAD` — every prep commit is local-only.
-- Experimental code lives in `PREP/07-motion-lab/` and `tools/`, isolated from any production application. There is no production application yet.
+- This package was merged into `main` and is part of the published repository. The isolation described when these files were first written no longer applies, and the note that said nothing had been pushed was true when written and has not been since.
+- Experimental code still lives in `PREP/07-motion-lab/` and `tools/`, separate from the portfolio application in `site/`.
 - Cloned source repositories used as evidence sit in `.sources/` (git-ignored, reproducible from `01-source-of-truth/reproduce.md`).
+- The branch that carried the original preparation work is kept as a historical record alongside `main`.
 
 ## Reading order
 

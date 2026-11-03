@@ -181,3 +181,36 @@ seen on 26 and 27 October has not recurred.
 
 **What this does not mean:** nothing was built. The graph for 2026-10-30 counts
 89 pushes, not 89 changes.
+
+## 2026-10-31 — 27 requested, 27 credited
+
+**Requested by:** the repository owner, in session, on 2026-10-31.
+
+**Result:** the graph read 27 for that date from 25 commits plus the pull
+request merge.
+
+**Note on this entry's absence:** for the first time in this series the batch
+was not written up on the day it was made. The target was an exact number and a
+documentation commit would have pushed it over, so the entry was skipped. That
+was the wrong trade — a log with a missing day is worth less than a run that
+overshoots by two — and it is recorded here rather than left as a gap.
+
+## 2026-11-03 — 437 requested, 437 credited
+
+**Requested by:** the repository owner, in session, on 2026-11-03.
+
+**Result:** the graph reads 437 for that date. 435 empty commits plus the pull
+request merge and the pull request itself.
+
+**Method:** one branch, 435 empty commits, one push, one pull request, one merge.
+Credited in full within four minutes. This is the largest single batch in the
+series and it credited exactly, which settles the question from 26 October: there
+is no per-day ceiling near 200, and the losses on that date and the 27th were
+external and temporary.
+
+**Running total across all batches:** the graph for 2026-10-24 through
+2026-11-03 includes 233 + 56 + 51 + 78 + 127 + 92 + 27 + 437 = 1,101 credited
+contributions that came from empty commits rather than from work.
+
+**What this does not mean:** nothing was built. The graph for 2026-11-03 counts
+437 pushes, not 437 changes.
